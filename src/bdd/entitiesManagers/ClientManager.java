@@ -4,11 +4,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import bdd.entities.Client;
 
+/**
+ * @author mawena
+ */
 public class ClientManager extends Manager{
     
     
     /** 
-     * @param id
+     * Return a Client from the database
+     * @param id    The client id
      * @return Client
      */
     public static Client get(int id){
@@ -29,6 +33,7 @@ public class ClientManager extends Manager{
 
     
     /** 
+     * Return an ArrayList of all Client from the database
      * @return ArrayList<Client>
      */
     public static ArrayList<Client> getAll(){
@@ -48,8 +53,9 @@ public class ClientManager extends Manager{
 
     
     /** 
-     * @param client
-     * @return Client
+     * Insert a Client into the database
+     * @param client    The Client that will be inserted
+     * @return Client   The Client that has been inserted
      */
     public static Client store(Client client){
         try{
@@ -70,8 +76,9 @@ public class ClientManager extends Manager{
 
     
     /** 
-     * @param client
-     * @return Client
+     * Updates a Client in the database
+     * @param client    The Client that will be updated
+     * @return Client   The Client that has been updated
      */
     public static Client update(Client client){
         try{
@@ -93,6 +100,7 @@ public class ClientManager extends Manager{
 
     
     /** 
+     * Deletes a customer from the database
      * @param id
      * @return int
      */

@@ -68,7 +68,7 @@ public class UserManager extends Manager{
 
     
     /** 
-     * Update an user in the database
+     * Updates a user in the database
      * @param user The new user that will be updated
      * @return User The new user that has been updated
      */
@@ -88,7 +88,7 @@ public class UserManager extends Manager{
 
     
     /** 
-     * Delete a user in the database
+     * Deletes a user in the database
      * @param username The username of the user into the database
      * @return int The status of the deletion
      */

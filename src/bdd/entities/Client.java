@@ -2,14 +2,50 @@ package bdd.entities;
 
 import bdd.entitiesManagers.ClientManager;
 
+/**
+ * @author mawena
+ */
 public class Client {
+
+    /**
+     * The identifiant of the Client
+     */
     private int id;
+
+    /**
+     * The number of the identity card of the Client
+     */
     private String numCIN;
+
+    /**
+     * The last name of the Client
+     */
     private String lastName;
+
+    /**
+     * The first name of the Client
+     */
     private String firstName;
+
+    /**
+     * The category of the Client;
+     */
     private String category;
+
+    /**
+     * The telephone number of the Client
+     */
     private String tel;
 
+    /**
+     * A Client object represent the table clients from the database
+     * @param id
+     * @param numCIN
+     * @param lastName
+     * @param firstName
+     * @param category
+     * @param tel
+     */
     public Client(int id, String numCIN, String lastName, String firstName, String category, String tel) {
         this.setId(id);
         this.setNumCIN(numCIN);
@@ -19,6 +55,14 @@ public class Client {
         this.setTel(tel);
     }
     
+    /**
+     * A Client object represent the table clients from the database
+     * @param numCIN
+     * @param lastName
+     * @param firstName
+     * @param category
+     * @param tel
+     */
     public Client(String numCIN, String lastName, String firstName, String category, String tel) {
         this.setNumCIN(numCIN);
         this.setLastName(lastName);
@@ -131,15 +175,27 @@ public class Client {
         return "{\n\tid => \"" + this.id + "\",\n\tnumCIN => \"" + this.numCIN + "\",\n\tlastName  => \"" + this.lastName + "\",\n\tfirstName  => \"" + this.firstName + "\",\n\tcategory  => \"" + this.category + ",\n\ttel  => \"" + this.tel + "\"\n}";
     }
 
+
+    /**
+     * Insert the Client into the databas
+     */
     public void store(){
         ClientManager.store(this);
     }
     
+    /**
+     * Updates the Client in the database
+     */
     public void update(){
         ClientManager.update(this);
     }
     
-    public void delete(){
-        ClientManager.delete(this.id);
+    
+    /** 
+     * Deletes the Client from the database
+     * @return int
+     */
+    public int delete(){
+        return ClientManager.delete(this.id);
     }
 }
