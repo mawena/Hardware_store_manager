@@ -1,0 +1,32 @@
+#La base de données devra contenir les utilisateurs:
+    -username;
+    -password;
+    -last_name;
+    -first_name;
+    -mail;
+#La base de données devra avoir divers tables qui vont permettre de correctement gérer les produits et divers:
+    Produits:
+        -id
+        -designation
+        -description
+        -prix
+    Stock:
+        -idProduit
+        -date_entree
+        -quantite
+    Clients:
+        -idCIn
+        -nom
+        -prenom
+        -tel
+    commande:
+        -id
+        -idClient
+        -idEmployer
+        -date
+    commendes_details:
+        -idCommande
+        -idProduit
+        -quantite
+    
+    

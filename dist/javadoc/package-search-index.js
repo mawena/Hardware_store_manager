@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"bdd.entities"},{"l":"bdd.entitiesManagers"},{"l":"hardware_store_manager"}]
