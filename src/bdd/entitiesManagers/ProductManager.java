@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import bdd.entities.Product;
 
+/**
+ * @author mawena
+ */
 public class ProductManager extends Manager {
 
     /**
@@ -72,7 +75,7 @@ public class ProductManager extends Manager {
     }
 
     /**
-     * Update a product into the database
+     * Updates a product into the database
      * 
      * @param product The new Product that will be updated
      * @return Product The new Product that has been updated
@@ -95,7 +98,7 @@ public class ProductManager extends Manager {
     }
 
     /**
-     * Delete a product from the database
+     * Deletes a product from the database
      * 
      * @param id The product's id
      * @return int The satus of the deletion

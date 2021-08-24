@@ -1,5 +1,9 @@
 package bdd.entities;
 
+import bdd.entitiesManagers.stockManager;
+/**
+ * @author mawena
+ */
 public class Stock {
     private int idProduct;
     private String dateEntryProduct;
