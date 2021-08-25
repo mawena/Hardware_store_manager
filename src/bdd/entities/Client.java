@@ -3,6 +3,8 @@ package bdd.entities;
 import bdd.entitiesManagers.ClientManager;
 
 /**
+ * Represents the table "clients" of the database as an application entity
+ * 
  * @author mawena
  */
 public class Client {

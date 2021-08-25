@@ -4,6 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import bdd.entities.Bill;
 
+/**
+ * Contains static methods for selection, inserting, updating, and removing
+ * bill in the database
+ * 
+ * @author mawena
+ */
 public class BillManager extends Manager{
     
     

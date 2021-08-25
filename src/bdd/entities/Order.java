@@ -2,6 +2,11 @@ package bdd.entities;
 
 import bdd.entitiesManagers.OrderManager;
 
+/**
+ * Represents the table "orders" of the database as an application entity
+ * 
+ * @author mawena
+ */
 public class Order {
     private int id;
     private int idClient;

@@ -3,6 +3,8 @@ package bdd.entities;
 import bdd.entitiesManagers.ProductManager;
 
 /**
+ * Represents the table "products" of the database as an application entity
+ * 
  * @author mawena
  */
 public class Product {

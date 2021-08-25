@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import bdd.entities.Product;
 
 /**
+ * Contains static methods for selection, inserting, updating, and removing
+ * product in the database
+ * 
  * @author mawena
  */
 public class ProductManager extends Manager {

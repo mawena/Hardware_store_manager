@@ -3,6 +3,8 @@ package bdd.entities;
 import bdd.entitiesManagers.EmployerManager;
 
 /**
+ * Represents the table "employers" of the database as an application entity
+ * 
  * @author mawena
  */
 public class Employer {

@@ -28,9 +28,10 @@ CREATE TABLE products(
 
 CREATE TABLE stock(
     id_product int NOT NULL,
-    date_entry_product date NOT NULL,
+    date_entry_product datetime NOT NULL,
     quantity int NOT NULL,
 
+    PRIMARY KEY(id_product, date_entry_product),
     FOREIGN KEY(id_product) REFERENCES products(id)
 );
 

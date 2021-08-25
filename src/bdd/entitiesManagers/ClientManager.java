@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import bdd.entities.Client;
 
 /**
+ * Contains static methods for selection, inserting, updating, and removing
+ * client in the database
+ * 
  * @author mawena
  */
 public class ClientManager extends Manager{

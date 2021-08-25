@@ -1,5 +1,10 @@
 package bdd.entities;
 
+/**
+ * Represents the table "orders_details" of the database as an application entity
+ * 
+ * @author mawena
+ */
 public class OrderDetails {
     private int idOrder;
     private int idProduct;

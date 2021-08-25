@@ -4,6 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import bdd.entities.Order;
 
+/**
+ * Contains static methods for selection, inserting, updating, and removing
+ * order in the database
+ * 
+ * @author mawena
+ */
 public class OrderManager extends Manager{
     
     public static Order get(int id){

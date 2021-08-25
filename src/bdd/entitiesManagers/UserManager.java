@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import bdd.entities.User;
 
 /**
+ * Contains static methods for selection, inserting, updating, and removing
+ * user in the database
+ * 
  * @author mawena
  */
 public class UserManager extends Manager{
