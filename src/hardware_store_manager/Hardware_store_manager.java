@@ -20,12 +20,15 @@ public class Hardware_store_manager {
     public static void main(String[] args) {
         Manager.connect();
 
+        Order order = OrderManager.get(2);
+        order.delete();
         
         // System.out.println("---------users--------------\n" + UserManager.getAll() + "\n----------------------------\n\n");
         // System.out.println("---------products-----------\n" + ProductManager.getAll() + "\n----------------------------\n\n");
-        // System.out.println("---------clients------------\n" + ClientManager.getAll() + "\n----------------------------\n\n");
-        // System.out.println("---------employers----------\n" + EmployerManager.getAll() + "\n----------------------------\n\n");
+        System.out.println("---------clients------------\n" + ClientManager.getAll() + "\n----------------------------\n\n");
+        System.out.println("---------employers----------\n" + EmployerManager.getAll() + "\n----------------------------\n\n");
         // System.out.println("---------stock--------------\n" + StockManager.getAll() + "\n----------------------------\n\n");
+        System.out.println("---------orders-------------\n" + OrderManager.getAll() + "\n----------------------------\n\n");
         
         Manager.close();
     }

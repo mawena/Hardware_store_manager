@@ -46,9 +46,10 @@ CREATE TABLE clients(
 );
 
 CREATE TABLE orders(
-    id int PRIMARY KEY NOT NULL,
+    id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_client int NOT NULL,
     id_employer int NOT NULL,
+    date_order datetime NOT NULL,
     
     FOREIGN KEY(id_client) REFERENCES clients(id),
     FOREIGN KEY(id_employer) REFERENCES employers(id)
@@ -57,8 +58,7 @@ CREATE TABLE orders(
 CREATE TABLE orders_details(
     id_order int NOT NULL,
     id_product int NOT NULL,
-    date_order date NOT NULL,
-    date_entry_product date NOT NULL,
+    date_entry_product datetime NOT NULL,
     quantity int NOT NULL,
 
     FOREIGN KEY(id_product) REFERENCES products(id),
@@ -68,9 +68,19 @@ CREATE TABLE orders_details(
 
 CREATE TABLE bills(
     id_order int NOT NULL,
-    date_bill date,
+    date_bill datetime,
 
     FOREIGN KEY(id_order) REFERENCES orders(id)
 );
-
-INSERT INTO users VALUE('root', 'root');
+INSERT INTO `clients` (`id`, `num_CIN`, `last_name`, `first_name`, `category`, `tel`) VALUES
+(1, 'QSDF45D', 'Albert', 'clément', 'grossiste', '+228 91611135');
+INSERT INTO `employers` (`id`, `last_name`, `first_name`, `birth_date`, `sex`, `role`) VALUES
+(1, 'KOUDOSSOU', 'Justin', '2000-05-02', 'F', 'PDG'),
+(2, 'GAMLIGO', 'Charles Dieu-Donné', '2000-03-03', 'F', 'Directeur');
+INSERT INTO `products` (`id`, `designation`, `description`, `price`) VALUES
+(1, 'rice: Gino', 'The best rice of the market', 4500);
+INSERT INTO `stock` (`id_product`, `date_entry_product`, `quantity`) VALUES
+(1, '2021-08-25 14:14:03', 2);
+INSERT INTO `users` (`username`, `password`) VALUES
+('root', 'root');
+INSERT INTO `orders` (`id`, `id_client`, `id_employer`, `date_order`) VALUES (0, 1, 1, NOW());

@@ -14,7 +14,7 @@ public class UserManager extends Manager{
     /**
      * Return a user from the database
      * @param username The username of the user that we will to find
-     * @return User Ther username finded
+     * @return User Ther username found
      */
     public static User get(String username){
         User user = null;
