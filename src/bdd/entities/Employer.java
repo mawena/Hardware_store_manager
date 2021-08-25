@@ -2,6 +2,9 @@ package bdd.entities;
 
 import bdd.entitiesManagers.EmployerManager;
 
+/**
+ * @author mawena
+ */
 public class Employer {
     private int id;
     private String lastName;
@@ -10,6 +13,15 @@ public class Employer {
     private char sex;
     private String role;
 
+    /**
+     * A Employer object represents the table employer from the database
+     * @param id    The identifiant of the employer in the database
+     * @param lastName  The last name of the employer
+     * @param firstName The first name of the employer
+     * @param birthDate The birth date of the employer
+     * @param sex   The sex of the employer (M/F)
+     * @param role The employer role in the hardware store
+     */
     public Employer(int id, String lastName, String firstName, String birthDate, char sex, String role) {
         this.setId(id);
         this.setLastName(lastName);
@@ -19,6 +31,14 @@ public class Employer {
         this.setRole(role);
     }
 
+    /**
+     * A Employer object represents the table employer from the database
+     * @param lastName  The last name of the employer
+     * @param firstName The first name of the employer
+     * @param birthDate The birth date of the employer
+     * @param sex   The sex of the employer (M/F)
+     * @param role The employer role in the hardware store
+     */
     public Employer(String lastName, String firstName, String birthDate, char sex, String role) {
         this.setLastName(lastName);
         this.setFirstName(firstName);
@@ -52,7 +72,7 @@ public class Employer {
      * @param lastName
      */
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = lastName.toUpperCase();
     }
 
     /**
@@ -117,18 +137,26 @@ public class Employer {
     public String toString() {
         return "{\n\tid => \"" + this.id + "\",\n\tlastName  => \"" + this.lastName + "\",\n\tfirstName  => \""
                 + this.firstName + "\",\n\tbirthDate  => \"" + this.birthDate + "\",\n\tsex  => \"" + this.sex
-                + ",\n\ttrole  => \"" + this.role + "\"\n}";
+                + "\",\n\trole  => \"" + this.role + "\"\n}";
     }
 
+    /**
+     * Insert the Employer into the database
+     */
     public void store() {
         EmployerManager.store(this);
     }
 
-    public void update() {
-        EmployerManager.update(this);
+    /**
+     * @param id The id of the employer that will be updated
+     * Updates the Employer in the database
+     */
+    public void update(int id) {
+        EmployerManager.update(id, this);
     }
     
     /** 
+     * Deletes the Employer from the database
      * @return int
      */
     public int delete() {

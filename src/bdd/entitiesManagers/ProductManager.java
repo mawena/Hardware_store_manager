@@ -77,10 +77,11 @@ public class ProductManager extends Manager {
     /**
      * Updates a product into the database
      * 
-     * @param product The new Product that will be updated
-     * @return Product The new Product that has been updated
+     * @param id The id of the Product that will be updated
+     * @param product The new Product
+     * @return Product
      */
-    public static Product update(Product product) {
+    public static Product update(int id, Product product) {
         try {
             pS = connection.prepareStatement(
                     "UPDATE products SET id = ?, designation = ?, description = ?, price = ? WHERE id = ?;");

@@ -116,7 +116,7 @@ public class Client {
      * @param lastName
      */
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = lastName.toUpperCase();
     }
 
     

@@ -69,15 +69,16 @@ public class UserManager extends Manager{
     
     /** 
      * Updates a user in the database
-     * @param user The new user that will be updated
-     * @return User The new user that has been updated
+     * @param username The username of the user that will be updated
+     * @param user The new user
+     * @return User
      */
-    public static User update(User user){
+    public static User update(String username, User user){
         try{
             pS = connection.prepareStatement("UPDATE users SET username = ?, password = ? WHERE username = ?;");
             pS.setString(1, user.getUsername());
             pS.setString(2, user.getPassword());
-            pS.setString(3, user.getUsername());
+            pS.setString(3, username);
             pS.executeUpdate();
             closeQuery();
         }catch(SQLException e){
