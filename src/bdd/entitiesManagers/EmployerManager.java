@@ -7,7 +7,8 @@ import bdd.entities.Employer;
 public class EmployerManager extends Manager{
     
     /** 
-     * @param id
+     * Return an employer from the database
+     * @param id    The employer's identifiant in the database
      * @return Employer
      */
     public static Employer get(int id){
@@ -28,6 +29,7 @@ public class EmployerManager extends Manager{
 
     
     /** 
+     * Return an ArrayList of all employer from the database
      * @return ArrayList<Employer>
      */
     public static ArrayList<Employer> getAll(){
@@ -47,8 +49,9 @@ public class EmployerManager extends Manager{
 
     
     /** 
-     * @param employer
-     * @return Employer
+     * Insert an employer into the database
+     * @param employer  The employer that will be inserted
+     * @return Employer The employer that has been inserted
      */
     public static Employer store(Employer employer){
         try{
@@ -69,10 +72,12 @@ public class EmployerManager extends Manager{
 
     
     /** 
-     * @param employer
-     * @return Employer
+     * Updates an employer in the database
+     * @param id  The id of the employer that will be updated
+     * @param employer  The new employer
+     * @return Employer The new employer
      */
-    public static Employer update(Employer employer){
+    public static Employer update(int id, Employer employer){
         try{
             pS = connection.prepareStatement("UPDATE employers SET id = ?, last_name = ?, first_name = ?, birth_date = ?, sex = ?, role = ? WHERE id = ?;");
             pS.setInt(1, employer.getId());
@@ -81,7 +86,7 @@ public class EmployerManager extends Manager{
             pS.setString(4, employer.getBirthDate());
             pS.setString(5, "" + employer.getSex());
             pS.setString(6, employer.getRole());
-            pS.setInt(7, employer.getId());
+            pS.setInt(7, id);
             pS.executeUpdate();
             closeQuery();
             System.out.println("Les roses2");
@@ -93,6 +98,7 @@ public class EmployerManager extends Manager{
 
     
     /** 
+     * Deletes an employer from the database
      * @param id
      * @return int
      */

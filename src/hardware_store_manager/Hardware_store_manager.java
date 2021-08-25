@@ -20,12 +20,14 @@ public class Hardware_store_manager {
     public static void main(String[] args) {
         Manager.connect();
 
-        Client test = ClientManager.get(3);
-        test.delete();
+        Employer test = EmployerManager.get(9);
+        test.setId(2);
+        test.update(9);
         
         System.out.println("---------users--------------\n" + UserManager.getAll() + "\n---------------------\n\n");
         System.out.println("---------products-----------\n" + ProductManager.getAll() + "\n---------------------\n\n");
         System.out.println("---------clients------------\n" + ClientManager.getAll() + "\n---------------------\n\n");
+        System.out.println("---------employers------------\n" + EmployerManager.getAll() + "\n---------------------\n\n");
         
         Manager.close();
     }

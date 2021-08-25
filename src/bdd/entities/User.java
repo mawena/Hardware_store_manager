@@ -79,10 +79,11 @@ public class User {
     }
 
     /**
+     * @param username The username of the user that will be updated
      * Update this user into the database
      */
-    public void update(){
-        UserManager.update(this);
+    public void update(String username){
+        UserManager.update(username, this);
     }
 
     
