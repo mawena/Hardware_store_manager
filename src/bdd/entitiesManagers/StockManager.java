@@ -13,12 +13,12 @@ import bdd.entities.Stock;
 public class StockManager extends Manager {
 
     /**
-     * Return a finded Stock
+     * Return a found Stock
      * 
-     * @param idProduct        The identifiant of the product of the Stock finded
+     * @param idProduct        The identifiant of the product of the Stock found
      * @param dateEntryProduct The date of the entry of the product of the Stock
-     *                         finded
-     * @return Stock The Stock finded
+     *                         found
+     * @return Stock The Stock found
      */
     public static Stock get(int idProduct, String dateEntryProduct) {
         Stock stock = null;
@@ -92,8 +92,8 @@ public class StockManager extends Manager {
      */
     public static Stock store(Stock stock) {
         try {
-            pS = connection
-                    .prepareStatement("INSERT INTO stock(id_product, date_entry_product, quantity) VALUE(?, NOW(), ?);");
+            pS = connection.prepareStatement(
+                    "INSERT INTO stock(id_product, date_entry_product, quantity) VALUE(?, NOW(), ?);");
             pS.setInt(1, stock.getIdProduct());
             pS.setInt(2, stock.getQuantity());
             pS.executeUpdate();
