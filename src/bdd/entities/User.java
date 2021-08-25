@@ -3,6 +3,8 @@ package bdd.entities;
 import bdd.entitiesManagers.UserManager;
 
 /**
+ * Represents the table "users" of the database as an application entity
+ * 
  * @author mawena
  */
 public class User {

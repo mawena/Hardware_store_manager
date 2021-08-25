@@ -2,6 +2,11 @@ package bdd.entities;
 
 import bdd.entitiesManagers.BillManager;
 
+/**
+ * Represents the table "bills" of the database as an application entity
+ * 
+ * @author mawena
+ */
 public class Bill {
     private int idOrder;
     private String dateBill;
