@@ -11,64 +11,68 @@ public class Bill {
     private int idOrder;
     private String dateBill;
 
-    public Bill(int idOrder, String dateBill){
+    public Bill(int idOrder, String dateBill) {
         this.setIdOrder(idOrder);
         this.setDateBill(dateBill);
     }
 
-    
-    /** 
+    /**
      * @return int
      */
-    public int getIdOrder(){
+    public int getIdOrder() {
         return this.idOrder;
     }
 
-    
-    /** 
+    /**
      * @param idOrder
      */
-    public void setIdOrder(int idOrder){
+    public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
     }
 
-    
-    /** 
+    /**
      * @return String
      */
-    public String getDateBill(){
+    public String getDateBill() {
         return this.dateBill;
     }
 
-    
-    /** 
+    /**
      * @param dateBill
      */
-    public void setDateBill(String dateBill){
+    public void setDateBill(String dateBill) {
         this.dateBill = dateBill;
     }
 
-    
-    /** 
+    /**
      * @return String
      */
-    public String toString(){
+    public String toString() {
         return "{\n\tidOrder => \"" + this.idOrder + "\",\n\tdateBill  => \"" + this.dateBill + "\"\n}";
     }
 
-    public void store(){
+    /**
+     * Insert the Bill into the database
+     */
+    public void store() {
         BillManager.store(this);
     }
 
-    public void update(){
-        BillManager.update(this);
+    /**
+     * Updates the Bill in the database
+     * 
+     * @param idOrder
+     */
+    public void update(int idOrder) {
+        BillManager.update(idOrder, this);
     }
 
-    
-    /** 
+    /**
+     * Deletes the Bill from the database
+     * 
      * @return int
      */
-    public int delete(){
+    public int delete() {
         return BillManager.delete(this.idOrder);
     }
 }
