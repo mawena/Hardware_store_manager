@@ -1,8 +1,8 @@
-package bdd.entitiesManagers;
+package Model.entitiesManagers;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import bdd.entities.Stock;
+import Model.entities.Stock;
 
 /**
  * Contains static methods for selection, inserting, updating, and removing
@@ -48,7 +48,7 @@ public class StockManager extends Manager {
         ArrayList<Stock> stockList = new ArrayList<Stock>();
 
         try {
-            pS = connection.prepareStatement("SELECT * FROM stock WHERE id_product = ?");
+            pS = connection.prepareStatement("SELECT * FROM stock WHERE id_product = ? ORDER BY date_entry_product;");
             pS.setInt(1, idProduct);
             result = pS.executeQuery();
             while (result.next()) {

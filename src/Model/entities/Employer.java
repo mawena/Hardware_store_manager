@@ -1,6 +1,6 @@
-package bdd.entities;
+package Model.entities;
 
-import bdd.entitiesManagers.EmployerManager;
+import Model.entitiesManagers.EmployerManager;
 
 /**
  * Represents the table "employers" of the database as an application entity
@@ -146,7 +146,8 @@ public class Employer {
      * Insert the Employer into the database
      */
     public void store() {
-        EmployerManager.store(this);
+        Employer tmp = EmployerManager.store(this);
+        this.setId(tmp.getId());
     }
 
     /**

@@ -1,6 +1,6 @@
-package bdd.entities;
+package Model.entities;
 
-import bdd.entitiesManagers.BillManager;
+import Model.entitiesManagers.BillManager;
 
 /**
  * Represents the table "bills" of the database as an application entity

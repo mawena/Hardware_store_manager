@@ -1,6 +1,6 @@
-package bdd.entities;
+package Model.entities;
 
-import bdd.entitiesManagers.UserManager;
+import Model.entitiesManagers.UserManager;
 
 /**
  * Represents the table "users" of the database as an application entity

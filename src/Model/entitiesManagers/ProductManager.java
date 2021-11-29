@@ -1,8 +1,8 @@
-package bdd.entitiesManagers;
+package Model.entitiesManagers;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import bdd.entities.Product;
+import Model.entities.Product;
 
 /**
  * Contains static methods for selection, inserting, updating, and removing

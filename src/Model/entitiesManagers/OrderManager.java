@@ -1,8 +1,8 @@
-package bdd.entitiesManagers;
+package Model.entitiesManagers;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import bdd.entities.Order;
+import Model.entities.Order;
 
 /**
  * Contains static methods for selection, inserting, updating, and removing
@@ -90,6 +90,7 @@ public class OrderManager extends Manager {
             pS.setString(4, order.getDateOrder());
             pS.setInt(5, id);
             pS.executeUpdate();
+            order.setId(getLastId("orders"));
             closeQuery();
         } catch (SQLException e) {
             System.out.println(e);

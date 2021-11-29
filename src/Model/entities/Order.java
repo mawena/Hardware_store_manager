@@ -1,6 +1,6 @@
-package bdd.entities;
+package Model.entities;
 
-import bdd.entitiesManagers.OrderManager;
+import Model.entitiesManagers.OrderManager;
 
 /**
  * Represents the table "orders" of the database as an application entity
@@ -125,7 +125,8 @@ public class Order {
      * Insert the Order into the database
      */
     public void store() {
-        OrderManager.store(this);
+        Order tmp = OrderManager.store(this);
+        this.setId(tmp.getId());
     }
 
     /**

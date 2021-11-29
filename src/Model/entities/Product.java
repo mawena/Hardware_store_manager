@@ -1,6 +1,6 @@
-package bdd.entities;
+package Model.entities;
 
-import bdd.entitiesManagers.ProductManager;
+import Model.entitiesManagers.ProductManager;
 
 /**
  * Represents the table "products" of the database as an application entity
@@ -116,7 +116,8 @@ public class Product {
      * Insert the product into the database
      */
     public void store() {
-        ProductManager.store(this);
+        Product tmp = ProductManager.store(this);
+        this.setId(tmp.getId());
     }
 
     /**

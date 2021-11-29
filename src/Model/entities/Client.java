@@ -1,6 +1,6 @@
-package bdd.entities;
+package Model.entities;
 
-import bdd.entitiesManagers.ClientManager;
+import Model.entitiesManagers.ClientManager;
 
 /**
  * Represents the table "clients" of the database as an application entity
@@ -182,7 +182,8 @@ public class Client {
      * Insert the Client into the databas
      */
     public void store(){
-        ClientManager.store(this);
+        Client tmp = ClientManager.store(this);
+        this.setId(tmp.getId());
     }
     
     /**

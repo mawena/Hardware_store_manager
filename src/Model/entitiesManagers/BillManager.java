@@ -1,8 +1,8 @@
-package bdd.entitiesManagers;
+package Model.entitiesManagers;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import bdd.entities.Bill;
+import Model.entities.Bill;
 
 /**
  * Contains static methods for selection, inserting, updating, and removing Bill

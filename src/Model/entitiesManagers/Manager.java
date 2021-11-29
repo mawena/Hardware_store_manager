@@ -1,4 +1,4 @@
-package bdd.entitiesManagers;
+package Model.entitiesManagers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

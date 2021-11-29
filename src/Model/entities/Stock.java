@@ -1,6 +1,6 @@
-package bdd.entities;
+package Model.entities;
 
-import bdd.entitiesManagers.StockManager;
+import Model.entitiesManagers.StockManager;
 
 /**
  * Represents the table "stock" of the database as an application entity
