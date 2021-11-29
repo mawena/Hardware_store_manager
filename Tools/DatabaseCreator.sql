@@ -6,7 +6,8 @@ use hardware_store_manager;
 
 CREATE TABLE users(
     username varchar(80) PRIMARY KEY,
-    password varchar(240) NOT NULL
+    password varchar(240) NOT NULL,
+    droit varchar(6)
 );
 
 CREATE TABLE employers(
@@ -69,6 +70,7 @@ CREATE TABLE orders_details(
 CREATE TABLE bills(
     id_order int PRIMARY KEY NOT NULL,
     date_bill datetime,
+    getMoney int
 
     FOREIGN KEY(id_order) REFERENCES orders(id)
 );
