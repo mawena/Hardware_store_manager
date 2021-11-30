@@ -41,6 +41,7 @@ public class Client {
 
     /**
      * A Client object represent the table clients from the database
+     * 
      * @param id
      * @param numCIN
      * @param lastName
@@ -56,9 +57,10 @@ public class Client {
         this.setCategory(category);
         this.setTel(tel);
     }
-    
+
     /**
      * A Client object represent the table clients from the database
+     * 
      * @param numCIN
      * @param lastName
      * @param firstName
@@ -73,132 +75,122 @@ public class Client {
         this.setTel(tel);
     }
 
-    
-    /** 
+    /**
      * @return int
      */
     public int getId() {
         return this.id;
     }
 
-    
-    /** 
+    /**
      * @param id
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    
-    /** 
+    /**
      * @return String
      */
     public String getNumCIN() {
         return this.numCIN;
     }
 
-    
-    /** 
+    /**
      * @param numCIN
      */
     public void setNumCIN(String numCIN) {
         this.numCIN = numCIN;
     }
 
-    
-    /** 
+    /**
      * @return String
      */
     public String getLastName() {
         return this.lastName;
     }
 
-    
-    /** 
+    /**
      * @param lastName
      */
     public void setLastName(String lastName) {
         this.lastName = lastName.toUpperCase();
     }
 
-    
-    /** 
+    /**
      * @return String
      */
     public String getFirstName() {
         return this.firstName;
     }
 
-    
-    /** 
+    /**
      * @param firstName
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    
-    /** 
+    /**
      * @return String
      */
     public String getCategory() {
         return this.category;
     }
 
-    
-    /** 
+    /**
      * @param category
      */
     public void setCategory(String category) {
         this.category = category;
     }
 
-    
-    /** 
+    /**
      * @return String
      */
     public String getTel() {
         return this.tel;
     }
 
-    
-    /** 
+    /**
      * @param tel
      */
     public void setTel(String tel) {
         this.tel = tel;
     }
 
-    
-    /** 
+    /**
+     * Cast this object to String
+     * 
      * @return String
      */
-    public String toString(){
-        return "{\n\tid => \"" + this.id + "\",\n\tnumCIN => \"" + this.numCIN + "\",\n\tlastName  => \"" + this.lastName + "\",\n\tfirstName  => \"" + this.firstName + "\",\n\tcategory  => \"" + this.category + ",\n\ttel  => \"" + this.tel + "\"\n}";
+    public String toString() {
+        return "{\n\tid => \"" + this.id + "\",\n\tnumCIN => \"" + this.numCIN + "\",\n\tlastName  => \""
+                + this.lastName + "\",\n\tfirstName  => \"" + this.firstName + "\",\n\tcategory  => \"" + this.category
+                + ",\n\ttel  => \"" + this.tel + "\"\n}";
     }
-
 
     /**
      * Insert the Client into the databas
      */
-    public void store(){
+    public void store() {
         Client tmp = ClientManager.store(this);
         this.setId(tmp.getId());
     }
-    
+
     /**
      * Updates the Client in the database
      */
-    public void update(){
-        ClientManager.update(this);
+    public void update(Client client) {
+        ClientManager.update(this.getId(), client);
     }
-    
-    
-    /** 
+
+    /**
      * Deletes the Client from the database
+     * 
      * @return int
      */
-    public int delete(){
+    public int delete() {
         return ClientManager.delete(this.id);
     }
 }

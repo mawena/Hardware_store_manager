@@ -132,10 +132,10 @@ public class Order {
     /**
      * Updates the Order in the database
      * 
-     * @param id The id of old Order
+     * @param Order order
      */
-    public void update(int id) {
-        OrderManager.update(id, this);
+    public void update(Order order) {
+        OrderManager.update(this.getId(), order);
     }
 
     /**

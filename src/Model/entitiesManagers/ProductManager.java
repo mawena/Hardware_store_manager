@@ -3,6 +3,9 @@ package Model.entitiesManagers;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import Model.entities.Product;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 /**
  * Contains static methods for selection, inserting, updating, and removing
@@ -118,5 +121,22 @@ public class ProductManager extends Manager {
             System.out.println(e);
         }
         return status;
+    }
+
+    /**
+     * Caste an ArrayList of Product into TableModel
+     * 
+     * @param productList ArrayList<Product>  An arrayList of a products
+     * 
+     * @return TableModel
+     */
+    public static TableModel toTableModel(ArrayList<Product> productList){
+        String col[] = {"Id", "Designation", "Description", "Prix", "Quantité"};
+        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+        for(Product product: productList){
+            Object[] obj = {product.getId(), product.getDesignation(), product.getDescription(), product.getPrice(), 0};
+            tableModel.addRow(obj);
+        }
+        return tableModel;
     }
 }

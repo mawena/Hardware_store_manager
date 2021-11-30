@@ -121,11 +121,11 @@ public class Product {
     }
 
     /**
-     * @param id The id of the product that will be updated
      * Update the product in the database
+     * @param Product   product
      */
-    public void update(int id) {
-        ProductManager.update(id, this);
+    public void update(Product product) {
+        ProductManager.update(this.getId(), product);
     }
 
     /**

@@ -57,7 +57,7 @@ public class Employer {
     }
 
     /**
-     * @param id
+     * @param int   id
      */
     public void setId(int id) {
         this.id = id;
@@ -71,7 +71,7 @@ public class Employer {
     }
 
     /**
-     * @param lastName
+     * @param String    lastName
      */
     public void setLastName(String lastName) {
         this.lastName = lastName.toUpperCase();
@@ -99,7 +99,7 @@ public class Employer {
     }
 
     /**
-     * @param birthDate
+     * @param String    birthDate
      */
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
@@ -113,7 +113,7 @@ public class Employer {
     }
 
     /**
-     * @param sex
+     * @param char  sex
      */
     public void setSex(char sex) {
         this.sex = sex;
@@ -127,7 +127,7 @@ public class Employer {
     }
 
     /**
-     * @param role
+     * @param   String  role
      */
     public void setRole(String role) {
         this.role = role;
@@ -151,15 +151,17 @@ public class Employer {
     }
 
     /**
-     * @param id The id of the employer that will be updated
      * Updates the Employer in the database
+     * 
+     * @param   Employer    The new Employer
      */
-    public void update(int id) {
-        EmployerManager.update(id, this);
+    public void update(Employer employer) {
+        EmployerManager.update(this.getId(), employer);
     }
     
     /** 
      * Deletes the Employer from the database
+     * 
      * @return int
      */
     public int delete() {

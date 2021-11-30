@@ -77,9 +77,11 @@ public class Stock {
 
     /**
      * Updates the stock in the database
+     * 
+     * @param   Stock   stock
      */
-    public void update(int idProduct, String dateEntryProduct) {
-        StockManager.update(idProduct, dateEntryProduct, this);
+    public void update(Stock stock) {
+        StockManager.update(this.getIdProduct(), this.getDateEntryProduct(), stock);
     }
 
     /**

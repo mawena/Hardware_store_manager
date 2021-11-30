@@ -81,11 +81,11 @@ public class User {
     }
 
     /**
-     * @param username The username of the user that will be updated
      * Update this user into the database
+     * @param   User    user
      */
-    public void update(String username){
-        UserManager.update(username, this);
+    public void update(User user){
+        UserManager.update(this.getUsername(), user);
     }
 
     

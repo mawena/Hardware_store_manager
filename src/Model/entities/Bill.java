@@ -61,10 +61,10 @@ public class Bill {
     /**
      * Updates the Bill in the database
      * 
-     * @param idOrder
+     * @param   Bill   bill
      */
-    public void update(int idOrder) {
-        BillManager.update(idOrder, this);
+    public void update(Bill bill) {
+        BillManager.update(this.getIdOrder(), bill);
     }
 
     /**
