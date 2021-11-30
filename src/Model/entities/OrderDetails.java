@@ -120,11 +120,10 @@ public class OrderDetails {
     /**
      * Updates the OrderDetails in the database
      * 
-     * @param idOrder   The idOrder of the old OrderDetails
-     * @param idProduct The idProduct of the old OrderDetails
+     * @param OrderDetails  orderDetails
      */
-    public void update(int idOrder, int idProduct) {
-        OrderDetailsManager.update(idOrder, idProduct, this);
+    public void update(OrderDetails orderDetails) {
+        OrderDetailsManager.update(this.getIdOrder(), this.getIdProduct(), orderDetails);
     }
 
     /**
