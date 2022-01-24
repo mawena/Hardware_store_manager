@@ -43,7 +43,7 @@ public class OrderDetailsManager extends Manager {
      * Returns an ArrayList of all OrderDetails of an specific order
      * 
      * @param idOrder The specific order id
-     * @return ArrayList<OrderDetails>
+     * @return ArrayList
      */
     public static ArrayList<OrderDetails> getByOrder(int idOrder) {
         ArrayList<OrderDetails> orderDetailsList = new ArrayList<OrderDetails>();
@@ -65,7 +65,7 @@ public class OrderDetailsManager extends Manager {
     /**
      * Return an ArrayList of all OrderDetails in the database
      * 
-     * @return ArrayList<OrderDetails>
+     * @return ArrayList
      */
     public static ArrayList<OrderDetails> getAll() {
         ArrayList<OrderDetails> orderDetailsList = new ArrayList<OrderDetails>();

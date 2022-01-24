@@ -37,7 +37,7 @@ public class OrderManager extends Manager {
     /**
      * Returns a ArrayList of all Order in the database
      * 
-     * @return ArrayList<Order>
+     * @return ArrayList
      */
     public static ArrayList<Order> getAll() {
         ArrayList<Order> orderList = new ArrayList<Order>();

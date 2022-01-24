@@ -38,6 +38,8 @@ public class Client {
      * The telephone number of the Client
      */
     private String tel;
+    
+    private String sex;
 
     /**
      * A Client object represent the table clients from the database
@@ -49,13 +51,14 @@ public class Client {
      * @param category
      * @param tel
      */
-    public Client(int id, String numCIN, String lastName, String firstName, String category, String tel) {
+    public Client(int id, String numCIN, String lastName, String firstName, String category, String tel, String sex) {
         this.setId(id);
         this.setNumCIN(numCIN);
         this.setLastName(lastName);
         this.setFirstName(firstName);
         this.setCategory(category);
         this.setTel(tel);
+        this.setSex(sex);
     }
 
     /**
@@ -67,12 +70,13 @@ public class Client {
      * @param category
      * @param tel
      */
-    public Client(String numCIN, String lastName, String firstName, String category, String tel) {
+    public Client(String numCIN, String lastName, String firstName, String category, String tel, String sex) {
         this.setNumCIN(numCIN);
         this.setLastName(lastName);
         this.setFirstName(firstName);
         this.setCategory(category);
         this.setTel(tel);
+        this.setSex(sex);
     }
 
     /**
@@ -159,6 +163,14 @@ public class Client {
         this.tel = tel;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     /**
      * Cast this object to String
      * 
@@ -171,7 +183,7 @@ public class Client {
     }
 
     /**
-     * Insert the Client into the databas
+     * Insert the Client into the database
      */
     public void store() {
         Client tmp = ClientManager.store(this);

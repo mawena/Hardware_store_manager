@@ -2,7 +2,7 @@ package Model.entitiesManagers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.Statement; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -10,8 +10,6 @@ import java.sql.PreparedStatement;
 /**
  * Contains static methods for managing the connection to the database and input
  * with the database
- * 
- * @autor mawena
  */
 public class Manager {
     protected static Connection connection;
@@ -77,8 +75,8 @@ public class Manager {
     /**
      * Return the last id of a table into the database
      * 
-     * @param tableName The name of the table
-     * @return int The last id
+     * @param tableName String The name of the table
+     * @return Integer The last id
      */
     public static int getLastId(String tableName) {
         int id = 0;
@@ -105,7 +103,7 @@ public class Manager {
     }
 
     /**
-     * @param connection
+     * @param connection    Connection
      */
     public static void setConnection(Connection connection) {
         Manager.connection = connection;
@@ -119,7 +117,7 @@ public class Manager {
     }
 
     /**
-     * @param statement
+     * @param statement Statement
      */
     public static void setStatement(Statement statement) {
         Manager.statement = statement;
@@ -133,7 +131,7 @@ public class Manager {
     }
 
     /**
-     * @param pS
+     * @param pS    PreparedStatement
      */
     public static void setPreparedStatement(PreparedStatement pS) {
         Manager.pS = pS;
@@ -147,7 +145,7 @@ public class Manager {
     }
 
     /**
-     * @param result
+     * @param result    ResutlSet
      */
     public static void setResult(ResultSet result) {
         Manager.result = result;

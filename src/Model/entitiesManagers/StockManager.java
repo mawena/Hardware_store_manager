@@ -42,7 +42,7 @@ public class StockManager extends Manager {
      * Return an ArrayList of all Stock with a certain idProduct
      * 
      * @param idProduct The idProduct
-     * @return ArrayList<Stock>
+     * @return ArrayList
      */
     public static ArrayList<Stock> getByProduct(int idProduct) {
         ArrayList<Stock> stockList = new ArrayList<Stock>();
@@ -66,7 +66,7 @@ public class StockManager extends Manager {
     /**
      * Return an ArrayList of all Stock from the database
      * 
-     * @return ArrayList<Stock>
+     * @return ArrayList
      */
     public static ArrayList<Stock> getAll() {
         ArrayList<Stock> stockList = new ArrayList<Stock>();
