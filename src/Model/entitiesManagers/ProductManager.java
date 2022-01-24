@@ -33,15 +33,41 @@ public class ProductManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
+        return product;
+    }
+    
+    
+    /**
+     * Select product using designation
+     * 
+     * @param designation
+     * @return 
+     */
+    public static Product get(String designation){
+        Product product = null;
+        
+        try{
+            pS = connection.prepareStatement("SELECT * FROM products WHERE designation = ?");
+            pS.setString(1, designation);
+            result = pS.executeQuery();
+            while(result.next()){
+                product = new Product(result.getInt("id"), result.getString("designation"), result.getString("description"), result.getDouble("price"));
+            }
+            closeQuery();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return null;
+        }
+        
         return product;
     }
 
     /**
      * Return an ArrayList of all products from the database
      * 
-     * @return ArrayList<Product> The ArrayList of all products
+     * @return ArrayList The ArrayList of all products
      */
     public static ArrayList<Product> getAll() {
         ArrayList<Product> productList = new ArrayList<Product>();
@@ -54,7 +80,31 @@ public class ProductManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        return productList;
+    }
+
+    /**
+     * Search a products
+     * 
+     * @param col   String  The col
+     * @param value String  The value
+     * @return ArrayList
+     */
+    public static ArrayList<Product> search(String col, String value) {
+        ArrayList<Product> productList = new ArrayList();
+        try {
+            statement = connection.createStatement();
+            result = statement.executeQuery("SELECT * FROM products WHERE "+col+" LIKE '%"+value+"%';");
+            while (result.next()) {
+                productList.add(new Product(result.getInt("id"), result.getString("designation"),
+                        result.getString("description"), result.getDouble("price")));
+            }
+            closeQuery();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return productList;
     }
@@ -75,7 +125,8 @@ public class ProductManager extends Manager {
             product.setId(getLastId("products"));
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return product;
     }
@@ -89,17 +140,19 @@ public class ProductManager extends Manager {
      */
     public static Product update(int id, Product product) {
         try {
+            
             pS = connection.prepareStatement(
-                    "UPDATE products SET id = ?, designation = ?, description = ?, price = ? WHERE id = ?;");
-            pS.setInt(1, product.getId());
-            pS.setString(2, product.getDesignation());
-            pS.setString(3, product.getDescription());
-            pS.setDouble(4, product.getPrice());
-            pS.setInt(5, product.getId());
+                    "UPDATE products SET designation = ?, description = ?, price = ? WHERE id = ?;");
+            pS.setString(1, product.getDesignation());
+            pS.setString(2, product.getDescription());
+            pS.setDouble(3, product.getPrice());
+            pS.setInt(4, id);
             pS.executeUpdate();
+            JOptionPane.showMessageDialog(null, product);
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return product;
     }
@@ -118,7 +171,7 @@ public class ProductManager extends Manager {
             status = pS.executeUpdate();
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
         return status;
     }
@@ -126,7 +179,7 @@ public class ProductManager extends Manager {
     /**
      * Caste an ArrayList of Product into TableModel
      * 
-     * @param productList ArrayList<Product>  An arrayList of a products
+     * @param productList ArrayList  An arrayList of a products
      * 
      * @return TableModel
      */

@@ -30,11 +30,12 @@ public class ClientManager extends Manager {
             result = pS.executeQuery();
             while (result.next()) {
                 client = new Client(result.getInt("id"), result.getString("num_CIN"), result.getString("last_name"),
-                        result.getString("first_name"), result.getString("category"), result.getString("tel"));
+                        result.getString("first_name"), result.getString("category"), result.getString("tel"), result.getString("sex"));
             }
             closeQuery();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return client;
     }
@@ -42,21 +43,22 @@ public class ClientManager extends Manager {
     /**
      * Return an ArrayList of all Client from the database
      * 
-     * @return ArrayList<Client>
+     * @return ArrayList
      */
     public static ArrayList<Client> getAll() {
-        ArrayList<Client> clientList = new ArrayList<Client>();
+        ArrayList<Client> clientList = new ArrayList();
         try {
             statement = connection.createStatement();
             result = statement.executeQuery("SELECT * FROM clients;");
             while (result.next()) {
                 clientList
                         .add(new Client(result.getInt("id"), result.getString("num_CIN"), result.getString("last_name"),
-                                result.getString("first_name"), result.getString("category"), result.getString("tel")));
+                                result.getString("first_name"), result.getString("category"), result.getString("tel"), result.getString("sex")));
             }
             closeQuery();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return clientList;
     }
@@ -64,22 +66,23 @@ public class ClientManager extends Manager {
     /**
      * Search a clients
      * 
-     * @return ArrayList<Client>
+     * @param col   String  The col
+     * @param value String  The value
+     * @return ArrayList
      */
     public static ArrayList<Client> search(String col, String value) {
-        ArrayList<Client> clientList = new ArrayList<Client>();
+        ArrayList<Client> clientList = new ArrayList();
         try {
-            pS = connection.prepareStatement("SELECT * FROM clients where ? like ?;");
-            pS.setString(1, col);
-            pS.setString(2, value);
-            result = pS.executeQuery();
+            statement = connection.createStatement();
+            result = statement.executeQuery("SELECT * FROM clients WHERE "+col+" LIKE '%"+value+"%';");
             while (result.next()) {
                 clientList.add(new Client(result.getInt("id"), result.getString("num_CIN"), result.getString("last_name"),
-                result.getString("first_name"), result.getString("category"), result.getString("tel")));
+                result.getString("first_name"), result.getString("category"), result.getString("tel"), result.getString("sex")));
             }
             closeQuery();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return clientList;
     }
@@ -93,17 +96,19 @@ public class ClientManager extends Manager {
     public static Client store(Client client) {
         try {
             pS = connection.prepareStatement(
-                    "INSERT INTO clients(num_CIN, last_name, first_name, category, tel) VALUES(?, ?, ?, ?, ?);");
+                    "INSERT INTO clients(num_CIN, last_name, first_name, category, tel, sex) VALUES(?, ?, ?, ?, ?, ?);");
             pS.setString(1, client.getNumCIN());
             pS.setString(2, client.getLastName());
             pS.setString(3, client.getFirstName());
             pS.setString(4, client.getCategory());
             pS.setString(5, client.getTel());
+            pS.setString(6, client.getSex());
             pS.executeUpdate();
             client.setId(getLastId("clients"));
             closeQuery();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return client;
     }
@@ -111,25 +116,27 @@ public class ClientManager extends Manager {
     /**
      * Updates a Client in the database
      * 
-     * @param   id       The Client that will be updated id's
-     * @param   Client   The Client that will be updated
+     * @param   id    Integer   The Client that will be updated id's
+     * @param   client Client   The Client that will be updated
      * @return  Client   The Client that has been updated
      */
     public static Client update(int id, Client client) {
         try {
             pS = connection.prepareStatement(
-                    "UPDATE clients SET id = ?, num_CIN = ?, last_name = ?, first_name = ?, category = ?, tel = ? WHERE id = ?;");
+                    "UPDATE clients SET id = ?, num_CIN = ?, last_name = ?, first_name = ?, category = ?, tel = ?, sex = ? WHERE id = ?;");
             pS.setInt(1, client.getId());
             pS.setString(2, client.getNumCIN());
             pS.setString(3, client.getLastName());
             pS.setString(4, client.getFirstName());
             pS.setString(5, client.getCategory());
             pS.setString(6, client.getTel());
-            pS.setInt(7, id);
+            pS.setString(7, client.getSex());
+            pS.setInt(8, id);
             pS.executeUpdate();
             closeQuery();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
         }
         return client;
     }
@@ -156,15 +163,15 @@ public class ClientManager extends Manager {
     /**
      * Caste an ArrayList of Client into TableModel
      * 
-     * @param clientList ArrayList<Client>  An arrayList of a client
+     * @param clientList ArrayList  An arrayList of a client
      * 
      * @return TableModel
      */
     public static TableModel toTableModel(ArrayList<Client> clientList){
-        String col[] = {"Id", "CNI", "Nom", "Prénom", "Tel", "Catégorie"};
+        String col[] = {"Id", "CNI", "Nom", "Prénom", "Tel", "Catégorie", "Sexe"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
         for(Client client: clientList){
-            Object[] obj = {client.getId(), client.getNumCIN(), client.getLastName(), client.getFirstName(), client.getTel(), client.getCategory()};
+            Object[] obj = {client.getId(), client.getNumCIN(), client.getLastName(), client.getFirstName(), client.getTel(), client.getCategory(), client.getSex()};
             tableModel.addRow(obj);
         }
         return tableModel;

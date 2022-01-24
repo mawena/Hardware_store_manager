@@ -1,10 +1,8 @@
 package Controller;
 
-import java.util.ArrayList;
 import Model.entities.Client;
 import Model.entitiesManagers.ClientManager;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 public class ClientController {
 
@@ -38,34 +36,40 @@ public class ClientController {
      * 
      * @param client Client
      * 
-     * @return void
+     * @return boolean
      */
-    public static void store(Client client) {
+    public static boolean store(Client client) {
         Client cl = ClientManager.get(client.getId());
         if (cl == null) {
             if (isValid(client)) {
-                client.store();
+                return (ClientManager.store(client) != null);
+            }else{
+                return false;
             }
         } else {
             JOptionPane.showMessageDialog(null, "Le client existe déjà!");
+            return false;
         }
     }
 
     /**
      * Update a Client
      * 
-     * @param clientId int The client will be updated id's
+     * @param clientId Integer   The client will be updated id's
      * @param client   Client The new client
      * 
-     * @return void
+     * @return boolean
      */
-    public static void update(int clientId, Client client) {
+    public static boolean update(int clientId, Client client) {
         Client cl = ClientManager.get(clientId);
         if (cl == null) {
             JOptionPane.showMessageDialog(null, "Le client n'existe pas!");
+            return false;
         } else {
             if (isValid(client)) {
-                ClientManager.update(clientId, client);
+                return (ClientManager.update(clientId, client) != null);
+            }else{
+                return false;
             }
         }
     }
@@ -73,16 +77,17 @@ public class ClientController {
     /**
      * Deletes a client from the database
      * 
-     * @param clientId int The client id's
+     * @param clientId Integer The client id's
      * 
-     * @return void
+     * @return boolean
      */
-    public static void destroy(int clientId) {
+    public static boolean destroy(int clientId) {
         Client client = ClientManager.get(clientId);
         if (client == null) {
             JOptionPane.showMessageDialog(null, "Le client sélectioné n'existe pas!");
+            return false;
         } else {
-            ClientManager.delete(clientId);
+            return (ClientManager.delete(clientId) != 0);
         }
     }
 }

@@ -5,7 +5,7 @@
  */
 package View.JFrames;
 
-import javax.swing.JFrame;
+import java.awt.CardLayout;
 
 /**
  *
@@ -13,12 +13,13 @@ import javax.swing.JFrame;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private static CardLayout card = new CardLayout();
     /**
-     * Creates new form mainFrame
+     * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,21 +31,178 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainPanel = new javax.swing.JPanel();
+        cardPanel = new javax.swing.JPanel();
+        commandButton = new javax.swing.JButton();
+        billButton = new javax.swing.JButton();
+        productsButton = new javax.swing.JButton();
+        clientButton = new javax.swing.JButton();
+        personnelButton = new javax.swing.JButton();
+        personnelButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        mainPanel.setBackground(new java.awt.Color(34, 67, 128));
+
+        cardPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout cardPanelLayout = new javax.swing.GroupLayout(cardPanel);
+        cardPanel.setLayout(cardPanelLayout);
+        cardPanelLayout.setHorizontalGroup(
+            cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        cardPanelLayout.setVerticalGroup(
+            cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 570, Short.MAX_VALUE)
+        );
+
+        commandButton.setBackground(new java.awt.Color(34, 67, 128));
+        commandButton.setForeground(new java.awt.Color(255, 255, 255));
+        commandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/order-delivery-min.png"))); // NOI18N
+        commandButton.setText("Commandes     ");
+        commandButton.setBorder(null);
+        commandButton.setBorderPainted(false);
+        commandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                commandButtonActionPerformed(evt);
+            }
+        });
+
+        billButton.setBackground(mainPanel.getBackground());
+        billButton.setForeground(new java.awt.Color(255, 255, 255));
+        billButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/bill-min.png"))); // NOI18N
+        billButton.setText("Factures              ");
+        billButton.setBorder(null);
+        billButton.setBorderPainted(false);
+        billButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                billButtonActionPerformed(evt);
+            }
+        });
+
+        productsButton.setBackground(mainPanel.getBackground());
+        productsButton.setForeground(new java.awt.Color(255, 255, 255));
+        productsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/tool-box-min.png"))); // NOI18N
+        productsButton.setText("Produits           ");
+        productsButton.setBorder(null);
+        productsButton.setBorderPainted(false);
+        productsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productsButtonActionPerformed(evt);
+            }
+        });
+
+        clientButton.setBackground(mainPanel.getBackground());
+        clientButton.setForeground(new java.awt.Color(255, 255, 255));
+        clientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/customer-min.png"))); // NOI18N
+        clientButton.setText("Clients              ");
+        clientButton.setBorder(null);
+        clientButton.setBorderPainted(false);
+        clientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientButtonActionPerformed(evt);
+            }
+        });
+
+        personnelButton.setBackground(mainPanel.getBackground());
+        personnelButton.setForeground(new java.awt.Color(255, 255, 255));
+        personnelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/personnel-min.png"))); // NOI18N
+        personnelButton.setText("Personnels        ");
+        personnelButton.setBorder(null);
+        personnelButton.setBorderPainted(false);
+        personnelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personnelButtonActionPerformed(evt);
+            }
+        });
+
+        personnelButton1.setBackground(mainPanel.getBackground());
+        personnelButton1.setForeground(new java.awt.Color(255, 255, 255));
+        personnelButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/programmer-min.png"))); // NOI18N
+        personnelButton1.setText("Utilisateurs        ");
+        personnelButton1.setBorder(null);
+        personnelButton1.setBorderPainted(false);
+        personnelButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personnelButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(commandButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(billButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(personnelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                    .addComponent(personnelButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addGap(0, 30, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(commandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(billButton)
+                        .addGap(30, 30, 30)
+                        .addComponent(productsButton)
+                        .addGap(30, 30, 30)
+                        .addComponent(clientButton)
+                        .addGap(30, 30, 30)
+                        .addComponent(personnelButton)
+                        .addGap(30, 30, 30)
+                        .addComponent(personnelButton1))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void billButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billButtonActionPerformed
+
+    private void clientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientButtonActionPerformed
+
+    private void commandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commandButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_commandButtonActionPerformed
+
+    private void productsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productsButtonActionPerformed
+
+    private void personnelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personnelButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personnelButtonActionPerformed
+
+    private void personnelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personnelButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personnelButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,7 +230,6 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -83,5 +240,13 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton billButton;
+    private javax.swing.JPanel cardPanel;
+    private javax.swing.JButton clientButton;
+    private javax.swing.JButton commandButton;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JButton personnelButton;
+    private javax.swing.JButton personnelButton1;
+    private javax.swing.JButton productsButton;
     // End of variables declaration//GEN-END:variables
 }

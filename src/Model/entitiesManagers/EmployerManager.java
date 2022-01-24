@@ -14,7 +14,7 @@ public class EmployerManager extends Manager{
     
     /** 
      * Return an employer from the database
-     * @param id    The employer's identifiant in the database
+     * @param id Integer The employer's id in the database
      * @return Employer
      */
     public static Employer get(int id){
@@ -36,10 +36,10 @@ public class EmployerManager extends Manager{
     
     /** 
      * Return an ArrayList of all employer from the database
-     * @return ArrayList<Employer>
+     * @return ArrayList
      */
     public static ArrayList<Employer> getAll(){
-        ArrayList<Employer> employerList = new ArrayList<Employer>();
+        ArrayList<Employer> employerList = new ArrayList();
         try{
             statement = connection.createStatement();
             result = statement.executeQuery("SELECT * FROM employers;");
@@ -56,7 +56,7 @@ public class EmployerManager extends Manager{
     
     /** 
      * Insert an employer into the database
-     * @param employer  The employer that will be inserted
+     * @param employer Employer The employer that will be inserted
      * @return Employer The employer that has been inserted
      */
     public static Employer store(Employer employer){
@@ -79,8 +79,8 @@ public class EmployerManager extends Manager{
     
     /** 
      * Updates an employer in the database
-     * @param id  The id of the employer that will be updated
-     * @param employer  The new employer
+     * @param id Integer The id of the employer that will be updated
+     * @param employer Employer  The new employer
      * @return Employer The new employer
      */
     public static Employer update(int id, Employer employer){
@@ -105,7 +105,7 @@ public class EmployerManager extends Manager{
     
     /** 
      * Deletes an employer from the database
-     * @param id
+     * @param id Integer The id of the employer
      * @return int
      */
     public static int delete (int id){

@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View.JFrames;
+package View.JPanels;
 import Model.entitiesManagers.Manager;
 import Controller.ProductController;
 import Model.entities.Product;
 import Model.entitiesManagers.ProductManager;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author mawena
  */
-public class ProductManagementBase extends javax.swing.JPanel {
+public class Products extends javax.swing.JPanel {
 
     /**
      * Creates new form ClientManagementBase2
      */
-    public ProductManagementBase() {
+    public Products() {
         initComponents();
         Manager.connect();
         productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
@@ -37,7 +36,7 @@ public class ProductManagementBase extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
-        productsearch = new javax.swing.JTextField();
+        productSearch = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         productDesignation = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -51,17 +50,21 @@ public class ProductManagementBase extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
         clearButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         jLabel6.setText("Gestion des Produits");
 
-        productsearch.addActionListener(new java.awt.event.ActionListener() {
+        productSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productsearchActionPerformed(evt);
+                productSearchActionPerformed(evt);
             }
         });
-        productsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+        productSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                productsearchKeyPressed(evt);
+                productSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                productSearchKeyReleased(evt);
             }
         });
 
@@ -188,6 +191,13 @@ public class ProductManagementBase extends javax.swing.JPanel {
             }
         });
 
+        refreshButton.setText("Recharger");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,7 +233,10 @@ public class ProductManagementBase extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(2, 2, 2)
-                        .addComponent(productsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(productSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(refreshButton)
+                        .addGap(20, 20, 20))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -241,7 +254,9 @@ public class ProductManagementBase extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addComponent(productDesignation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productsearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(productSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refreshButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
@@ -265,21 +280,26 @@ public class ProductManagementBase extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void productsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsearchActionPerformed
+    private void productSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_productsearchActionPerformed
+    }//GEN-LAST:event_productSearchActionPerformed
 
-    private void productsearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productsearchKeyPressed
+    private void productSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSearchKeyPressed
         //
-    }//GEN-LAST:event_productsearchKeyPressed
+    }//GEN-LAST:event_productSearchKeyPressed
 
     private void productDesignationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productDesignationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_productDesignationActionPerformed
 
     private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
-        ProductController.store(new Product(productDesignation.getText(), productDescription.getText(), Double.valueOf(productPrice.getText())));
+        if(ProductController.store(new Product(productDesignation.getText(), productDescription.getText(), Double.valueOf(productPrice.getText())))){
+            productDesignation.setText("");
+            productDescription.setText("");
+            productPrice.setText("");
+        }
         productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
+        
     }//GEN-LAST:event_addProductButtonActionPerformed
 
     private void productDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productDescriptionActionPerformed
@@ -308,12 +328,28 @@ public class ProductManagementBase extends javax.swing.JPanel {
     }//GEN-LAST:event_delProductButtonActionPerformed
 
     private void updateProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProductButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) productTable.getModel();
+        int myIndex = productTable.getSelectedRow();
+        if(ProductController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Product(productDesignation.getText(), productDescription.getText(), Double.valueOf(productPrice.getText())))){
+            productDesignation.setText("");
+            productDescription.setText("");
+            productPrice.setText("");
+        }
+        productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
     }//GEN-LAST:event_updateProductButtonActionPerformed
 
     private void productPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_productPriceActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        productSearch.setText("");
+        productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void productSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSearchKeyReleased
+        productTable.setModel(ProductManager.toTableModel(ProductManager.search("designation", productSearch.getText())));
+    }//GEN-LAST:event_productSearchKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -329,8 +365,9 @@ public class ProductManagementBase extends javax.swing.JPanel {
     private javax.swing.JTextField productDescription;
     private javax.swing.JTextField productDesignation;
     private javax.swing.JTextField productPrice;
+    private javax.swing.JTextField productSearch;
     private javax.swing.JTable productTable;
-    private javax.swing.JTextField productsearch;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JButton updateProductButton;
     // End of variables declaration//GEN-END:variables
 }

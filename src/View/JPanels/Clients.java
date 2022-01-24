@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View.JFrames;
+package View.JPanels;
 import Controller.ClientController;
 import Model.entitiesManagers.Manager;
 import Model.entities.Client;
@@ -16,12 +16,12 @@ import javax.swing.table.TableModel;
  *
  * @author mawena
  */
-public class ClientManagementBase extends javax.swing.JPanel {
+public class Clients extends javax.swing.JPanel {
 
     /**
      * Creates new form ClientManagementBase2
      */
-    public ClientManagementBase() {
+    public Clients() {
         initComponents();
         Manager.connect();
         clientTable.setModel(ClientManager.toTableModel(ClientManager.getAll()));
@@ -37,7 +37,7 @@ public class ClientManagementBase extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
-        clientsearch = new javax.swing.JTextField();
+        clientSearch = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         clientCNI = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -55,17 +55,31 @@ public class ClientManagementBase extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         clientTable = new javax.swing.JTable();
         clearButton = new javax.swing.JButton();
+        refrechButton = new javax.swing.JButton();
 
         jLabel6.setText("Gestion des clients");
 
-        clientsearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientsearchActionPerformed(evt);
+        clientSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                clientSearchInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
-        clientsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+        clientSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientSearchActionPerformed(evt);
+            }
+        });
+        clientSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                clientSearchKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                clientsearchKeyPressed(evt);
+                clientSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                clientSearchKeyReleased(evt);
             }
         });
 
@@ -198,6 +212,13 @@ public class ClientManagementBase extends javax.swing.JPanel {
             }
         });
 
+        refrechButton.setText("Recharger");
+        refrechButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refrechButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,11 +249,13 @@ public class ClientManagementBase extends javax.swing.JPanel {
                             .addComponent(clientFirstName)
                             .addComponent(clientTel))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(2, 2, 2)
-                        .addComponent(clientsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clientSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(refrechButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -250,7 +273,9 @@ public class ClientManagementBase extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addComponent(clientCNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clientsearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(clientSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refrechButton)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -280,21 +305,27 @@ public class ClientManagementBase extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clientsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsearchActionPerformed
+    private void clientSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_clientsearchActionPerformed
+    }//GEN-LAST:event_clientSearchActionPerformed
 
-    private void clientsearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clientsearchKeyPressed
-        clientTable.setModel(ClientManager.toTableModel(ClientManager.search("last_name", clientsearch.getText())));
-    }//GEN-LAST:event_clientsearchKeyPressed
+    private void clientSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clientSearchKeyPressed
+        //
+    }//GEN-LAST:event_clientSearchKeyPressed
 
     private void clientCNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clientCNIActionPerformed
 
     private void addClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClientButtonActionPerformed
-        ClientController.store(new Client(clientCNI.getText(), clientLastName.getText(), clientFirstName.getText(), clientCategory.getSelectedItem().toString(), clientTel.getText()));
+        if(ClientController.store(new Client(clientCNI.getText(), clientLastName.getText(), clientFirstName.getText(), clientCategory.getSelectedItem().toString(), clientTel.getText(), "H"))){
+            clientCNI.setText("");
+            clientLastName.setText("");
+            clientFirstName.setText("");
+            clientTel.setText("");
+        }
         clientTable.setModel(ClientManager.toTableModel(ClientManager.getAll()));
+        
     }//GEN-LAST:event_addClientButtonActionPerformed
 
     private void clientTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientTelActionPerformed
@@ -330,8 +361,25 @@ public class ClientManagementBase extends javax.swing.JPanel {
     }//GEN-LAST:event_delClientButtonActionPerformed
 
     private void updateClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateClientButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_updateClientButtonActionPerformed
+
+    private void refrechButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrechButtonActionPerformed
+        clientSearch.setText("");
+        clientTable.setModel(ClientManager.toTableModel(ClientManager.getAll()));
+    }//GEN-LAST:event_refrechButtonActionPerformed
+
+    private void clientSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clientSearchKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientSearchKeyTyped
+
+    private void clientSearchInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_clientSearchInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientSearchInputMethodTextChanged
+
+    private void clientSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clientSearchKeyReleased
+        clientTable.setModel(ClientManager.toTableModel(ClientManager.search("last_name", clientSearch.getText())));
+    }//GEN-LAST:event_clientSearchKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -341,9 +389,9 @@ public class ClientManagementBase extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> clientCategory;
     private javax.swing.JTextField clientFirstName;
     private javax.swing.JTextField clientLastName;
+    private javax.swing.JTextField clientSearch;
     private javax.swing.JTable clientTable;
     private javax.swing.JTextField clientTel;
-    private javax.swing.JTextField clientsearch;
     private javax.swing.JButton delClientButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -353,6 +401,7 @@ public class ClientManagementBase extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refrechButton;
     private javax.swing.JButton updateClientButton;
     // End of variables declaration//GEN-END:variables
 }

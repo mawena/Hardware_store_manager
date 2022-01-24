@@ -11,7 +11,7 @@ public class ProductController {
      * 
      * @param product Product The product will be verified
      * 
-     * @return void
+     * @return boolean
      */
     public static boolean isValid(Product product) {
         boolean rep = true;
@@ -21,6 +21,9 @@ public class ProductController {
         } else if (product.getDescription().isEmpty()) {
             rep = false;
             JOptionPane.showMessageDialog(null, "La description est manquante!");
+        } else if (product.getPrice() <= 0){
+            rep = false;
+            JOptionPane.showMessageDialog(null, "Le prix doit être supérieur à 0");
         }
         return rep;
     }
@@ -30,16 +33,19 @@ public class ProductController {
      * 
      * @param product Product The product will be inserted
      * 
-     * @return void
+     * @return boolean
      */
-    public static void store(Product product) {
-        Product pr = ProductManager.get(product.getId());
+    public static boolean store(Product product) {
+    Product pr = ProductManager.get(product.getDesignation());
         if (pr == null) {
             if (isValid(product)) {
-                ProductManager.store(product);
+                return (ProductManager.store(product) != null);
+            }else{
+                return false;
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ce produit existe déjà!");
+            JOptionPane.showMessageDialog(null, "Ce produit " + product.getDesignation() +" existe déjà!");
+            return false;
         }
     }
 
@@ -49,14 +55,19 @@ public class ProductController {
      * @param productId Integer The id of the product will be updated
      * @param product   Product The new product
      * 
-     * @return void
+     * @return boolean
      */
-    public static void update(int productId, Product product) {
+    public static boolean update(int productId, Product product) {
         Product pr = ProductManager.get(productId);
         if (pr == null) {
             JOptionPane.showMessageDialog(null, "Le produit n'existe pas!");
+            return false;
         } else {
-            ProductManager.update(productId, product);
+            if(isValid(product)){
+                return (ProductManager.update(productId, product) != null);
+            }else{
+                return false;
+            }
         }
     }
 
@@ -65,14 +76,15 @@ public class ProductController {
      * 
      * @param productId Integer The id of the product will be deleted
      * 
-     * @return void
+     * @return boolean
      */
-    public static void destroy(int productId) {
+    public static boolean destroy(int productId) {
         Product pr = ProductManager.get(productId);
         if (pr == null) {
             JOptionPane.showMessageDialog(null, "Le produit n'existe pas!");
+            return false;
         } else {
-            ProductManager.delete(productId);
+            return (ProductManager.delete(productId) != 0);
         }
     }
 }
