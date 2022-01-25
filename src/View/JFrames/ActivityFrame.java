@@ -5,12 +5,12 @@
  */
 package View.JFrames;
 
-import Model.entitiesManagers.Manager;
+import Models.EntitiesManagers.Manager;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import View.JPanels.Clients;
-import View.JPanels.Products;
-import View.JPanels.Users;
+import View.JPanels.ClientsOld;
+import View.JPanels.ProductsOld;
+import View.JPanels.UsersOld;
 import java.awt.CardLayout;
 
 /**
@@ -23,9 +23,9 @@ public class ActivityFrame extends JFrame {
      * Creates new form ActivityFrame
      */
     
-    public JPanel clients = new Clients();
-    public JPanel produits = new Products();
-    public JPanel users = new Users();
+    public JPanel clients = new ClientsOld();
+    public JPanel produits = new ProductsOld();
+    public JPanel users = new UsersOld();
     public CardLayout card = new CardLayout();
     public ActivityFrame() {
         initComponents();

@@ -72,7 +72,7 @@ CREATE TABLE orders_details(
 CREATE TABLE bills(
     id_order int PRIMARY KEY NOT NULL,
     date_bill datetime,
-    getMoney int
+    getMoney int,
 
     FOREIGN KEY(id_order) REFERENCES orders(id)
 );
