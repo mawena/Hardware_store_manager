@@ -5,26 +5,32 @@
  */
 package View.JFrames;
 
-import Main.Main;
 import java.awt.CardLayout;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
  * @author mawena
  */
 public class LoginFrame extends javax.swing.JFrame {
-    private static CardLayout card = new CardLayout();
+    public static CardLayout card = new CardLayout();
     /**
-     * Creates new form Login
+     * Creates new form LoginPanel
      */
     public LoginFrame() {
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        this.setLocationRelativeTo(null);
         bodyPanel.setLayout(card);
-        bodyPanel.add(new View.JPanels.Login(), "1");
-        card.show(bodyPanel, "1");
+        bodyPanel.add(new View.JPanels.LoginPanel(), "1");
+        card.show(bodyPanel, "2");
+    }
+    
+    public JPanel getBodyPanel(){
+        return this.bodyPanel;
+    }
+    
+    public void setBodyPanel(JPanel bodyPanel){
+        this.bodyPanel = bodyPanel;
     }
 
     /**
@@ -41,35 +47,28 @@ public class LoginFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1266, 568));
         setResizable(false);
 
         javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1176, Short.MAX_VALUE)
+            .addGap(0, 1200, Short.MAX_VALUE)
         );
         bodyPanelLayout.setVerticalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
