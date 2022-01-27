@@ -1,6 +1,6 @@
 package Models.Entities;
 
-import Models.EntitiesManagers.UserManager;
+import Models.EntitiesManagers.UsersManager;
 
 /**
  * Represents the table "users" of the database as an application entity
@@ -128,7 +128,7 @@ public class User {
      * Store this user into the database
      */
     public void store() {
-        UserManager.store(this);
+        UsersManager.store(this);
     }
 
     /**
@@ -137,7 +137,7 @@ public class User {
      * @param User user
      */
     public void update(User user) {
-        UserManager.update(this.getId(), user);
+        UsersManager.update(this.getId(), user);
     }
 
     /**
@@ -145,7 +145,7 @@ public class User {
      *
      * @return Integer
      */
-    public int delete() {
-        return UserManager.delete(this.id);
+    public boolean delete() {
+        return UsersManager.delete(this.id);
     }
 }

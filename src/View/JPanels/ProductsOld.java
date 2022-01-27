@@ -7,7 +7,7 @@ package View.JPanels;
 import Models.EntitiesManagers.Manager;
 import Controllers.ProductsController;
 import Models.Entities.Product;
-import Models.EntitiesManagers.ProductManager;
+import Models.EntitiesManagers.ProductsManager;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +23,7 @@ public class ProductsOld extends javax.swing.JPanel {
     public ProductsOld() {
         initComponents();
         Manager.connect();
-        productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
+        productTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
     }
 
     /**
@@ -297,9 +297,8 @@ public class ProductsOld extends javax.swing.JPanel {
             productDesignation.setText("");
             productDescription.setText("");
             productPrice.setText("");
+            productTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
         }
-        productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
-        
     }//GEN-LAST:event_addProductButtonActionPerformed
 
     private void productDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productDescriptionActionPerformed
@@ -324,7 +323,7 @@ public class ProductsOld extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) productTable.getModel();
         int myIndex = productTable.getSelectedRow();
         ProductsController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()));
-        productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
+        productTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
     }//GEN-LAST:event_delProductButtonActionPerformed
 
     private void updateProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProductButtonActionPerformed
@@ -335,7 +334,7 @@ public class ProductsOld extends javax.swing.JPanel {
             productDescription.setText("");
             productPrice.setText("");
         }
-        productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
+        productTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
     }//GEN-LAST:event_updateProductButtonActionPerformed
 
     private void productPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productPriceActionPerformed
@@ -344,11 +343,11 @@ public class ProductsOld extends javax.swing.JPanel {
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         productSearch.setText("");
-        productTable.setModel(ProductManager.toTableModel(ProductManager.getAll()));
+        productTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void productSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSearchKeyReleased
-        productTable.setModel(ProductManager.toTableModel(ProductManager.search("designation", productSearch.getText())));
+        productTable.setModel(ProductsManager.toTableModel(ProductsManager.search("designation", productSearch.getText())));
     }//GEN-LAST:event_productSearchKeyReleased
 
 

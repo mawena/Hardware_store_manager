@@ -38,14 +38,14 @@ CREATE TABLE stock(
 );
 
 CREATE TABLE clients(
+    sex ENUM('M', 'F'),
+    UNIQUE(last_name, first_name)
     id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
     num_CIN varchar(25) NOT NULL UNIQUE,
     last_name varchar(80) NOT NULL,
     first_name varchar(150) NOT NULL,
     category ENUM('detaillant', 'grossiste') NOT NULL,
     tel varchar(15),
-    sex ENUM('M', 'F'),
-    UNIQUE(last_name, first_name)
 );
 
 CREATE TABLE orders(

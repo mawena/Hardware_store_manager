@@ -1,18 +1,11 @@
 package Controllers;
 
 import Models.Entities.Client;
-import Models.EntitiesManagers.ClientManager;
+import Models.EntitiesManagers.ClientsManager;
 import javax.swing.JOptionPane;
 
 public class ClientsController {
 
-    /**
-     * Verify if the client is valid
-     * 
-     * @param client Client
-     * 
-     * @return boolean
-     */
     public static boolean isValid(Client client) {
         boolean rep = true;
         if (client.getNumCIN().isEmpty()) {
@@ -31,19 +24,12 @@ public class ClientsController {
         return rep;
     }
 
-    /**
-     * Insert a client into the database
-     * 
-     * @param client Client
-     * 
-     * @return boolean
-     */
     public static boolean store(Client client) {
-        Client cl = ClientManager.get(client.getId());
+        Client cl = ClientsManager.get(client.getNumCIN());
         if (cl == null) {
             if (isValid(client)) {
-                return (ClientManager.store(client) != null);
-            }else{
+                return (ClientsManager.store(client) != null);
+            } else {
                 return false;
             }
         } else {
@@ -52,42 +38,64 @@ public class ClientsController {
         }
     }
 
-    /**
-     * Update a Client
-     * 
-     * @param clientId Integer   The client will be updated id's
-     * @param client   Client The new client
-     * 
-     * @return boolean
-     */
     public static boolean update(int clientId, Client client) {
-        Client cl = ClientManager.get(clientId);
+        Client cl = ClientsManager.get(clientId);
         if (cl == null) {
             JOptionPane.showMessageDialog(null, "Le client n'existe pas!");
             return false;
         } else {
             if (isValid(client)) {
-                return (ClientManager.update(clientId, client) != null);
-            }else{
+                return (ClientsManager.update(clientId, client) != null);
+            } else {
                 return false;
             }
         }
     }
 
-    /**
-     * Deletes a client from the database
-     * 
-     * @param clientId Integer The client id's
-     * 
-     * @return boolean
-     */
+    public static boolean update(String clientCNI, Client client) {
+        Client cl = ClientsManager.get(clientCNI);
+        if (cl == null) {
+            JOptionPane.showMessageDialog(null, "Le client n'existe pas!");
+            return false;
+        } else {
+            if (isValid(client)) {
+                return (ClientsManager.update(client.getId(), client) != null);
+            } else {
+                return false;
+            }
+        }
+    }
+
     public static boolean destroy(int clientId) {
-        Client client = ClientManager.get(clientId);
+        Client client = ClientsManager.get(clientId);
         if (client == null) {
             JOptionPane.showMessageDialog(null, "Le client sélectioné n'existe pas!");
             return false;
         } else {
-            return (ClientManager.delete(clientId) != 0);
+            if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment suprimer le client?") == 0) {
+                return (ClientsManager.delete(clientId));
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public static boolean destroy(String clientCIN) {
+        if (clientCIN.equals("")) {
+            JOptionPane.showMessageDialog(null, "Le CNI est manquant!");
+            return false;
+        } else {
+            Client client = ClientsManager.get(clientCIN);
+            if (client == null) {
+                JOptionPane.showMessageDialog(null, "Le client sélectioné n'existe pas!");
+                return false;
+            } else {
+                if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment suprimer le client?") == 0) {
+                    return (ClientsManager.delete(client.getId()));
+                } else {
+                    return false;
+                }
+            }
         }
     }
 }

@@ -7,12 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-/**
- * Contains static methods for selection, inserting, updating, and removing
- * stock in the database
- *
- * @author mawena
- */
 public class StockManager extends Manager {
 
     public static Stock get(int idProduct, String dateEntryProduct) {
@@ -101,20 +95,20 @@ public class StockManager extends Manager {
         return stock;
     }
 
-    public static int delete(int idProduct, String dateEntryProduct) {
-        int status = 0;
+    public static boolean delete(int idProduct, String dateEntryProduct) {
         try {
             pS = connection.prepareStatement("DELETE FROM stock WHERE id_product = ? and date_entry_product = ?;");
             pS.setInt(1, idProduct);
             pS.setString(2, dateEntryProduct);
-            status = pS.executeUpdate();
+            pS.executeUpdate();
             closeQuery();
+            return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
         }
-        return status;
     }
-    
+
     public static TableModel toTableModel(ArrayList<Stock> stockList) {
         String col[] = {"Numéro produit", "Designation", "Quantié", "Date d'entrée"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
