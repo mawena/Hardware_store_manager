@@ -6,21 +6,8 @@ import Models.Entities.OrderDetails;
 import Models.Entities.Stock;
 import Models.EntitiesManagers.StockManager;
 
-/**
- * Contains static methods for selection, inserting, updating, and removing
- * OrderDetails in the database
- * 
- * @author mawena
- */
 public class OrderDetailsManager extends Manager {
 
-    /**
-     * Returns a specific OrderDetails of the database
-     * 
-     * @param idOrder   The idOrder of the OrderDetails
-     * @param idProduct The idProduct of the OrderDetails
-     * @return OrderDetails
-     */
     public static OrderDetails get(int idOrder, int idProduct) {
         OrderDetails orderDetails = null;
         try {
@@ -39,12 +26,6 @@ public class OrderDetailsManager extends Manager {
         return orderDetails;
     }
 
-    /**
-     * Returns an ArrayList of all OrderDetails of an specific order
-     * 
-     * @param idOrder The specific order id
-     * @return ArrayList
-     */
     public static ArrayList<OrderDetails> getByOrder(int idOrder) {
         ArrayList<OrderDetails> orderDetailsList = new ArrayList<OrderDetails>();
         try {
@@ -62,11 +43,6 @@ public class OrderDetailsManager extends Manager {
         return orderDetailsList;
     }
 
-    /**
-     * Return an ArrayList of all OrderDetails in the database
-     * 
-     * @return ArrayList
-     */
     public static ArrayList<OrderDetails> getAll() {
         ArrayList<OrderDetails> orderDetailsList = new ArrayList<OrderDetails>();
         try {
@@ -83,12 +59,6 @@ public class OrderDetailsManager extends Manager {
         return orderDetailsList;
     }
 
-    /**
-     * Insert an OrderDetails into the database
-     * 
-     * @param orderDetails The OrderDetails that will be inserted
-     * @return OrderDetails The OrderDetails that has been inserted
-     */
     public static OrderDetails store(OrderDetails orderDetails) {
         try {
             Stock stock = StockManager.getByProduct(orderDetails.getIdProduct()).get(0);
@@ -106,14 +76,6 @@ public class OrderDetailsManager extends Manager {
         return orderDetails;
     }
 
-    /**
-     * Updates an OrderDetails in the database
-     * 
-     * @param idOrder      The idOrder of the old OrderDetails
-     * @param idProduct    The idProduct of the old OrderDetails
-     * @param orderDetails The new OrderDetails
-     * @return OrderDetails The new OrderDetails
-     */
     public static OrderDetails update(int idOrder, int idProduct, OrderDetails orderDetails) {
         try {
             pS = connection.prepareStatement(
@@ -131,24 +93,17 @@ public class OrderDetailsManager extends Manager {
         return orderDetails;
     }
 
-    /**
-     * Deletes an OrderDetails from the database
-     * 
-     * @param idOrder   The idOrder of the OrderDetails
-     * @param idProduct The idProduct of the OrderDetails
-     * @return int The status of the deletion
-     */
-    public static int delete(int idOrder, int idProduct) {
-        int status = 0;
+    public static boolean delete(int idOrder, int idProduct) {
         try {
             pS = connection.prepareStatement("DELETE FROM order_details WHERE id_order = ? AND id_product = ?;");
             pS.setInt(1, idOrder);
             pS.setInt(2, idProduct);
-            status = pS.executeUpdate();
+            pS.executeUpdate();
             closeQuery();
+            return true;
         } catch (SQLException e) {
             System.out.println(e);
+            return false;
         }
-        return status;
     }
 }

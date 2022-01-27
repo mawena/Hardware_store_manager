@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import Models.Entities.User;
-import Models.EntitiesManagers.UserManager;
+import Models.EntitiesManagers.UsersManager;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author mawena
- */
 public class UsersController {
 
     public static boolean isValid(User user) {
@@ -33,12 +24,12 @@ public class UsersController {
     public static boolean login(String username, String password, String type) {
         User user = new User(username, password, type);
         if (isValid(user)) {
-            User userDB = UserManager.get(user.getUsername());
+            User userDB = UsersManager.get(user.getUsername());
             if (userDB == null) {
                 JOptionPane.showMessageDialog(null, "L'utilisateur n'existe pas.");
                 return false;
             } else {
-                if (user.getPassword() == null ? userDB.getPassword() == null : user.getPassword().equals(userDB.getPassword())) {
+                if (user.getPassword().equals(userDB.getPassword())) {
                     if (user.getType().equals(userDB.getType())) {
                         return true;
                     } else {
@@ -55,16 +46,10 @@ public class UsersController {
         }
     }
 
-    /**
-     * Insert a user into the database
-     *
-     * @param user User The user will be inserted
-     * @return boolean
-     */
     public static boolean store(User user) {
-        User us = UserManager.get(user.getUsername());
+        User us = UsersManager.get(user.getUsername());
         if (us == null) {
-            return UserManager.store(user) != null;
+            return UsersManager.store(user) != null;
         } else {
             JOptionPane.showMessageDialog(null, "L'utilisateur existe déjà.");
             return false;
@@ -72,22 +57,32 @@ public class UsersController {
     }
 
     public static boolean update(int id, User user) {
-        User us = UserManager.get(id);
+        User us = UsersManager.get(id);
         if (us == null) {
             JOptionPane.showMessageDialog(null, "L'utilisateur n'existe pas.");
             return false;
         } else {
-            return (UserManager.update(id, user) != null);
+            return (UsersManager.update(id, user) != null);
         }
     }
 
     public static boolean destroy(int id) {
-        User us = UserManager.get(id);
+        User us = UsersManager.get(id);
         if (us == null) {
             JOptionPane.showMessageDialog(null, "L'utilisateur n'existe pas.");
             return false;
         } else {
-            return UserManager.delete(id) != 0;
+            return UsersManager.delete(id);
+        }
+    }
+    
+    public static boolean destroy(String username){
+        User us = UsersManager.get(username);
+        if (us == null) {
+            JOptionPane.showMessageDialog(null, "L'utilisateur n'existe pas.");
+            return false;
+        } else {
+            return UsersManager.delete(us.getId());
         }
     }
 }

@@ -2,11 +2,6 @@ package Models.Entities;
 
 import Models.EntitiesManagers.StockManager;
 
-/**
- * Represents the table "stock" of the database as an application entity
- *
- * @author mawena
- */
 public class Stock {
 
     private int idProduct;
@@ -34,12 +29,7 @@ public class Stock {
         StockManager.update(this.getIdProduct(), this.getDateEntryProduct(), stock);
     }
 
-    /**
-     * Deletes the stock into the database
-     *
-     * @return int
-     */
-    public int delete() {
+    public boolean delete() {
         return StockManager.delete(this.idProduct, this.dateEntryProduct);
     }
 

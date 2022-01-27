@@ -81,7 +81,7 @@ public class Manager {
     public static int getLastId(String tableName) {
         int id = 0;
         try {
-            Manager.statement = UserManager.connection.createStatement();
+            Manager.statement = UsersManager.connection.createStatement();
             Manager.result = Manager.statement.executeQuery("SELECT MAX(id) AS id FROM `" + tableName + "`;");
             while (Manager.result.next()) {
                 id = Manager.result.getInt("id");

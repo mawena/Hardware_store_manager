@@ -4,21 +4,11 @@
  */
 package View.JPanels;
 
+import Models.Entities.Product;
 import Models.EntitiesManagers.StockManager;
-import javax.swing.*;
-import java.awt.*;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import Models.Entities.Stock;
+import Models.EntitiesManagers.ProductsManager;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,45 +21,14 @@ public class StockPanel extends javax.swing.JPanel {
      */
     public StockPanel() {
         initComponents();
-        tabjTable.setModel(StockManager.toTableModel(StockManager.getAll()));
-    }
-    
-     private static final long serialVersionUID = -6350324456764768311L;
-
-    private Image image;
-
-    public void setImage(Image image) {
-        this.image = image;
-        repaint();
-    }
-    public void setImage(String path) throws IOException {
-        try {
-            this.image = ImageIO.read(new File(path));
-            repaint();
-        } 
-        catch (IOException e) {
-            throw new IOException(path+" introuvable", e);
+        ArrayList<Stock> stockList = StockManager.getAll();
+        tabjTable.setModel(StockManager.toTableModel(stockList));
+        productId.removeAllItems();
+        productId.addItem("Tout");
+        for (Product product : ProductsManager.getAll()) {
+            productId.addItem(Integer.toString(product.getId()));
         }
     }
-
-    public Image getImage() {
-        return image;
-    }
-    
-    @Override
-    public void paintComponent(Graphics g){
-        try {
-            this.setImage("/home/mawena/Work/Java/UCAO/APOO/hardware_store_manager/src/View/Images/Barcode-bro-ill.jpg");
-        } catch (IOException ex) {
-            Logger.getLogger(StockPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(image!=null){
-            Graphics2D g2d = (Graphics2D)g;
-            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            g2d.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        }
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +46,7 @@ public class StockPanel extends javax.swing.JPanel {
         productDateEntry = new javax.swing.JSpinner();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -119,36 +79,44 @@ public class StockPanel extends javax.swing.JPanel {
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-product.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min.png"))); // NOI18N
         addButton.setText("Ajouter");
         addButton.setBorder(null);
         addButton.setBorderPainted(false);
 
         updateButton.setBackground(new java.awt.Color(255, 255, 255));
         updateButton.setForeground(new java.awt.Color(34, 67, 128));
-        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/update-product.png"))); // NOI18N
+        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/update-min.png"))); // NOI18N
         updateButton.setText("Mettre à jour");
         updateButton.setBorder(null);
         updateButton.setBorderPainted(false);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Barcode-bro-min.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(productId, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(productQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(productDateEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(productQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(productId, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(productDateEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,18 +127,19 @@ public class StockPanel extends javax.swing.JPanel {
                     .addComponent(productId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(productDateEntry))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addButton)
-                        .addComponent(updateButton))
-                    .addComponent(productQuantity))
-                .addContainerGap(455, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(productQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton)
+                    .addComponent(updateButton))
+                .addGap(126, 126, 126)
+                .addComponent(jLabel1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSpinner productDateEntry;
     private javax.swing.JComboBox<String> productId;
     private javax.swing.JSpinner productQuantity;

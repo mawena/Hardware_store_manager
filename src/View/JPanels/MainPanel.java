@@ -14,17 +14,18 @@ import java.awt.CardLayout;
 public class MainPanel extends javax.swing.JPanel {
 
     private static CardLayout card = new CardLayout();
-    private static StockPanel stockPanel = null;
     
     /**
      * Creates new form MainPanel
      */
     public MainPanel() {
         initComponents();
-        stockPanel = new StockPanel();
         cardPanel.setLayout(card);
-        cardPanel.add(stockPanel, "1");
-        card.show(cardPanel, "1");
+        cardPanel.add(new ProductPanel(), "3");
+        cardPanel.add(new StockPanel(), "4");
+        cardPanel.add(new ClientPanel(), "5");
+        cardPanel.add(new UserPanel(), "7");
+        card.show(cardPanel, "7");
     }
 
     /**
@@ -45,7 +46,7 @@ public class MainPanel extends javax.swing.JPanel {
         stockButton = new javax.swing.JButton();
         clientButton = new javax.swing.JButton();
         personnelButton = new javax.swing.JButton();
-        utilisateurButton = new javax.swing.JButton();
+        userButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(34, 67, 128));
 
@@ -162,16 +163,16 @@ public class MainPanel extends javax.swing.JPanel {
             }
         });
 
-        utilisateurButton.setBackground(new java.awt.Color(34, 67, 128));
-        utilisateurButton.setForeground(new java.awt.Color(255, 255, 255));
-        utilisateurButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/personnel.png"))); // NOI18N
-        utilisateurButton.setText("Utilisateurs");
-        utilisateurButton.setBorder(null);
-        utilisateurButton.setBorderPainted(false);
-        utilisateurButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        utilisateurButton.addActionListener(new java.awt.event.ActionListener() {
+        userButton.setBackground(new java.awt.Color(34, 67, 128));
+        userButton.setForeground(new java.awt.Color(255, 255, 255));
+        userButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/user.png"))); // NOI18N
+        userButton.setText("Utilisateurs");
+        userButton.setBorder(null);
+        userButton.setBorderPainted(false);
+        userButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        userButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                utilisateurButtonActionPerformed(evt);
+                userButtonActionPerformed(evt);
             }
         });
 
@@ -180,14 +181,15 @@ public class MainPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(commandButton, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(billButton, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(productButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(personnelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(stockButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(clientButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(utilisateurButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(personnelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(stockButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(billButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(commandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(userButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -213,7 +215,7 @@ public class MainPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(personnelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(utilisateurButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(closeButton)
@@ -243,7 +245,7 @@ public class MainPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_billButtonActionPerformed
 
     private void productButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productButtonActionPerformed
-        // TODO add your handling code here:
+        card.show(cardPanel, "3");
     }//GEN-LAST:event_productButtonActionPerformed
 
     private void personnelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personnelButtonActionPerformed
@@ -251,16 +253,16 @@ public class MainPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_personnelButtonActionPerformed
 
     private void stockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockButtonActionPerformed
-        // TODO add your handling code here:
+        card.show(cardPanel, "4");
     }//GEN-LAST:event_stockButtonActionPerformed
 
     private void clientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientButtonActionPerformed
-        // TODO add your handling code here:
+        card.show(cardPanel, "5");
     }//GEN-LAST:event_clientButtonActionPerformed
 
-    private void utilisateurButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilisateurButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_utilisateurButtonActionPerformed
+    private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
+        card.show(cardPanel, "7");
+    }//GEN-LAST:event_userButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,6 +275,6 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JButton personnelButton;
     private javax.swing.JButton productButton;
     private javax.swing.JButton stockButton;
-    private javax.swing.JButton utilisateurButton;
+    private javax.swing.JButton userButton;
     // End of variables declaration//GEN-END:variables
 }

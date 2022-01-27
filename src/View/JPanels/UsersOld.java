@@ -7,7 +7,7 @@ package View.JPanels;
 import Controllers.UsersController;
 import Models.EntitiesManagers.Manager;
 import Models.Entities.User;
-import Models.EntitiesManagers.UserManager;
+import Models.EntitiesManagers.UsersManager;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -24,7 +24,7 @@ public class UsersOld extends javax.swing.JPanel {
     public UsersOld() {
         initComponents();
         Manager.connect();
-        userTable.setModel(UserManager.toTableModel(UserManager.getAll()));
+        userTable.setModel(UsersManager.toTableModel(UsersManager.getAll()));
     }
 
     /**
@@ -284,7 +284,7 @@ public class UsersOld extends javax.swing.JPanel {
             userUsername.setText("");
             userPassword.setText("");
         }
-        userTable.setModel(UserManager.toTableModel(UserManager.getAll()));
+        userTable.setModel(UsersManager.toTableModel(UsersManager.getAll()));
         
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -304,7 +304,7 @@ public class UsersOld extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) userTable.getModel();
         int myIndex = userTable.getSelectedRow();
         UsersController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()));
-        userTable.setModel(UserManager.toTableModel(UserManager.getAll()));
+        userTable.setModel(UsersManager.toTableModel(UsersManager.getAll()));
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
@@ -313,7 +313,7 @@ public class UsersOld extends javax.swing.JPanel {
 
     private void refrechButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrechButtonActionPerformed
         userSearch.setText("");
-        userTable.setModel(UserManager.toTableModel(UserManager.getAll()));
+        userTable.setModel(UsersManager.toTableModel(UsersManager.getAll()));
     }//GEN-LAST:event_refrechButtonActionPerformed
 
     private void userSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userSearchKeyTyped
@@ -325,7 +325,7 @@ public class UsersOld extends javax.swing.JPanel {
     }//GEN-LAST:event_userSearchInputMethodTextChanged
 
     private void userSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userSearchKeyReleased
-        userTable.setModel(UserManager.toTableModel(UserManager.search("username", userSearch.getText())));
+        userTable.setModel(UsersManager.toTableModel(UsersManager.search("username", userSearch.getText())));
     }//GEN-LAST:event_userSearchKeyReleased
 
     private void userPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userPasswordActionPerformed
