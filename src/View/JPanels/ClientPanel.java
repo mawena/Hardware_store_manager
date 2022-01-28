@@ -7,6 +7,7 @@ package View.JPanels;
 import Controllers.ClientsController;
 import Models.Entities.Client;
 import Models.EntitiesManagers.ClientsManager;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,8 +21,8 @@ public class ClientPanel extends javax.swing.JPanel {
      */
     public ClientPanel() {
         initComponents();
-        tabJTable.setModel(ClientsManager.toTableModel(ClientsManager.getAll()));
-        
+        Table.setModel(ClientsManager.toTableModel(ClientsManager.getAll()));
+        disableButton();
     }
 
     /**
@@ -34,7 +35,7 @@ public class ClientPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         tab = new javax.swing.JScrollPane();
-        tabJTable = new javax.swing.JTable();
+        Table = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
         CNI = new javax.swing.JTextField();
         Tel = new javax.swing.JTextField();
@@ -50,9 +51,9 @@ public class ClientPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tabJTable.setBackground(new java.awt.Color(255, 255, 255));
-        tabJTable.setForeground(new java.awt.Color(34, 67, 128));
-        tabJTable.setModel(new javax.swing.table.DefaultTableModel(
+        Table.setBackground(new java.awt.Color(255, 255, 255));
+        Table.setForeground(new java.awt.Color(34, 67, 128));
+        Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,12 +64,12 @@ public class ClientPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabJTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabJTableMouseClicked(evt);
+                TableMouseClicked(evt);
             }
         });
-        tab.setViewportView(tabJTable);
+        tab.setViewportView(Table);
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
@@ -173,6 +174,11 @@ public class ClientPanel extends javax.swing.JPanel {
         Search.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         Search.setForeground(new java.awt.Color(34, 67, 128));
         Search.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Recherche", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
         Search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 SearchKeyReleased(evt);
@@ -254,6 +260,12 @@ public class ClientPanel extends javax.swing.JPanel {
         FirstName.setText("");
         Tel.setText("");
     }
+    
+    private void disableButton() {
+        updateButton.setVisible(false);
+        deleteButton.setVisible(false);
+    }
+            
     private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CategoryActionPerformed
@@ -263,42 +275,71 @@ public class ClientPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_LastNameActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        disableButton();
         if(ClientsController.store(new Client(CNI.getText(), LastName.getText(), FirstName.getText(), Category.getSelectedItem().toString(), Tel.getText(), Sex.getSelectedItem().toString()))){
             clearForm();
-            tabJTable.setModel(ClientsManager.toTableModel(ClientsManager.getAll()));
+            Table.setModel(ClientsManager.toTableModel(ClientsManager.getAll()));
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        ClientsController.destroy(CNI.getText());
-        tabJTable.setModel(ClientsManager.toTableModel(ClientsManager.getAll()));
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            if (ClientsController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()))) {
+                clearForm();
+                Table.setModel(ClientsManager.toTableModel(ClientsManager.getAll()));
+            }
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        disableButton();
         clearForm();
     }//GEN-LAST:event_clearButtonActionPerformed
 
-    private void tabJTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabJTableMouseClicked
-        DefaultTableModel model = (DefaultTableModel)  tabJTable.getModel();
-        int myIndex =  tabJTable.getSelectedRow();
+    private void TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseClicked
+        deleteButton.setVisible(true);
+        updateButton.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel)  Table.getModel();
+        int myIndex =  Table.getSelectedRow();
         CNI.setText(model.getValueAt(myIndex, 1).toString());
         LastName.setText(model.getValueAt(myIndex, 2).toString());
         FirstName.setText(model.getValueAt(myIndex, 3).toString());
         Tel.setText(model.getValueAt(myIndex, 4).toString());
         Category.setSelectedItem(model.getValueAt(myIndex, 5).toString());
-    }//GEN-LAST:event_tabJTableMouseClicked
+        Sex.setSelectedItem(model.getValueAt(myIndex, 6).toString());
+    }//GEN-LAST:event_TableMouseClicked
 
     private void SearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchKeyReleased
-        tabJTable.setModel(ClientsManager.toTableModel(ClientsManager.search(Search.getText())));
+        disableButton();
+        Table.setModel(ClientsManager.toTableModel(ClientsManager.search(Search.getText())));
     }//GEN-LAST:event_SearchKeyReleased
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            if (ClientsController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Client(CNI.getText(), LastName.getText(), FirstName.getText(), Category.getSelectedItem().toString(), Tel.getText(), Sex.getSelectedItem().toString()))) {
+                clearForm();
+                Table.setModel(ClientsManager.toTableModel(ClientsManager.getAll()));
+            }
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void CNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CNIActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -309,12 +350,12 @@ public class ClientPanel extends javax.swing.JPanel {
     private javax.swing.JTextField LastName;
     private javax.swing.JTextField Search;
     private javax.swing.JComboBox<String> Sex;
+    private javax.swing.JTable Table;
     private javax.swing.JTextField Tel;
     private javax.swing.JButton addButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane tab;
-    private javax.swing.JTable tabJTable;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

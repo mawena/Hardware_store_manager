@@ -6,6 +6,9 @@
 package View.JPanels;
 
 import Main.Main;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 /**
  *
@@ -18,8 +21,17 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     public LoginPanel() {
         initComponents();
+        Username.addActionListener(action);
+        Password.addActionListener(action);
     }
 
+    Action action = new AbstractAction()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Main.connectUser(Username.getText(), Password.getText(), typeComboBox.getSelectedItem().toString());
+        }
+    };
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,9 +46,9 @@ public class LoginPanel extends javax.swing.JPanel {
         typeLabel = new javax.swing.JLabel();
         typeComboBox = new javax.swing.JComboBox<>();
         usernameLabel = new javax.swing.JLabel();
-        usernameJText = new javax.swing.JTextField();
+        Username = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
-        passwordJText = new javax.swing.JPasswordField();
+        Password = new javax.swing.JPasswordField();
         connexionButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         illustrationLabel = new javax.swing.JLabel();
@@ -67,25 +79,25 @@ public class LoginPanel extends javax.swing.JPanel {
 
         usernameLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/user-min-2.png"))); // NOI18N
 
-        usernameJText.setBackground(new java.awt.Color(34, 67, 128));
-        usernameJText.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        usernameJText.setForeground(new java.awt.Color(255, 255, 255));
-        usernameJText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        usernameJText.setText("mawena");
-        usernameJText.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nom d'utilisateur", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        usernameJText.addActionListener(new java.awt.event.ActionListener() {
+        Username.setBackground(new java.awt.Color(34, 67, 128));
+        Username.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        Username.setForeground(new java.awt.Color(255, 255, 255));
+        Username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Username.setText("mawena");
+        Username.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nom d'utilisateur", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        Username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameJTextActionPerformed(evt);
+                UsernameActionPerformed(evt);
             }
         });
 
         passwordLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/padlock-min.png"))); // NOI18N
 
-        passwordJText.setBackground(typeComboBox.getBackground());
-        passwordJText.setForeground(new java.awt.Color(255, 255, 255));
-        passwordJText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordJText.setText("licdovic");
-        passwordJText.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mot de passe", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        Password.setBackground(typeComboBox.getBackground());
+        Password.setForeground(new java.awt.Color(255, 255, 255));
+        Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Password.setText("licdovic");
+        Password.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mot de passe", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         connexionButton.setBackground(new java.awt.Color(34, 67, 128));
         connexionButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -118,8 +130,8 @@ public class LoginPanel extends javax.swing.JPanel {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(loginContainerPanelLayout.createSequentialGroup()
                                 .addGroup(loginContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(usernameJText, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(passwordJText)
+                                    .addComponent(Username, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Password)
                                     .addComponent(typeComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginContainerPanelLayout.createSequentialGroup()
@@ -142,7 +154,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addGroup(loginContainerPanelLayout.createSequentialGroup()
                         .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usernameJText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginContainerPanelLayout.createSequentialGroup()
                         .addComponent(typeLabel)
@@ -150,7 +162,7 @@ public class LoginPanel extends javax.swing.JPanel {
                         .addComponent(usernameLabel)
                         .addGap(29, 29, 29)))
                 .addGroup(loginContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordJText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(loginContainerPanelLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -201,9 +213,9 @@ public class LoginPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameJTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameJTextActionPerformed
+    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameJTextActionPerformed
+    }//GEN-LAST:event_UsernameActionPerformed
 
     private void typeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboBoxActionPerformed
         // TODO add your handling code here:
@@ -211,7 +223,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void connexionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionButtonActionPerformed
         // TODO add your handling code here:
-        Main.connectUser(usernameJText.getText(), passwordJText.getText(), typeComboBox.getSelectedItem().toString());
+        Main.connectUser(Username.getText(), Password.getText(), typeComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_connexionButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
@@ -221,17 +233,17 @@ public class LoginPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Password;
+    private javax.swing.JTextField Username;
     private javax.swing.JButton closeButton;
     private javax.swing.JButton connexionButton;
     private javax.swing.JLabel illustrationLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel loginContainerPanel;
     private javax.swing.JLabel loginLabel;
-    private javax.swing.JPasswordField passwordJText;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> typeComboBox;
     private javax.swing.JLabel typeLabel;
-    private javax.swing.JTextField usernameJText;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

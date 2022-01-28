@@ -11,7 +11,6 @@ import View.JFrames.LoginFrame;
 import Models.EntitiesManagers.Manager;
 import Controllers.UsersController;
 import Models.Entities.User;
-import javax.swing.JOptionPane;
 
 /**
  *

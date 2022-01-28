@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class StockManager extends Manager {
-
+    
     public static Stock get(int idProduct, String dateEntryProduct) {
         Stock stock = null;
         try {
@@ -102,7 +102,7 @@ public class StockManager extends Manager {
             pS.setString(2, dateEntryProduct);
             pS.executeUpdate();
             closeQuery();
-            return true;
+            return true;    
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             return false;

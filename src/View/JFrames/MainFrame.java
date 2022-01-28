@@ -8,6 +8,7 @@ package View.JFrames;
 import Models.EntitiesManagers.Manager;
 import java.awt.CardLayout;
 import View.JPanels.MainPanel;
+import javax.swing.JFrame;
 
 /**
  *
@@ -24,6 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         Manager.connect();
         initComponents();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainPanel = new MainPanel();
         bodyPanel.setLayout(card);
         bodyPanel.add(mainPanel, "1");

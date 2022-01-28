@@ -7,6 +7,7 @@ package View.JPanels;
 import Controllers.ProductsController;
 import Models.Entities.Product;
 import Models.EntitiesManagers.ProductsManager;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +21,9 @@ public class ProductPanel extends javax.swing.JPanel {
      */
     public ProductPanel() {
         initComponents();
-        tabJTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
+        Table.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
+        //updateButton.setEnabled(false);
+        disableButton();
     }
 
     /**
@@ -33,7 +36,7 @@ public class ProductPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         tab = new javax.swing.JScrollPane();
-        tabJTable = new javax.swing.JTable();
+        Table = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
         Designation = new javax.swing.JTextField();
         Description = new javax.swing.JTextField();
@@ -46,9 +49,9 @@ public class ProductPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tabJTable.setBackground(new java.awt.Color(255, 255, 255));
-        tabJTable.setForeground(new java.awt.Color(34, 67, 128));
-        tabJTable.setModel(new javax.swing.table.DefaultTableModel(
+        Table.setBackground(new java.awt.Color(255, 255, 255));
+        Table.setForeground(new java.awt.Color(34, 67, 128));
+        Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,12 +62,15 @@ public class ProductPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabJTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabJTableMouseClicked(evt);
+                TableMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TableMouseReleased(evt);
             }
         });
-        tab.setViewportView(tabJTable);
+        tab.setViewportView(Table);
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
@@ -153,30 +159,24 @@ public class ProductPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(204, 204, 204)
-                                .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Designation)
-                                .addGap(9, 9, 9)
-                                .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Designation))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(Description, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                     .addComponent(Search)))
@@ -191,13 +191,12 @@ public class ProductPanel extends javax.swing.JPanel {
                             .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Designation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addButton)
-                            .addComponent(deleteButton)
-                            .addComponent(updateButton))
-                        .addGap(18, 18, 18)))
+                            .addComponent(updateButton)
+                            .addComponent(addButton)))
+                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(clearButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Illustration))
@@ -209,48 +208,96 @@ public class ProductPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clearForm(){
+    private void clearForm() {
         Designation.setText("");
         Description.setText("");
         Price.setText("");
     }
+
+    private void disableButton() {
+        updateButton.setVisible(false);
+        deleteButton.setVisible(false);
+    }
+
+    public boolean good() {
+        try {
+            Double.parseDouble(Price.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Le prix doit être un chiffre!");
+            return false;
+        }
+        return true;
+    }
+
     private void DescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescriptionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DescriptionActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        if(ProductsController.store(new Product(Designation.getText(), Description.getText(), Double.valueOf(Price.getText())))){
-            clearForm();
-            tabJTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
+        disableButton();
+        if (good()) {
+            if (ProductsController.store(new Product(Designation.getText(), Description.getText(), Double.valueOf(Price.getText())))) {
+                clearForm();
+                Table.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
+            }
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        if(ProductsController.destroy(Designation.getText())){
-            clearForm();
-            tabJTable.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            if (good()) {
+                if (ProductsController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()))) {
+                    clearForm();
+                    Table.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
+                }
+            }
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        disableButton();
         clearForm();
     }//GEN-LAST:event_clearButtonActionPerformed
-    
-    private void tabJTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabJTableMouseClicked
-        DefaultTableModel model = (DefaultTableModel)  tabJTable.getModel();
-        int myIndex =  tabJTable.getSelectedRow();
+
+    private void TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseClicked
+        updateButton.setVisible(true);
+        deleteButton.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) Table.getModel();
+        int myIndex = Table.getSelectedRow();
         Designation.setText(model.getValueAt(myIndex, 1).toString());
         Description.setText(model.getValueAt(myIndex, 2).toString());
         Price.setText(model.getValueAt(myIndex, 3).toString());
-    }//GEN-LAST:event_tabJTableMouseClicked
+    }//GEN-LAST:event_TableMouseClicked
 
     private void SearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchKeyReleased
-        tabJTable.setModel(ProductsManager.toTableModel(ProductsManager.search(Search.getText())));
+        disableButton();
+        Table.setModel(ProductsManager.toTableModel(ProductsManager.search(Search.getText())));
     }//GEN-LAST:event_SearchKeyReleased
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            if (good()) {
+                if (ProductsController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Product(Designation.getText(), Description.getText(), Double.valueOf(Price.getText())))) {
+                    clearForm();
+                    Table.setModel(ProductsManager.toTableModel(ProductsManager.getAll()));
+                }
+            }
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void TableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -259,11 +306,11 @@ public class ProductPanel extends javax.swing.JPanel {
     private javax.swing.JLabel Illustration;
     private javax.swing.JTextField Price;
     private javax.swing.JTextField Search;
+    private javax.swing.JTable Table;
     private javax.swing.JButton addButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane tab;
-    private javax.swing.JTable tabJTable;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

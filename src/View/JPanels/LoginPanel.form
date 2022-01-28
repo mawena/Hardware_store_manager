@@ -87,8 +87,8 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="usernameJText" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="passwordJText" max="32767" attributes="0"/>
+                                      <Component id="Username" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="Password" max="32767" attributes="0"/>
                                       <Component id="typeComboBox" alignment="1" min="-2" pref="326" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="typeComboBox" min="-2" pref="75" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="usernameJText" min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="Username" min="-2" pref="67" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -131,7 +131,7 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="passwordJText" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="Password" min="-2" pref="61" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Component id="passwordLabel" min="-2" pref="40" max="-2" attributes="0"/>
@@ -206,7 +206,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="usernameJText">
+        <Component class="javax.swing.JTextField" name="Username">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="43" red="22" type="rgb"/>
@@ -229,7 +229,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameJTextActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsernameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordLabel">
@@ -239,7 +239,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="passwordJText">
+        <Component class="javax.swing.JPasswordField" name="Password">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection component="typeComboBox" name="background" type="property"/>

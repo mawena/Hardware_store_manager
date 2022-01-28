@@ -4,11 +4,14 @@
  */
 package View.JPanels;
 
+import Controllers.StockController;
 import Models.Entities.Product;
 import Models.EntitiesManagers.StockManager;
 import Models.Entities.Stock;
 import Models.EntitiesManagers.ProductsManager;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,12 +25,13 @@ public class StockPanel extends javax.swing.JPanel {
     public StockPanel() {
         initComponents();
         ArrayList<Stock> stockList = StockManager.getAll();
-        tabjTable.setModel(StockManager.toTableModel(stockList));
+        Table.setModel(StockManager.toTableModel(stockList));
         productId.removeAllItems();
         productId.addItem("Tout");
         for (Product product : ProductsManager.getAll()) {
             productId.addItem(Integer.toString(product.getId()));
         }
+        disableButton();
     }
 
     /**
@@ -40,19 +44,21 @@ public class StockPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         tab = new javax.swing.JScrollPane();
-        tabjTable = new javax.swing.JTable();
+        Table = new javax.swing.JTable();
         productId = new javax.swing.JComboBox<>();
         productQuantity = new javax.swing.JSpinner();
         productDateEntry = new javax.swing.JSpinner();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        deleteButton = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tabjTable.setBackground(new java.awt.Color(255, 255, 255));
-        tabjTable.setForeground(new java.awt.Color(34, 67, 128));
-        tabjTable.setModel(new javax.swing.table.DefaultTableModel(
+        Table.setBackground(new java.awt.Color(255, 255, 255));
+        Table.setForeground(new java.awt.Color(34, 67, 128));
+        Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,7 +69,12 @@ public class StockPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tab.setViewportView(tabjTable);
+        Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableMouseClicked(evt);
+            }
+        });
+        tab.setViewportView(Table);
 
         productId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         productId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -93,6 +104,18 @@ public class StockPanel extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Barcode-bro-min.png"))); // NOI18N
 
+        deleteButton.setBackground(new java.awt.Color(255, 255, 255));
+        deleteButton.setForeground(new java.awt.Color(34, 67, 128));
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min.png"))); // NOI18N
+        deleteButton.setText("Suprimer");
+        deleteButton.setBorder(null);
+        deleteButton.setBorderPainted(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,18 +126,24 @@ public class StockPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(productQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                .addGap(10, 10, 10)
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(productId, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(productDateEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(productId, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(productQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(productDateEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -125,26 +154,59 @@ public class StockPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productDateEntry))
+                    .addComponent(productDateEntry)
+                    .addComponent(productQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(productQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton)
-                    .addComponent(updateButton))
-                .addGap(126, 126, 126)
+                    .addComponent(updateButton)
+                    .addComponent(deleteButton))
+                .addGap(18, 18, 18)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
                 .addComponent(jLabel1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void disableButton() {
+        updateButton.setVisible(false);
+        deleteButton.setVisible(false);
+    }
+    
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            if (StockController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString())) {
+                Table.setModel(StockManager.toTableModel(StockManager.getAll()));
+            }
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseClicked
+        deleteButton.setVisible(true);
+        updateButton.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel)  Table.getModel();
+        int myIndex =  Table.getSelectedRow();
+        productId.setSelectedItem(model.getValueAt(myIndex, 0).toString());
+        productQuantity.setValue(Integer.parseInt(model.getValueAt(myIndex, 2).toString()));
+        productDateEntry.setValue(model.getValueAt(myIndex, 3).toString());
+    }//GEN-LAST:event_TableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Table;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton deleteButton;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSpinner productDateEntry;
     private javax.swing.JComboBox<String> productId;
     private javax.swing.JSpinner productQuantity;
     private javax.swing.JScrollPane tab;
-    private javax.swing.JTable tabjTable;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

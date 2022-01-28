@@ -65,7 +65,7 @@ public class ProductsManager extends Manager {
         ArrayList<Product> productList = new ArrayList();
         try {
             statement = connection.createStatement();
-            result = statement.executeQuery("SELECT * FROM products WHERE designation LIKE '%" + value + "%';");
+            result = statement.executeQuery("SELECT * FROM products WHERE designation LIKE '%" + value + "%' OR description LIKE '%" + value + "%';");
             while (result.next()) {
                 productList.add(new Product(result.getInt("id"), result.getString("designation"),
                         result.getString("description"), result.getDouble("price")));
@@ -96,15 +96,12 @@ public class ProductsManager extends Manager {
 
     public static Product update(int id, Product product) {
         try {
-
-            pS = connection.prepareStatement(
-                    "UPDATE products SET designation = ?, description = ?, price = ? WHERE id = ?;");
+            pS = connection.prepareStatement("UPDATE products SET designation = ?, description = ?, price = ? WHERE id = ?;");
             pS.setString(1, product.getDesignation());
             pS.setString(2, product.getDescription());
             pS.setDouble(3, product.getPrice());
             pS.setInt(4, id);
             pS.executeUpdate();
-            JOptionPane.showMessageDialog(null, product);
             closeQuery();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

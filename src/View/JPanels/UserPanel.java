@@ -7,6 +7,7 @@ package View.JPanels;
 import Controllers.UsersController;
 import Models.Entities.User;
 import Models.EntitiesManagers.UsersManager;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +21,8 @@ public class UserPanel extends javax.swing.JPanel {
      */
     public UserPanel() {
         initComponents();
-        tabJTable.setModel(UsersManager.toTableModel(UsersManager.getAll()));
+        Table.setModel(UsersManager.toTableModel(UsersManager.getAll()));
+        disableButton();
     }
 
     /**
@@ -33,7 +35,7 @@ public class UserPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         tab = new javax.swing.JScrollPane();
-        tabJTable = new javax.swing.JTable();
+        Table = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
         Username = new javax.swing.JTextField();
         Illustration = new javax.swing.JLabel();
@@ -46,9 +48,9 @@ public class UserPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tabJTable.setBackground(new java.awt.Color(255, 255, 255));
-        tabJTable.setForeground(new java.awt.Color(34, 67, 128));
-        tabJTable.setModel(new javax.swing.table.DefaultTableModel(
+        Table.setBackground(new java.awt.Color(255, 255, 255));
+        Table.setForeground(new java.awt.Color(34, 67, 128));
+        Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,12 +61,12 @@ public class UserPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabJTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabJTableMouseClicked(evt);
+                TableMouseClicked(evt);
             }
         });
-        tab.setViewportView(tabJTable);
+        tab.setViewportView(Table);
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
@@ -148,28 +150,29 @@ public class UserPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                     .addComponent(Search)))
@@ -178,16 +181,16 @@ public class UserPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Password)
+                    .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addButton)
-                            .addComponent(deleteButton)
-                            .addComponent(updateButton)))
-                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addButton)
+                        .addComponent(deleteButton))
+                    .addComponent(updateButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clearButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,42 +203,71 @@ public class UserPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clearForm(){
+    private void clearForm() {
         Username.setText("");
         Password.setText("");
     }
+
+    private void disableButton() {
+        updateButton.setVisible(false);
+        deleteButton.setVisible(false);
+    }
+
+
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        if(UsersController.store(new User(Username.getText(), Password.getText(), Type.getSelectedItem().toString()))){
+        disableButton();
+        if (UsersController.store(new User(Username.getText(), Password.getText(), Type.getSelectedItem().toString()))) {
             clearForm();
-            tabJTable.setModel(UsersManager.toTableModel(UsersManager.getAll()));
+            Table.setModel(UsersManager.toTableModel(UsersManager.getAll()));
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        if(UsersController.destroy(Username.getText())){
-            clearForm();
-            tabJTable.setModel(UsersManager.toTableModel(UsersManager.getAll()));
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            if (UsersController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()))) {
+                clearForm();
+                Table.setModel(UsersManager.toTableModel(UsersManager.getAll()));
+            }
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        disableButton();
         clearForm();
     }//GEN-LAST:event_clearButtonActionPerformed
-    
-    private void tabJTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabJTableMouseClicked
-        DefaultTableModel model = (DefaultTableModel)  tabJTable.getModel();
-        int myIndex =  tabJTable.getSelectedRow();
+
+    private void TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseClicked
+        updateButton.setVisible(true);
+        deleteButton.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) Table.getModel();
+        int myIndex = Table.getSelectedRow();
         Username.setText(model.getValueAt(myIndex, 1).toString());
-        Password.setText(model.getValueAt(myIndex, 2).toString());
+        Password.setText("");
         Type.setSelectedItem(model.getValueAt(myIndex, 3).toString());
-    }//GEN-LAST:event_tabJTableMouseClicked
+    }//GEN-LAST:event_TableMouseClicked
 
     private void SearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchKeyReleased
-        tabJTable.setModel(UsersManager.toTableModel(UsersManager.search(Search.getText())));
+        disableButton();
+        Table.setModel(UsersManager.toTableModel(UsersManager.search(Search.getText())));
     }//GEN-LAST:event_SearchKeyReleased
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            if (UsersController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new User(Username.getText(), Password.getText(), Type.getSelectedItem().toString()))) {
+                clearForm();
+                Table.setModel(UsersManager.toTableModel(UsersManager.getAll()));
+            }
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
@@ -243,13 +275,13 @@ public class UserPanel extends javax.swing.JPanel {
     private javax.swing.JLabel Illustration;
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField Search;
+    private javax.swing.JTable Table;
     private javax.swing.JComboBox<String> Type;
     private javax.swing.JTextField Username;
     private javax.swing.JButton addButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane tab;
-    private javax.swing.JTable tabJTable;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
