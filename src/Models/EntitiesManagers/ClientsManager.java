@@ -102,16 +102,14 @@ public class ClientsManager extends Manager {
 
     public static Client update(int id, Client client) {
         try {
-            pS = connection.prepareStatement(
-                    "UPDATE clients SET id = ?, num_CIN = ?, last_name = ?, first_name = ?, category = ?, tel = ?, sex = ? WHERE id = ?;");
-            pS.setInt(1, client.getId());
-            pS.setString(2, client.getNumCIN());
-            pS.setString(3, client.getLastName());
-            pS.setString(4, client.getFirstName());
-            pS.setString(5, client.getCategory());
-            pS.setString(6, client.getTel());
-            pS.setString(7, client.getSex());
-            pS.setInt(8, id);
+            pS = connection.prepareStatement("UPDATE clients SET num_CIN = ?, last_name = ?, first_name = ?, category = ?, tel = ?, sex = ? WHERE id = ?;");
+            pS.setString(1, client.getNumCIN());
+            pS.setString(2, client.getLastName());
+            pS.setString(3, client.getFirstName());
+            pS.setString(4, client.getCategory());
+            pS.setString(5, client.getTel());
+            pS.setString(6, client.getSex());
+            pS.setInt(7, id);
             pS.executeUpdate();
             closeQuery();
         } catch (SQLException e) {

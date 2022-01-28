@@ -22,15 +22,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="personnelButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="clientButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="stockButton" alignment="1" max="32767" attributes="0"/>
-                  <Component id="productButton" alignment="1" max="32767" attributes="0"/>
+                  <Component id="userButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="commandButton" min="-2" pref="147" max="-2" attributes="0"/>
                   <Component id="billButton" alignment="1" max="32767" attributes="0"/>
-                  <Component id="commandButton" alignment="1" pref="171" max="32767" attributes="0"/>
-                  <Component id="userButton" max="32767" attributes="0"/>
+                  <Component id="productButton" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -145,7 +145,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/icons/order-delivery-min.png"/>
+          <Image iconType="3" name="/View/icons/order-new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Commandes"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -167,7 +167,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/icons/bill-min.png"/>
+          <Image iconType="3" name="/View/icons/bill-new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Factures"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -189,7 +189,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/icons/product.png"/>
+          <Image iconType="3" name="/View/icons/product-new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Produits"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -211,7 +211,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/icons/stock.png"/>
+          <Image iconType="3" name="/View/icons/stock-new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Stock"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -233,7 +233,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/icons/client.png"/>
+          <Image iconType="3" name="/View/icons/client-min.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Client"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -255,7 +255,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/icons/personnel.png"/>
+          <Image iconType="3" name="/View/icons/personnel-new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Personnel"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -277,7 +277,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/icons/user.png"/>
+          <Image iconType="3" name="/View/icons/user-new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Utilisateurs"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

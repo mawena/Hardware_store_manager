@@ -5,11 +5,11 @@ GRANT ALL ON hardware_store_manager.* TO  'hardware_store_manager_user'@'localho
 use hardware_store_manager;
 
 CREATE TABLE users(
-    id int PRIMARY KEY,
+    id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
     username varchar(80) NOT NULL,
     password varchar(240) NOT NULL,
     type ENUM('Gerant', 'Comptable')
-);  
+);
 
 CREATE TABLE employers(
     id int PRIMARY KEY AUTO_INCREMENT,

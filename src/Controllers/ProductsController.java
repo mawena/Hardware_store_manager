@@ -10,7 +10,7 @@ public class ProductsController {
         boolean rep = true;
         if (product.getDesignation().isEmpty()) {
             rep = false;
-            JOptionPane.showMessageDialog(null, "Le nom est manquant!");
+            JOptionPane.showMessageDialog(null, "La designation est manquante!");
         } else if (product.getDescription().isEmpty()) {
             rep = false;
             JOptionPane.showMessageDialog(null, "La description est manquante!");
@@ -55,26 +55,10 @@ public class ProductsController {
             JOptionPane.showMessageDialog(null, "Le produit n'existe pas!");
             return false;
         } else {
-            return (ProductsManager.delete(productId));
-        }
-    }
-
-    public static boolean destroy(String productDesignation) {
-        if (productDesignation.equals("")) {
-            JOptionPane.showMessageDialog(null, "La désignation est manquante!");
-            return false;
-        } else {
-            Product pr = ProductsManager.get(productDesignation);
-            if (pr == null) {
-                JOptionPane.showMessageDialog(null, "Le produit n'existe pas!");
-                return false;
-            } else {
-                if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment suprimer le produit?") == 0) {
-                    return (ProductsManager.delete(pr.getId()));
-                } else {
-                    return false;
-                }
+            if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment suprimer le client?") == 0) {
+                return (ProductsManager.delete(productId));
             }
+            return false;
         }
     }
 }

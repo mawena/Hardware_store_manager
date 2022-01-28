@@ -6,6 +6,7 @@
 package View.JFrames;
 
 import java.awt.CardLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -20,6 +21,7 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame() {
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         bodyPanel.setLayout(card);
         bodyPanel.add(new View.JPanels.LoginPanel(), "1");
         card.show(bodyPanel, "2");

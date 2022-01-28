@@ -25,7 +25,7 @@ public class MainPanel extends javax.swing.JPanel {
         cardPanel.add(new StockPanel(), "4");
         cardPanel.add(new ClientPanel(), "5");
         cardPanel.add(new UserPanel(), "7");
-        card.show(cardPanel, "7");
+        card.show(cardPanel, "4");
     }
 
     /**
@@ -87,7 +87,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         commandButton.setBackground(new java.awt.Color(34, 67, 128));
         commandButton.setForeground(new java.awt.Color(255, 255, 255));
-        commandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/order-delivery-min.png"))); // NOI18N
+        commandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/order-new.png"))); // NOI18N
         commandButton.setText("Commandes");
         commandButton.setBorder(null);
         commandButton.setBorderPainted(false);
@@ -100,7 +100,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         billButton.setBackground(new java.awt.Color(34, 67, 128));
         billButton.setForeground(new java.awt.Color(255, 255, 255));
-        billButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/bill-min.png"))); // NOI18N
+        billButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/bill-new.png"))); // NOI18N
         billButton.setText("Factures");
         billButton.setBorder(null);
         billButton.setBorderPainted(false);
@@ -113,7 +113,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         productButton.setBackground(new java.awt.Color(34, 67, 128));
         productButton.setForeground(new java.awt.Color(255, 255, 255));
-        productButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/product.png"))); // NOI18N
+        productButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/product-new.png"))); // NOI18N
         productButton.setText("Produits");
         productButton.setBorder(null);
         productButton.setBorderPainted(false);
@@ -126,7 +126,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         stockButton.setBackground(new java.awt.Color(34, 67, 128));
         stockButton.setForeground(new java.awt.Color(255, 255, 255));
-        stockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/stock.png"))); // NOI18N
+        stockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/stock-new.png"))); // NOI18N
         stockButton.setText("Stock");
         stockButton.setBorder(null);
         stockButton.setBorderPainted(false);
@@ -139,7 +139,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         clientButton.setBackground(new java.awt.Color(34, 67, 128));
         clientButton.setForeground(new java.awt.Color(255, 255, 255));
-        clientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/client.png"))); // NOI18N
+        clientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/client-min.png"))); // NOI18N
         clientButton.setText("Client");
         clientButton.setBorder(null);
         clientButton.setBorderPainted(false);
@@ -152,7 +152,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         personnelButton.setBackground(new java.awt.Color(34, 67, 128));
         personnelButton.setForeground(new java.awt.Color(255, 255, 255));
-        personnelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/personnel.png"))); // NOI18N
+        personnelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/personnel-new.png"))); // NOI18N
         personnelButton.setText("Personnel");
         personnelButton.setBorder(null);
         personnelButton.setBorderPainted(false);
@@ -165,7 +165,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         userButton.setBackground(new java.awt.Color(34, 67, 128));
         userButton.setForeground(new java.awt.Color(255, 255, 255));
-        userButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/user.png"))); // NOI18N
+        userButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/user-new.png"))); // NOI18N
         userButton.setText("Utilisateurs");
         userButton.setBorder(null);
         userButton.setBorderPainted(false);
@@ -181,15 +181,15 @@ public class MainPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(personnelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clientButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(stockButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(productButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(billButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(commandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                    .addComponent(userButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(personnelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(stockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(commandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(billButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()

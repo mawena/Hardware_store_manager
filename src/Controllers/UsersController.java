@@ -72,17 +72,10 @@ public class UsersController {
             JOptionPane.showMessageDialog(null, "L'utilisateur n'existe pas.");
             return false;
         } else {
-            return UsersManager.delete(id);
-        }
-    }
-    
-    public static boolean destroy(String username){
-        User us = UsersManager.get(username);
-        if (us == null) {
-            JOptionPane.showMessageDialog(null, "L'utilisateur n'existe pas.");
+            if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment suprimer le client?") == 0) {
+                return UsersManager.delete(id);
+            }
             return false;
-        } else {
-            return UsersManager.delete(us.getId());
         }
     }
 }
