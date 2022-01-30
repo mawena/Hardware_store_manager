@@ -64,9 +64,10 @@
               <Component id="LastName" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="FirstName" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="BirthDate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="Sex" min="-2" max="-2" attributes="0"/>
@@ -76,7 +77,6 @@
                       <Component id="Function" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="clearButton" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="deleteButton" pref="38" max="32767" attributes="0"/>
@@ -189,7 +189,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="80" green="43" red="22" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="GAMLIGO"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Nom">
@@ -211,7 +210,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="80" green="43" red="22" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Charles"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Pr&#xe9;noms">
@@ -236,7 +234,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="80" green="43" red="22" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="+228 91 61 11 35"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Tel">

@@ -170,8 +170,8 @@ public class UserPanel extends javax.swing.JPanel {
                     .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
-                    .addComponent(Search)))
+                    .addComponent(Search, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                    .addComponent(tab)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -5,10 +5,7 @@
 package View.JPanels;
 
 import Controllers.StockController;
-import Controllers.StockController;
-import Models.Entities.Employer;
 import Models.Entities.Product;
-import Models.EntitiesManagers.StockManager;
 import Models.Entities.Stock;
 import Models.EntitiesManagers.StockManager;
 import Models.EntitiesManagers.ProductsManager;
@@ -19,8 +16,6 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;

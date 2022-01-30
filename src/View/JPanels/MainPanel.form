@@ -28,7 +28,7 @@
                   <Component id="clientButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="stockButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="userButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="commandButton" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="orderButton" min="-2" pref="147" max="-2" attributes="0"/>
                   <Component id="billButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="productButton" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -49,7 +49,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="commandButton" min="-2" pref="68" max="-2" attributes="0"/>
+                      <Component id="orderButton" min="-2" pref="68" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="billButton" min="-2" pref="68" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -136,7 +136,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="commandButton">
+    <Component class="javax.swing.JButton" name="orderButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="80" green="43" red="22" type="rgb"/>
@@ -155,7 +155,7 @@
         <Property name="horizontalAlignment" type="int" value="2"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="commandButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="billButton">

@@ -7,6 +7,9 @@ package View.JPanels;
 import Controllers.EmployersController;
 import Models.Entities.Employer;
 import Models.EntitiesManagers.EmployersManager;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +27,18 @@ public class EmployerPanel extends javax.swing.JPanel {
         initComponents();
         Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
         //updateButton.setEnabled(false);
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        changeBirthDate(currentDate);
         disableButton();
+    }
+    
+    public void changeBirthDate(String birthDate) {
+        try {
+            java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate);   //On formatte correctement la date
+            BirthDate.setDate(date);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "La date est invalide");
+        }
     }
 
     /**
@@ -92,13 +106,11 @@ public class EmployerPanel extends javax.swing.JPanel {
         LastName.setBackground(new java.awt.Color(255, 255, 255));
         LastName.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         LastName.setForeground(new java.awt.Color(34, 67, 128));
-        LastName.setText("GAMLIGO");
         LastName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nom", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
 
         FirstName.setBackground(new java.awt.Color(255, 255, 255));
         FirstName.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         FirstName.setForeground(new java.awt.Color(34, 67, 128));
-        FirstName.setText("Charles");
         FirstName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prénoms", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
         FirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +121,6 @@ public class EmployerPanel extends javax.swing.JPanel {
         Tel.setBackground(new java.awt.Color(255, 255, 255));
         Tel.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         Tel.setForeground(new java.awt.Color(34, 67, 128));
-        Tel.setText("+228 91 61 11 35");
         Tel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
 
         Illustration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Employers.png"))); // NOI18N
@@ -210,9 +221,10 @@ public class EmployerPanel extends javax.swing.JPanel {
                 .addComponent(LastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Sex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +233,6 @@ public class EmployerPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Function, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
