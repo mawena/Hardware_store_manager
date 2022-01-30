@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Models.Entities.Order;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class OrdersManager extends Manager {
 
@@ -80,5 +82,15 @@ public class OrdersManager extends Manager {
             JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
+    }
+    
+    public static TableModel toTableModel(ArrayList<Order> orderList) {
+        String col[] = {"Numéro produit", "Designation", "Quantié", "Date d'entrée"};
+        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+        for (Order order : orderList) {
+            Object[] obj = {order.getIdProduct(), order.getProductDesignation(), order.getQuantity(), order.getDateEntryProduct()};
+            tableModel.addRow(obj);
+        }
+        return tableModel;
     }
 }

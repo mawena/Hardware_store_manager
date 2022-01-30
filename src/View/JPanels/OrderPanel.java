@@ -24,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mawena
  */
-public class StockPanel extends javax.swing.JPanel {
+public class OrderPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form StockPanel
      */
-    public StockPanel() {
+    public OrderPanel() {
         initComponents();
         ArrayList<Stock> stockList = StockManager.getAll();
         Table.setModel(StockManager.toTableModel(stockList));
@@ -148,7 +148,7 @@ public class StockPanel extends javax.swing.JPanel {
             }
         });
 
-        Illustration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Barcode-bro-min.png"))); // NOI18N
+        Illustration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Commands.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -164,12 +164,10 @@ public class StockPanel extends javax.swing.JPanel {
                             .addComponent(productId, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                             .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Illustration)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(Illustration))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))

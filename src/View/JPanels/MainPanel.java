@@ -21,12 +21,13 @@ public class MainPanel extends javax.swing.JPanel {
     public MainPanel() {
         initComponents();
         cardPanel.setLayout(card);
+        cardPanel.add(new OrderPanel(), "1");
         cardPanel.add(new ProductPanel(), "3");
         cardPanel.add(new StockPanel(), "4");
         cardPanel.add(new ClientPanel(), "5");
         cardPanel.add(new EmployerPanel(), "6");
         cardPanel.add(new UserPanel(), "7");
-        card.show(cardPanel, "6");
+        card.show(cardPanel, "1");
     }
 
     /**
@@ -41,7 +42,7 @@ public class MainPanel extends javax.swing.JPanel {
         cardPanel = new javax.swing.JPanel();
         disconnectButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
-        commandButton = new javax.swing.JButton();
+        orderButton = new javax.swing.JButton();
         billButton = new javax.swing.JButton();
         productButton = new javax.swing.JButton();
         stockButton = new javax.swing.JButton();
@@ -86,16 +87,16 @@ public class MainPanel extends javax.swing.JPanel {
             }
         });
 
-        commandButton.setBackground(new java.awt.Color(34, 67, 128));
-        commandButton.setForeground(new java.awt.Color(255, 255, 255));
-        commandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/order-new.png"))); // NOI18N
-        commandButton.setText("Commandes");
-        commandButton.setBorder(null);
-        commandButton.setBorderPainted(false);
-        commandButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        commandButton.addActionListener(new java.awt.event.ActionListener() {
+        orderButton.setBackground(new java.awt.Color(34, 67, 128));
+        orderButton.setForeground(new java.awt.Color(255, 255, 255));
+        orderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/order-new.png"))); // NOI18N
+        orderButton.setText("Commandes");
+        orderButton.setBorder(null);
+        orderButton.setBorderPainted(false);
+        orderButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        orderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                commandButtonActionPerformed(evt);
+                orderButtonActionPerformed(evt);
             }
         });
 
@@ -188,7 +189,7 @@ public class MainPanel extends javax.swing.JPanel {
                     .addComponent(clientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(stockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(userButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(commandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(billButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -204,7 +205,7 @@ public class MainPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(commandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(billButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -227,9 +228,10 @@ public class MainPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void commandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commandButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_commandButtonActionPerformed
+    private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderButtonActionPerformed
+        cardPanel.add(new OrderPanel(), "1");
+        card.show(cardPanel, "1");
+    }//GEN-LAST:event_orderButtonActionPerformed
 
     private void disconnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disconnectButtonActionPerformed
         // TODO add your handling code here:
@@ -276,8 +278,8 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JPanel cardPanel;
     private javax.swing.JButton clientButton;
     private javax.swing.JButton closeButton;
-    private javax.swing.JButton commandButton;
     private javax.swing.JButton disconnectButton;
+    private javax.swing.JButton orderButton;
     private javax.swing.JButton personnelButton;
     private javax.swing.JButton productButton;
     private javax.swing.JButton stockButton;
