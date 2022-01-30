@@ -8,24 +8,46 @@ public class Employer {
     private String lastName;
     private String firstName;
     private String birthDate;
-    private char sex;
-    private String role;
+    private String sex;
+    private String rule;
+    private String tel;
 
-    public Employer(int id, String lastName, String firstName, String birthDate, char sex, String role) {
+    public Employer(int id, String lastName, String firstName, String birthDate, String sex, String rule, String tel) {
         this.setId(id);
         this.setLastName(lastName);
         this.setFirstName(firstName);
         this.setBirthDate(birthDate);
         this.setSex(sex);
-        this.setRole(role);
+        this.setRule(rule);
+        this.setTel(tel);
     }
 
-    public Employer(String lastName, String firstName, String birthDate, char sex, String role) {
+    public Employer(String lastName, String firstName, String birthDate, String sex, String rule, String tel) {
         this.setLastName(lastName);
         this.setFirstName(firstName);
         this.setBirthDate(birthDate);
         this.setSex(sex);
-        this.setRole(role);
+        this.setRule(rule);
+        this.setTel(tel);
+    }
+
+    public String toString() {
+        return "{\n\tid => \"" + this.id + "\",\n\tlastName  => \"" + this.lastName + "\",\n\tfirstName  => \""
+                + this.firstName + "\",\n\tbirthDate  => \"" + this.birthDate + "\",\n\tsex  => \"" + this.sex
+                + "\",\n\trule  => \"" + this.rule + "\",\n\ttel  => \"" + this.tel + "\"\n}";
+    }
+
+    public void store() {
+        Employer tmp = EmployersManager.store(this);
+        this.setId(tmp.getId());
+    }
+
+    public void update(Employer employer) {
+        EmployersManager.update(this.getId(), employer);
+    }
+
+    public boolean delete() {
+        return EmployersManager.delete(this.id);
     }
 
     public int getId() {
@@ -60,38 +82,27 @@ public class Employer {
         this.birthDate = birthDate;
     }
 
-    public char getSex() {
+    public String getSex() {
         return this.sex;
     }
 
-    public void setSex(char sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
-    public String getRole() {
-        return this.role;
+    public String getRule() {
+        return this.rule;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRule(String rule) {
+        this.rule = rule;
     }
 
-    public String toString() {
-        return "{\n\tid => \"" + this.id + "\",\n\tlastName  => \"" + this.lastName + "\",\n\tfirstName  => \""
-                + this.firstName + "\",\n\tbirthDate  => \"" + this.birthDate + "\",\n\tsex  => \"" + this.sex
-                + "\",\n\trole  => \"" + this.role + "\"\n}";
+    public String getTel() {
+        return tel;
     }
 
-    public void store() {
-        Employer tmp = EmployersManager.store(this);
-        this.setId(tmp.getId());
-    }
-
-    public void update(Employer employer) {
-        EmployersManager.update(this.getId(), employer);
-    }
-
-    public boolean delete() {
-        return EmployersManager.delete(this.id);
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }

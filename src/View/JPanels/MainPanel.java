@@ -24,8 +24,9 @@ public class MainPanel extends javax.swing.JPanel {
         cardPanel.add(new ProductPanel(), "3");
         cardPanel.add(new StockPanel(), "4");
         cardPanel.add(new ClientPanel(), "5");
+        cardPanel.add(new EmployerPanel(), "6");
         cardPanel.add(new UserPanel(), "7");
-        card.show(cardPanel, "4");
+        card.show(cardPanel, "6");
     }
 
     /**
@@ -153,7 +154,7 @@ public class MainPanel extends javax.swing.JPanel {
         personnelButton.setBackground(new java.awt.Color(34, 67, 128));
         personnelButton.setForeground(new java.awt.Color(255, 255, 255));
         personnelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/personnel-new.png"))); // NOI18N
-        personnelButton.setText("Personnel");
+        personnelButton.setText("Employées");
         personnelButton.setBorder(null);
         personnelButton.setBorderPainted(false);
         personnelButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -245,22 +246,27 @@ public class MainPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_billButtonActionPerformed
 
     private void productButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productButtonActionPerformed
+        cardPanel.add(new ProductPanel(), "3");
         card.show(cardPanel, "3");
     }//GEN-LAST:event_productButtonActionPerformed
 
     private void personnelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personnelButtonActionPerformed
-        // TODO add your handling code here:
+        cardPanel.add(new EmployerPanel(), "6");
+        card.show(cardPanel, "6");
     }//GEN-LAST:event_personnelButtonActionPerformed
 
     private void stockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockButtonActionPerformed
+        cardPanel.add(new StockPanel(), "4");
         card.show(cardPanel, "4");
     }//GEN-LAST:event_stockButtonActionPerformed
 
     private void clientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientButtonActionPerformed
+        cardPanel.add(new ClientPanel(), "5");
         card.show(cardPanel, "5");
     }//GEN-LAST:event_clientButtonActionPerformed
 
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
+        cardPanel.add(new UserPanel(), "7");
         card.show(cardPanel, "7");
     }//GEN-LAST:event_userButtonActionPerformed
 
