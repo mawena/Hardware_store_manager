@@ -15,6 +15,12 @@ public class Stock {
         this.setQuantity(quantity);
         this.setProductDesignation(productDesignation);
     }
+    
+    public Stock(int idProduct, String dateEntryProduct, int quantity) {
+        this.setIdProduct(idProduct);
+        this.setDateEntryProduct(dateEntryProduct);
+        this.setQuantity(quantity);
+    }
 
     public String toString() {
         return "{\n\tidProduct => \"" + this.idProduct + "\",\n\tproductDesignation => \"" + this.productDesignation + "\",\n\tdateEntryProduct => \"" + this.dateEntryProduct

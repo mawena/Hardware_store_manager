@@ -17,7 +17,8 @@ CREATE TABLE employers(
     first_name varchar(150) NOT NULL,
     birth_date date,
     sex ENUM('M', 'F'),
-    role varchar(80),
+    tel varchar(50),
+    rule varchar(15),
     UNIQUE(last_name, first_name)
 );
 
@@ -30,7 +31,7 @@ CREATE TABLE products(
 
 CREATE TABLE stock(
     id_product int NOT NULL,
-    date_entry_product datetime NOT NULL,
+    date_entry_product date NOT NULL,
     quantity int NOT NULL,
 
     PRIMARY KEY(id_product, date_entry_product),
@@ -38,21 +39,22 @@ CREATE TABLE stock(
 );
 
 CREATE TABLE clients(
-    sex ENUM('M', 'F'),
-    UNIQUE(last_name, first_name)
     id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
     num_CIN varchar(25) NOT NULL UNIQUE,
     last_name varchar(80) NOT NULL,
     first_name varchar(150) NOT NULL,
     category ENUM('detaillant', 'grossiste') NOT NULL,
-    tel varchar(15),
+    sex ENUM('M', 'F'),
+    tel varchar(30),
+
+    UNIQUE(last_name, first_name)
 );
 
 CREATE TABLE orders(
     id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_client int NOT NULL,
     id_employer int NOT NULL,
-    date_order datetime NOT NULL,
+    date_order date NOT NULL,
     
     FOREIGN KEY(id_client) REFERENCES clients(id),
     FOREIGN KEY(id_employer) REFERENCES employers(id)
@@ -61,7 +63,7 @@ CREATE TABLE orders(
 CREATE TABLE orders_details(
     id_order int NOT NULL,
     id_product int NOT NULL,
-    date_entry_product datetime NOT NULL,
+    date_entry_product date NOT NULL,
     quantity int NOT NULL,
 
     FOREIGN KEY(id_product) REFERENCES products(id),
@@ -71,10 +73,12 @@ CREATE TABLE orders_details(
 
 CREATE TABLE bills(
     id_order int PRIMARY KEY NOT NULL,
-    date_bill datetime,
+    date_bill date,
     getMoney int,
 
     FOREIGN KEY(id_order) REFERENCES orders(id)
 );
 INSERT INTO `users` (`id`, `username`, `password`, `type`) VALUES
-(1, 'root', 'root', 'Gerant');
+(1, 'mawena', 'licdovic', 'Gerant');
+INSERT INTO `users` (`id`, `username`, `password`, `type`) VALUES
+(2, 'root', 'root', 'Gerant');

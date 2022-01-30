@@ -28,7 +28,7 @@ public class StockController {
             if (stockDB == null) {
                 return (StockManager.store(stock) != null);
             } else {
-                JOptionPane.showMessageDialog(null, "Le stock existe déjà!");
+                JOptionPane.showMessageDialog(null, "Le produit est déjà dans le stock à cette date!\nVeuillez plutôt le mettre à jour");
                 return false;
             }
         } else {
