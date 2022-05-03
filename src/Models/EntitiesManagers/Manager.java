@@ -1,8 +1,9 @@
 package Models.EntitiesManagers;
 
+import static java.lang.Class.forName;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement; 
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
  * with the database
  */
 public class Manager {
+
     protected static Connection connection;
     protected static Statement statement;
     protected static PreparedStatement pS;
@@ -26,7 +28,9 @@ public class Manager {
         String password = "root";
         Manager.connection = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException ex) {
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -74,7 +78,7 @@ public class Manager {
 
     /**
      * Return the last id of a table into the database
-     * 
+     *
      * @param tableName String The name of the table
      * @return Integer The last id
      */
@@ -97,13 +101,12 @@ public class Manager {
      * @return Connection
      */
     // Getters and Setters
-
     public static Connection getConnection() {
         return Manager.connection;
     }
 
     /**
-     * @param connection    Connection
+     * @param connection Connection
      */
     public static void setConnection(Connection connection) {
         Manager.connection = connection;
@@ -131,7 +134,7 @@ public class Manager {
     }
 
     /**
-     * @param pS    PreparedStatement
+     * @param pS PreparedStatement
      */
     public static void setPreparedStatement(PreparedStatement pS) {
         Manager.pS = pS;
@@ -145,7 +148,7 @@ public class Manager {
     }
 
     /**
-     * @param result    ResutlSet
+     * @param result ResutlSet
      */
     public static void setResult(ResultSet result) {
         Manager.result = result;

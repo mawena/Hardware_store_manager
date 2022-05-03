@@ -11,8 +11,9 @@ public class Employer {
     private String sex;
     private String rule;
     private String tel;
+    private String photo;
 
-    public Employer(int id, String lastName, String firstName, String birthDate, String sex, String rule, String tel) {
+    public Employer(int id, String lastName, String firstName, String birthDate, String sex, String rule, String tel, String photo) {
         this.setId(id);
         this.setLastName(lastName);
         this.setFirstName(firstName);
@@ -20,15 +21,17 @@ public class Employer {
         this.setSex(sex);
         this.setRule(rule);
         this.setTel(tel);
+        this.setPhoto(photo);
     }
 
-    public Employer(String lastName, String firstName, String birthDate, String sex, String rule, String tel) {
+    public Employer(String lastName, String firstName, String birthDate, String sex, String rule, String tel, String photo) {
         this.setLastName(lastName);
         this.setFirstName(firstName);
         this.setBirthDate(birthDate);
         this.setSex(sex);
         this.setRule(rule);
         this.setTel(tel);
+        this.setPhoto(photo);
     }
 
     public String toString() {
@@ -104,5 +107,13 @@ public class Employer {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

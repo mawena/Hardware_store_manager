@@ -53,7 +53,7 @@ public class ClientPanel extends javax.swing.JPanel {
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min-new.png"))); // NOI18N
         addButton.setText("Ajouter");
         addButton.setBorder(null);
         addButton.setBorderPainted(false);
@@ -117,7 +117,7 @@ public class ClientPanel extends javax.swing.JPanel {
 
         deleteButton.setBackground(new java.awt.Color(255, 255, 255));
         deleteButton.setForeground(new java.awt.Color(34, 67, 128));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min.png"))); // NOI18N
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min-new.png"))); // NOI18N
         deleteButton.setText("Suprimer");
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);

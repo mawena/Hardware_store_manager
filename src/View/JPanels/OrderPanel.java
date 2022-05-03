@@ -4,11 +4,14 @@
  */
 package View.JPanels;
 
-import Controllers.StockController;
-import Models.Entities.Product;
-import Models.Entities.Stock;
-import Models.EntitiesManagers.StockManager;
-import Models.EntitiesManagers.ProductsManager;
+import Controllers.OrdersController;
+import Main.Main;
+import Models.Entities.Client;
+import Models.Entities.Employer;
+import Models.Entities.Order;
+import Models.EntitiesManagers.ClientsManager;
+import Models.EntitiesManagers.EmployersManager;
+import Models.EntitiesManagers.OrdersManager;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -31,12 +34,15 @@ public class OrderPanel extends javax.swing.JPanel {
      */
     public OrderPanel() {
         initComponents();
-        ArrayList<Stock> stockList = StockManager.getAll();
-        Table.setModel(StockManager.toTableModel(stockList));
-        productId.removeAllItems();
-        productId.addItem("Tout");
-        for (Product product : ProductsManager.getAll()) {
-            productId.addItem(Integer.toString(product.getId()));
+        ArrayList<Order> orderList = OrdersManager.getAll();
+        Table.setModel(OrdersManager.toTableModel(orderList));
+        ClientId.removeAllItems();
+        for (Client client : ClientsManager.getAll()) {
+            ClientId.addItem(Integer.toString(client.getId()));
+        }
+        EmployerId.removeAllItems();
+        for (Employer employer : EmployersManager.getAll()) {
+            EmployerId.addItem(Integer.toString(employer.getId()));
         }
         String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         changeDateEntry(currentDate);
@@ -54,13 +60,14 @@ public class OrderPanel extends javax.swing.JPanel {
 
         tab = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
-        productId = new javax.swing.JComboBox<>();
-        Quantity = new javax.swing.JSpinner();
+        ClientId = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        DateEntry = new com.toedter.calendar.JDateChooser();
+        DateOrder = new com.toedter.calendar.JDateChooser();
         Illustration = new javax.swing.JLabel();
+        EmployerId = new javax.swing.JComboBox<>();
+        moreDetails = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -84,22 +91,17 @@ public class OrderPanel extends javax.swing.JPanel {
         });
         tab.setViewportView(Table);
 
-        productId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        productId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        productId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Numéro produit", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
-        productId.addItemListener(new java.awt.event.ItemListener() {
+        ClientId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        ClientId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Numéro client", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
+        ClientId.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                productIdItemStateChanged(evt);
+                ClientIdItemStateChanged(evt);
             }
         });
 
-        Quantity.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        Quantity.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
-        Quantity.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantité", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
-
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min-new.png"))); // NOI18N
         addButton.setText("Ajouter");
         addButton.setBorder(null);
         addButton.setBorderPainted(false);
@@ -125,7 +127,7 @@ public class OrderPanel extends javax.swing.JPanel {
 
         deleteButton.setBackground(new java.awt.Color(255, 255, 255));
         deleteButton.setForeground(new java.awt.Color(34, 67, 128));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min.png"))); // NOI18N
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min-new.png"))); // NOI18N
         deleteButton.setText("Suprimer");
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);
@@ -136,19 +138,39 @@ public class OrderPanel extends javax.swing.JPanel {
             }
         });
 
-        DateEntry.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Date d'entrée", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
-        DateEntry.setForeground(new java.awt.Color(34, 67, 128));
-        DateEntry.setDateFormatString("yyyy-MM-dd");
-        DateEntry.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        DateOrder.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Date commande", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
+        DateOrder.setForeground(new java.awt.Color(34, 67, 128));
+        DateOrder.setDateFormatString("yyyy-MM-dd");
+        DateOrder.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                DateEntryInputMethodTextChanged(evt);
+                DateOrderInputMethodTextChanged(evt);
             }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                DateEntryCaretPositionChanged(evt);
+                DateOrderCaretPositionChanged(evt);
             }
         });
 
         Illustration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Commands.png"))); // NOI18N
+
+        EmployerId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        EmployerId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Numéro employer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
+        EmployerId.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                EmployerIdItemStateChanged(evt);
+            }
+        });
+
+        moreDetails.setBackground(new java.awt.Color(255, 255, 255));
+        moreDetails.setForeground(new java.awt.Color(34, 67, 128));
+        moreDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/more-new.png"))); // NOI18N
+        moreDetails.setText("Plus de details");
+        moreDetails.setBorder(null);
+        moreDetails.setBorderPainted(false);
+        moreDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreDetailsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,53 +180,63 @@ public class OrderPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(DateEntry, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(Quantity, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(productId, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(Illustration))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ClientId, javax.swing.GroupLayout.Alignment.TRAILING, 0, 122, Short.MAX_VALUE)
+                                        .addComponent(EmployerId, javax.swing.GroupLayout.Alignment.TRAILING, 0, 122, Short.MAX_VALUE))
+                                    .addComponent(DateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Illustration))
+                        .addGap(0, 21, Short.MAX_VALUE))
+                    .addComponent(moreDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ClientId, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(productId)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EmployerId, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DateEntry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Illustration))
+                    .addComponent(DateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(moreDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void disableButton() {
         updateButton.setVisible(false);
+        moreDetails.setVisible(false);
         deleteButton.setVisible(false);
     }
 
     public boolean good() {
-        if (productId.getSelectedItem().toString().equals("Tout")) {
-                JOptionPane.showMessageDialog(null, "Veuillez selectionner un numéro de produit valide!");
-                return false;
-            } else{
+        if (ClientId.getSelectedItem().toString().equals("Tout")) {
+            JOptionPane.showMessageDialog(null, "Veuillez selectionner un numéro de client valide!");
+            return false;
+        } else if (EmployerId.getSelectedItem().toString().equals("Tout")) {
+            JOptionPane.showMessageDialog(null, "Veuillez selectionner un numéro d'employer valide!");
+            return false;
+        } else {
             try {
-                Date dateTmp = new SimpleDateFormat("yyyy-MM-dd").parse(((JTextField) DateEntry.getDateEditor().getUiComponent()).getText());
+                Date dateTmp = new SimpleDateFormat("yyyy-MM-dd").parse(((JTextField) DateOrder.getDateEditor().getUiComponent()).getText());
                 LocalDate currentDate = LocalDate.now();
                 LocalDate date = dateTmp.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if (currentDate.isBefore(date)) {
@@ -217,13 +249,12 @@ public class OrderPanel extends javax.swing.JPanel {
                 return false;
             }
         }
-        
     }
 
     public void changeDateEntry(String dateEntry) {
         try {
             java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateEntry);   //On formatte correctement la date
-            DateEntry.setDate(date);
+            DateOrder.setDate(date);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "La date est invalide");
         }
@@ -236,8 +267,8 @@ public class OrderPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
         } else {
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
-            if (StockController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString())) {
-                Table.setModel(StockManager.toTableModel(StockManager.getAll()));
+            if (OrdersController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()))) {
+                Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
             }
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
@@ -245,32 +276,42 @@ public class OrderPanel extends javax.swing.JPanel {
     private void TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseClicked
         deleteButton.setVisible(true);
         updateButton.setVisible(true);
+        moreDetails.setVisible(true);
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
         int myIndex = Table.getSelectedRow();
-        productId.setSelectedItem(model.getValueAt(myIndex, 0).toString());
-        Quantity.setValue(Integer.parseInt(model.getValueAt(myIndex, 2).toString()));
-        changeDateEntry(model.getValueAt(myIndex, 3).toString());
+        ClientId.setSelectedItem(model.getValueAt(myIndex, 1).toString());
+        EmployerId.setSelectedItem(model.getValueAt(myIndex, 3).toString());
+        changeDateEntry(model.getValueAt(myIndex, 5).toString());
     }//GEN-LAST:event_TableMouseClicked
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         disableButton();
         if (good()) {
-            if (StockController.store(new Stock(Integer.parseInt(productId.getSelectedItem().toString()), ((JTextField) DateEntry.getDateEditor().getUiComponent()).getText(), (int) Quantity.getValue()))) {
-                Table.setModel(StockManager.toTableModel(StockManager.getAll()));
+            if (OrdersController.store(new Order(Integer.parseInt(ClientId.getSelectedItem().toString()), Integer.parseInt(EmployerId.getSelectedItem().toString()), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText() ))) {
+                Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
             }
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void productIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_productIdItemStateChanged
-        if (productId.getItemCount() != 0) {
-            String value = productId.getSelectedItem().toString();
-            if (value.equals("Tout")) {
-                Table.setModel(StockManager.toTableModel(StockManager.getAll()));
+    private void ClientIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ClientIdItemStateChanged
+        /*if (ClientId.getItemCount() != 0 && EmployerId.getItemCount() != 0) {
+            String clientId = ClientId.getSelectedItem().toString();
+            String employerId = EmployerId.getSelectedItem().toString();
+            if (clientId.equals("Tout")) {
+                if (employerId.equals("Tout")) {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
+                } else {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getByEmployer(Integer.parseInt(EmployerId.getSelectedItem().toString()))));
+                }
             } else {
-                Table.setModel(StockManager.toTableModel(StockManager.getByProduct(Integer.parseInt(value))));
+                if (employerId.equals("Tout")) {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getByClient(Integer.parseInt(ClientId.getSelectedItem().toString()))));
+                } else {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getByClientEmployer(Integer.parseInt(ClientId.getSelectedItem().toString()), Integer.parseInt(EmployerId.getSelectedItem().toString()))));
+                }
             }
-        }
-    }//GEN-LAST:event_productIdItemStateChanged
+        }*/
+    }//GEN-LAST:event_ClientIdItemStateChanged
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         disableButton();
@@ -280,31 +321,64 @@ public class OrderPanel extends javax.swing.JPanel {
         } else {
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
             if (good()) {
-                if (StockController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString(), new Stock(Integer.parseInt(productId.getSelectedItem().toString()), ((JTextField) DateEntry.getDateEditor().getUiComponent()).getText(), (int) Quantity.getValue()))) {
-                    Table.setModel(StockManager.toTableModel(StockManager.getAll()));
+                if (OrdersController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Order(Integer.parseInt(ClientId.getSelectedItem().toString()), Integer.parseInt(EmployerId.getSelectedItem().toString()), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText()))) {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
                 }
             }
 
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    private void DateEntryInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_DateEntryInputMethodTextChanged
-        
-    }//GEN-LAST:event_DateEntryInputMethodTextChanged
+    private void DateOrderInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_DateOrderInputMethodTextChanged
 
-    private void DateEntryCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_DateEntryCaretPositionChanged
+    }//GEN-LAST:event_DateOrderInputMethodTextChanged
 
-    }//GEN-LAST:event_DateEntryCaretPositionChanged
+    private void DateOrderCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_DateOrderCaretPositionChanged
+
+    }//GEN-LAST:event_DateOrderCaretPositionChanged
+
+    private void EmployerIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_EmployerIdItemStateChanged
+        /*if (ClientId.getItemCount() != 0 && EmployerId.getItemCount() != 0) {
+            String clientId = ClientId.getSelectedItem().toString();
+            String employerId = EmployerId.getSelectedItem().toString();
+            if (clientId.equals("Tout")) {
+                if (employerId.equals("Tout")) {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
+                } else {
+                    JOptionPane.showMessageDialog(null, OrdersManager.getByEmployer(Integer.parseInt(EmployerId.getSelectedItem().toString())));
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getByEmployer(Integer.parseInt(EmployerId.getSelectedItem().toString()))));
+                }
+            } else {
+                if (employerId.equals("Tout")) {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getByClient(Integer.parseInt(ClientId.getSelectedItem().toString()))));
+                } else {
+                    Table.setModel(OrdersManager.toTableModel(OrdersManager.getByClientEmployer(Integer.parseInt(ClientId.getSelectedItem().toString()), Integer.parseInt(EmployerId.getSelectedItem().toString()))));
+                }
+            }
+        }*/
+    }//GEN-LAST:event_EmployerIdItemStateChanged
+
+    private void moreDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreDetailsActionPerformed
+        disableButton();
+        int myIndex = Table.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            Main.showOrderDetails(Integer.parseInt(model.getValueAt(myIndex, 0).toString()));
+        }
+    }//GEN-LAST:event_moreDetailsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateEntry;
+    private javax.swing.JComboBox<String> ClientId;
+    private com.toedter.calendar.JDateChooser DateOrder;
+    private javax.swing.JComboBox<String> EmployerId;
     private javax.swing.JLabel Illustration;
-    private javax.swing.JSpinner Quantity;
     private javax.swing.JTable Table;
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JComboBox<String> productId;
+    private javax.swing.JButton moreDetails;
     private javax.swing.JScrollPane tab;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables

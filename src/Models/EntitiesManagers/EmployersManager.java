@@ -15,7 +15,7 @@ public class EmployersManager extends Manager {
             pS.setInt(1, id);
             result = pS.executeQuery();
             while (result.next()) {
-                employer = new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel"));
+                employer = new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel"), result.getString("photo"));
             }
             closeQuery();
         } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class EmployersManager extends Manager {
             pS.setString(2, firstName);
             result = pS.executeQuery();
             while (result.next()) {
-                employer = new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel"));
+                employer = new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel"), result.getString("photo"));
             }
             closeQuery();
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class EmployersManager extends Manager {
             result = pS.executeQuery();
             
             while (result.next()) {
-                employerList.add(new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel")));
+                employerList.add(new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel"), result.getString("photo")));
             }
             closeQuery();
         } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class EmployersManager extends Manager {
             statement = connection.createStatement();
             result = statement.executeQuery("SELECT * FROM employers;");
             while (result.next()) {
-                employerList.add(new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel")));
+                employerList.add(new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel"), result.getString("photo")));
             }
             closeQuery();
         } catch (SQLException e) {
@@ -75,13 +75,14 @@ public class EmployersManager extends Manager {
 
     public static Employer store(Employer employer) {
         try {
-            pS = connection.prepareStatement("INSERT INTO employers(last_name, first_name, birth_date, sex, rule, tel) VALUES(?, ?, ?, ?, ?, ?);");
+            pS = connection.prepareStatement("INSERT INTO employers(last_name, first_name, birth_date, sex, rule, tel, photo) VALUES(?, ?, ?, ?, ?, ?, ?);");
             pS.setString(1, employer.getLastName());
             pS.setString(2, employer.getFirstName());
             pS.setString(3, employer.getBirthDate());
             pS.setString(4, employer.getSex());
             pS.setString(5, employer.getRule());
             pS.setString(6, employer.getTel());
+            pS.setString(7, employer.getPhoto());
             pS.executeUpdate();
             employer.setId(getLastId("employers"));
             closeQuery();
@@ -93,14 +94,15 @@ public class EmployersManager extends Manager {
 
     public static Employer update(int id, Employer employer) {
         try {
-            pS = connection.prepareStatement("UPDATE employers SET last_name = ?, first_name = ?, birth_date = ?, sex = ?, rule = ?, tel = ? WHERE id = ?;");
+            pS = connection.prepareStatement("UPDATE employers SET last_name = ?, first_name = ?, birth_date = ?, sex = ?, rule = ?, tel = ?, photo = ? WHERE id = ?;");
             pS.setString(1, employer.getLastName());
             pS.setString(2, employer.getFirstName());
             pS.setString(3, employer.getBirthDate());
             pS.setString(4, employer.getSex());
             pS.setString(5, employer.getRule());
             pS.setString(6, employer.getTel());
-            pS.setInt(7, id);
+            pS.setString(7, employer.getPhoto());
+            pS.setInt(8, id);
             pS.executeUpdate();
             closeQuery();
         } catch (SQLException e) {

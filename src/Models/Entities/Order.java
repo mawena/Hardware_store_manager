@@ -8,21 +8,32 @@ public class Order {
 
     private int idClient;
 
+    private String clientName;
+
+    private String employerName;
+
     private int idEmployer;
 
     private String dateOrder;
 
-    public Order(int id, int idClient, int idEmployer, String dateOrder) {
+    public Order(int id, int idClient, int idEmployer, String dateOrder, String clientName, String employerName) {
         this.setId(id);
         this.setIdClient(idClient);
         this.setIdEmployer(idEmployer);
         this.setDateOrder(dateOrder);
+        this.setClientName(clientName);
+        this.setEmployerName(employerName);
     }
 
     public Order(int idClient, int idEmployer, String dateOrder) {
         this.setIdClient(idClient);
         this.setIdEmployer(idEmployer);
         this.setDateOrder(dateOrder);
+    }
+
+    public String toString() {
+        return "{\n\tid => \"" + this.id + "\",\n\tidClient => \"" + this.idClient + "\",\n\tidEmployer  => \""
+                + this.idEmployer + "\",\n\tdateOrder  => \"" + this.dateOrder + "\"\n}";
     }
 
     public int getId() {
@@ -57,11 +68,6 @@ public class Order {
         this.dateOrder = dateOrder;
     }
 
-    public String toString() {
-        return "{\n\tid => \"" + this.id + "\",\n\tidClient => \"" + this.idClient + "\",\n\tidEmployer  => \""
-                + this.idEmployer + "\",\n\tdateOrder  => \"" + this.dateOrder + "\"\n}";
-    }
-
     public void store() {
         Order tmp = OrdersManager.store(this);
         this.setId(tmp.getId());
@@ -73,5 +79,21 @@ public class Order {
 
     public boolean delete() {
         return OrdersManager.delete(this.id);
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getEmployerName() {
+        return employerName;
+    }
+
+    public void setEmployerName(String employerName) {
+        this.employerName = employerName;
     }
 }

@@ -8,6 +8,7 @@ package View.JFrames;
 import Models.EntitiesManagers.Manager;
 import java.awt.CardLayout;
 import View.JPanels.MainPanel;
+import View.JPanels.OthersDetailsPanel;
 import javax.swing.JFrame;
 
 /**
@@ -32,6 +33,7 @@ public class MainFrame extends javax.swing.JFrame {
         card.show(bodyPanel, "1");
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,4 +119,9 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
     // End of variables declaration//GEN-END:variables
+
+    public void showOrderDetails(int orderId) {
+        mainPanel.showOrderDetails(orderId);
+    }
+
 }

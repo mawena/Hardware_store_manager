@@ -22,6 +22,7 @@ public class MainPanel extends javax.swing.JPanel {
         initComponents();
         cardPanel.setLayout(card);
         cardPanel.add(new OrderPanel(), "1");
+        cardPanel.add(new BillPanel(), "2");
         cardPanel.add(new ProductPanel(), "3");
         cardPanel.add(new StockPanel(), "4");
         cardPanel.add(new ClientPanel(), "5");
@@ -141,7 +142,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         clientButton.setBackground(new java.awt.Color(34, 67, 128));
         clientButton.setForeground(new java.awt.Color(255, 255, 255));
-        clientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/client-min.png"))); // NOI18N
+        clientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/client-new.png"))); // NOI18N
         clientButton.setText("Client");
         clientButton.setBorder(null);
         clientButton.setBorderPainted(false);
@@ -234,17 +235,16 @@ public class MainPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_orderButtonActionPerformed
 
     private void disconnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disconnectButtonActionPerformed
-        // TODO add your handling code here:
         Main.disconnectUser();
     }//GEN-LAST:event_disconnectButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-        // TODO add your handling code here:
         Main.close();
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void billButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billButtonActionPerformed
-        // TODO add your handling code here:
+        cardPanel.add(new BillPanel(), "2");
+        card.show(cardPanel, "2");
     }//GEN-LAST:event_billButtonActionPerformed
 
     private void productButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productButtonActionPerformed
@@ -285,4 +285,9 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JButton stockButton;
     private javax.swing.JButton userButton;
     // End of variables declaration//GEN-END:variables
+
+    public void showOrderDetails(int orderId) {
+        cardPanel.add(new OthersDetailsPanel(orderId), "10");
+        card.show(cardPanel, "10");
+    }
 }

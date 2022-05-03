@@ -34,7 +34,6 @@ public class StockPanel extends javax.swing.JPanel {
         ArrayList<Stock> stockList = StockManager.getAll();
         Table.setModel(StockManager.toTableModel(stockList));
         productId.removeAllItems();
-        productId.addItem("Tout");
         for (Product product : ProductsManager.getAll()) {
             productId.addItem(Integer.toString(product.getId()));
         }
@@ -85,7 +84,6 @@ public class StockPanel extends javax.swing.JPanel {
         tab.setViewportView(Table);
 
         productId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        productId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         productId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Numéro produit", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
         productId.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -99,7 +97,7 @@ public class StockPanel extends javax.swing.JPanel {
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min-new.png"))); // NOI18N
         addButton.setText("Ajouter");
         addButton.setBorder(null);
         addButton.setBorderPainted(false);
@@ -125,7 +123,7 @@ public class StockPanel extends javax.swing.JPanel {
 
         deleteButton.setBackground(new java.awt.Color(255, 255, 255));
         deleteButton.setForeground(new java.awt.Color(34, 67, 128));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min.png"))); // NOI18N
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min-new.png"))); // NOI18N
         deleteButton.setText("Suprimer");
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);
@@ -164,12 +162,10 @@ public class StockPanel extends javax.swing.JPanel {
                             .addComponent(productId, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                             .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Illustration)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(Illustration))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -264,14 +260,7 @@ public class StockPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void productIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_productIdItemStateChanged
-        if (productId.getItemCount() != 0) {
-            String value = productId.getSelectedItem().toString();
-            if (value.equals("Tout")) {
-                Table.setModel(StockManager.toTableModel(StockManager.getAll()));
-            } else {
-                Table.setModel(StockManager.toTableModel(StockManager.getByProduct(Integer.parseInt(value))));
-            }
-        }
+        
     }//GEN-LAST:event_productIdItemStateChanged
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed

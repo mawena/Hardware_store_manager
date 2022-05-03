@@ -1,6 +1,6 @@
 package Models.Entities;
 
-import Models.EntitiesManagers.OrderDetailsManager;
+import Models.EntitiesManagers.OrdersDetailsManager;
 
 public class OrderDetails {
 
@@ -58,14 +58,11 @@ public class OrderDetails {
     }
 
     public void store() {
-        OrderDetailsManager.store(this);
+        OrdersDetailsManager.store(this);
     }
 
     public void update(OrderDetails orderDetails) {
-        OrderDetailsManager.update(this.getIdOrder(), this.getIdProduct(), orderDetails);
+        OrdersDetailsManager.update(this.getIdOrder(), this.getIdProduct(), orderDetails);
     }
 
-    public boolean delete() {
-        return OrderDetailsManager.delete(this.idOrder, this.idProduct);
-    }
 }
