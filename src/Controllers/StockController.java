@@ -16,7 +16,7 @@ public class StockController {
 
     public static boolean isValid(Stock stock) {
         if (stock.getDateEntryProduct().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "La date d'entrée du prouit est manquante!");
+            JOptionPane.showMessageDialog(null, "La date d'entrée du produit est manquante!");
             return false;
         }
         return true;

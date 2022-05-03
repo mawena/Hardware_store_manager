@@ -51,4 +51,8 @@ public class Main {
         Manager.close();
         System.exit(0);
     }
+
+    public static void showOrderDetails(int parseInt) {
+        mainFrame.showOrderDetails(parseInt);
+    }
 }

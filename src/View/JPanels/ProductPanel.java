@@ -50,6 +50,7 @@ public class ProductPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         Table.setBackground(new java.awt.Color(255, 255, 255));
+        Table.setFont(new java.awt.Font("Liberation Mono", 3, 18)); // NOI18N
         Table.setForeground(new java.awt.Color(34, 67, 128));
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,7 +75,7 @@ public class ProductPanel extends javax.swing.JPanel {
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min-new.png"))); // NOI18N
         addButton.setText("Ajouter");
         addButton.setBorder(null);
         addButton.setBorderPainted(false);
@@ -109,7 +110,7 @@ public class ProductPanel extends javax.swing.JPanel {
 
         deleteButton.setBackground(new java.awt.Color(255, 255, 255));
         deleteButton.setForeground(new java.awt.Color(34, 67, 128));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min.png"))); // NOI18N
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min-new.png"))); // NOI18N
         deleteButton.setText("Suprimer");
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);
@@ -183,7 +184,7 @@ public class ProductPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Designation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,11 +223,11 @@ public class ProductPanel extends javax.swing.JPanel {
     public boolean good() {
         try {
             Double.parseDouble(Price.getText());
+            return true;
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Le prix doit être un chiffre!");
             return false;
         }
-        return true;
     }
 
     private void DescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescriptionActionPerformed

@@ -7,11 +7,16 @@ package View.JPanels;
 import Controllers.EmployersController;
 import Models.Entities.Employer;
 import Models.EntitiesManagers.EmployersManager;
+import java.awt.Image;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +28,8 @@ public class EmployerPanel extends javax.swing.JPanel {
     /**
      * Creates new form StockPanel
      */
+    String selectedImgPath;
+
     public EmployerPanel() {
         initComponents();
         Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
@@ -31,7 +38,7 @@ public class EmployerPanel extends javax.swing.JPanel {
         changeBirthDate(currentDate);
         disableButton();
     }
-    
+
     public void changeBirthDate(String birthDate) {
         try {
             java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate);   //On formatte correctement la date
@@ -64,6 +71,8 @@ public class EmployerPanel extends javax.swing.JPanel {
         Function = new javax.swing.JTextField();
         BirthDate = new com.toedter.calendar.JDateChooser();
         Sex = new javax.swing.JComboBox<>();
+        Photo = new javax.swing.JLabel();
+        photoButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -92,7 +101,7 @@ public class EmployerPanel extends javax.swing.JPanel {
 
         addButton.setBackground(new java.awt.Color(255, 255, 255));
         addButton.setForeground(new java.awt.Color(34, 67, 128));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/add-min-new.png"))); // NOI18N
         addButton.setText("Ajouter");
         addButton.setBorder(null);
         addButton.setBorderPainted(false);
@@ -127,7 +136,7 @@ public class EmployerPanel extends javax.swing.JPanel {
 
         deleteButton.setBackground(new java.awt.Color(255, 255, 255));
         deleteButton.setForeground(new java.awt.Color(34, 67, 128));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min.png"))); // NOI18N
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/delete-min-new.png"))); // NOI18N
         deleteButton.setText("Suprimer");
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);
@@ -180,68 +189,91 @@ public class EmployerPanel extends javax.swing.JPanel {
         Function.setText("Gerant");
         Function.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fonction", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
 
+        BirthDate.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Date naissance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(34, 67, 128)), "Date Naisson", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
         BirthDate.setDateFormatString("yyyy-MM-dd");
 
         Sex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+
+        photoButton.setBackground(new java.awt.Color(255, 255, 255));
+        photoButton.setForeground(new java.awt.Color(34, 67, 128));
+        photoButton.setText("Ajouter Photo");
+        photoButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        photoButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        photoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                photoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Function)
+                            .addComponent(FirstName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LastName)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(BirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(Sex, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Tel, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Photo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(FirstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                .addComponent(Tel, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LastName)
-                                .addComponent(BirthDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sex, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(Function, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(updateButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                            .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                     .addComponent(Search)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(LastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(LastName)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Sex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Function, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                        .addGap(11, 11, 11)
-                        .addComponent(addButton)))
-                .addGap(31, 31, 31)
-                .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Photo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(photoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
+                .addComponent(Illustration))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,9 +298,13 @@ public class EmployerPanel extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         disableButton();
-        if (EmployersController.store( new Employer(LastName.getText(), FirstName.getText(), ((JTextField) BirthDate.getDateEditor().getUiComponent()).getText(), Sex.getSelectedItem().toString(), Function.getText(), Tel.getText()) )) {
-            clearForm();
-            Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
+        if (selectedImgPath.equals("")) {
+            JOptionPane.showMessageDialog(null, "La photo est manquante!");
+        } else {
+            if (EmployersController.store(new Employer(LastName.getText(), FirstName.getText(), ((JTextField) BirthDate.getDateEditor().getUiComponent()).getText(), Sex.getSelectedItem().toString(), Function.getText(), Tel.getText(), selectedImgPath))) {
+                clearForm();
+                Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
+            }
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -301,7 +337,10 @@ public class EmployerPanel extends javax.swing.JPanel {
         Sex.setSelectedItem(model.getValueAt(myIndex, 4).toString());
         Function.setText(model.getValueAt(myIndex, 5).toString());
         Tel.setText(model.getValueAt(myIndex, 6).toString());
-        
+        ImageIcon imgIC = new ImageIcon(selectedImgPath);
+        Image image = imgIC.getImage().getScaledInstance(Photo.getWidth(), Photo.getHeight(), Image.SCALE_SMOOTH);
+        Photo.setIcon(new ImageIcon(image));
+
     }//GEN-LAST:event_TableMouseClicked
 
     private void SearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchKeyReleased
@@ -316,9 +355,13 @@ public class EmployerPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
         } else {
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
-            if (EmployersController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Employer(LastName.getText(), FirstName.getText(), ((JTextField) BirthDate.getDateEditor().getUiComponent()).getText(), Sex.getSelectedItem().toString(), Function.getText(), Tel.getText() ))) {
-                clearForm();
-                Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
+            if (selectedImgPath.equals("")) {
+                JOptionPane.showMessageDialog(null, "La photo est manquante!");
+            } else {
+                if (EmployersController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Employer(LastName.getText(), FirstName.getText(), ((JTextField) BirthDate.getDateEditor().getUiComponent()).getText(), Sex.getSelectedItem().toString(), Function.getText(), Tel.getText(), selectedImgPath))) {
+                    clearForm();
+                    Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
+                }
             }
         }
     }//GEN-LAST:event_updateButtonActionPerformed
@@ -327,6 +370,25 @@ public class EmployerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TableMouseReleased
 
+    private void photoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoButtonActionPerformed
+        JFileChooser browserImageFile = new JFileChooser();
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
+        browserImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browserImageFile.showOpenDialog(null);
+
+        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
+            File selectedImageFile = browserImageFile.getSelectedFile();
+            selectedImgPath = selectedImageFile.getAbsolutePath();
+            //JOptionPane.showMessageDialog(null, selectedImagePath);
+
+            ImageIcon imgIC = new ImageIcon(selectedImgPath);
+
+            Image image = imgIC.getImage().getScaledInstance(Photo.getWidth(), Photo.getHeight(), Image.SCALE_SMOOTH);
+
+            Photo.setIcon(new ImageIcon(image));
+        }
+    }//GEN-LAST:event_photoButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser BirthDate;
@@ -334,6 +396,7 @@ public class EmployerPanel extends javax.swing.JPanel {
     private javax.swing.JTextField Function;
     private javax.swing.JLabel Illustration;
     private javax.swing.JTextField LastName;
+    private javax.swing.JLabel Photo;
     private javax.swing.JTextField Search;
     private javax.swing.JComboBox<String> Sex;
     private javax.swing.JTable Table;
@@ -341,6 +404,7 @@ public class EmployerPanel extends javax.swing.JPanel {
     private javax.swing.JButton addButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton photoButton;
     private javax.swing.JScrollPane tab;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
