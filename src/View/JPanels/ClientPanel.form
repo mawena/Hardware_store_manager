@@ -45,7 +45,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tab" pref="661" max="32767" attributes="0"/>
+                  <Component id="tab" pref="841" max="32767" attributes="0"/>
                   <Component id="Search" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -78,7 +78,7 @@
                   <Component id="Tel" min="-2" max="-2" attributes="0"/>
                   <Component id="addButton" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="160" max="32767" attributes="0"/>
               <Component id="Illustration" min="-2" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -374,8 +374,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="Table">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Mono" size="18" style="3"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="43" red="22" type="rgb"/>
