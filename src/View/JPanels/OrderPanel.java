@@ -89,6 +89,11 @@ public class OrderPanel extends javax.swing.JPanel {
                 TableMouseClicked(evt);
             }
         });
+        Table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TableKeyTyped(evt);
+            }
+        });
         tab.setViewportView(Table);
 
         ClientName.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -193,8 +198,8 @@ public class OrderPanel extends javax.swing.JPanel {
                     .addComponent(Illustration)
                     .addComponent(moreDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,9 +217,12 @@ public class OrderPanel extends javax.swing.JPanel {
                     .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(moreDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                 .addComponent(Illustration, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -276,7 +284,6 @@ public class OrderPanel extends javax.swing.JPanel {
         moreDetails.setVisible(true);
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
         int myIndex = Table.getSelectedRow();
-        System.out.println(model.getValueAt(myIndex, 1).toString());
         ClientName.setSelectedItem(model.getValueAt(myIndex, 1).toString());
         EmployerName.setSelectedItem(model.getValueAt(myIndex, 2).toString());
         changeDateEntry(model.getValueAt(myIndex, 3).toString());
@@ -370,6 +377,10 @@ public class OrderPanel extends javax.swing.JPanel {
             Main.showOrderDetails(Integer.parseInt(model.getValueAt(myIndex, 0).toString()));
         }
     }//GEN-LAST:event_moreDetailsActionPerformed
+
+    private void TableKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TableKeyTyped
+        moreDetailsActionPerformed(null);
+    }//GEN-LAST:event_TableKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
