@@ -41,6 +41,22 @@ public class EmployersManager extends Manager {
         return employer;
     }
     
+    public static Employer getByName(String employerName){
+        Employer employer = null;
+        try {
+            pS = connection.prepareStatement("SELECT * FROM employers WHERE CONCAT(employers.last_name, ' ', employers.first_name) = ?;");
+            pS.setString(1, employerName);
+            result = pS.executeQuery();
+            while (result.next()) {
+                employer = new Employer(result.getInt("id"), result.getString("last_name"), result.getString("first_name"), result.getString("birth_date"), result.getString("sex"), result.getString("rule"), result.getString("tel"), result.getString("photo"));
+            }
+            closeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return employer;
+    }
+    
     public static ArrayList<Employer> search(String value) {
         ArrayList<Employer> employerList = new ArrayList();
         try {
@@ -125,7 +141,7 @@ public class EmployersManager extends Manager {
     }
     
     public static TableModel toTableModel(ArrayList<Employer> employerList) {
-        String col[] = {"Numéro employer", "Nom", "Prénom", "Date naissance", "Sexe", "Fonction", "Tel"};
+        String col[] = {"Employer", "Nom", "Prénom", "Date naissance", "Sexe", "Fonction", "Tel"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
         for (Employer employer : employerList) {
             Object[] obj = {employer.getId(), employer.getLastName(), employer.getFirstName(), employer.getBirthDate(), employer.getSex(), employer.getRule(), employer.getTel()};

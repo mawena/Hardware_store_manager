@@ -16,7 +16,7 @@ public class Order {
 
     private String dateOrder;
 
-    public Order(int id, int idClient, int idEmployer, String dateOrder, String clientName, String employerName) {
+    public Order(int id, int idClient, int idEmployer, String dateOrder, String employerName, String clientName) {
         this.setId(id);
         this.setIdClient(idClient);
         this.setIdEmployer(idEmployer);
@@ -32,8 +32,8 @@ public class Order {
     }
 
     public String toString() {
-        return "{\n\tid => \"" + this.id + "\",\n\tidClient => \"" + this.idClient + "\",\n\tidEmployer  => \""
-                + this.idEmployer + "\",\n\tdateOrder  => \"" + this.dateOrder + "\"\n}";
+        return "{\n\tid => \"" + this.id + "\",\n\tidClient => \"" + this.idClient + "\",\n\tclientName => \"" + this.clientName + "\",\n\tidEmployer  => \""
+                + this.idEmployer + "\",\n\temployerName => \"" + this.employerName + "\",\n\tdateOrder  => \"" + this.dateOrder + "\"\n}";
     }
 
     public int getId() {
