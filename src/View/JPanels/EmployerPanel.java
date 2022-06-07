@@ -28,7 +28,7 @@ public class EmployerPanel extends javax.swing.JPanel {
     /**
      * Creates new form StockPanel
      */
-    String selectedImgPath;
+    String selectedImgPath = "";
 
     public EmployerPanel() {
         initComponents();
@@ -291,12 +291,16 @@ public class EmployerPanel extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         disableButton();
-        if (selectedImgPath.equals("")) {
+        if (selectedImgPath == null) {
             JOptionPane.showMessageDialog(null, "La photo est manquante!");
         } else {
-            if (EmployersController.store(new Employer(LastName.getText(), FirstName.getText(), ((JTextField) BirthDate.getDateEditor().getUiComponent()).getText(), Sex.getSelectedItem().toString(), Function.getText(), Tel.getText(), selectedImgPath))) {
-                clearForm();
-                Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
+            if (selectedImgPath.equals("")) {
+                JOptionPane.showMessageDialog(null, "La photo est manquante!");
+            } else {
+                if (EmployersController.store(new Employer(LastName.getText(), FirstName.getText(), ((JTextField) BirthDate.getDateEditor().getUiComponent()).getText(), Sex.getSelectedItem().toString(), Function.getText(), Tel.getText(), selectedImgPath))) {
+                    clearForm();
+                    Table.setModel(EmployersManager.toTableModel(EmployersManager.getAll()));
+                }
             }
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -330,10 +334,12 @@ public class EmployerPanel extends javax.swing.JPanel {
         Sex.setSelectedItem(model.getValueAt(myIndex, 4).toString());
         Function.setText(model.getValueAt(myIndex, 5).toString());
         Tel.setText(model.getValueAt(myIndex, 6).toString());
+        
+        Employer employer = EmployersManager.get(Integer.parseInt(model.getValueAt(myIndex, 0).toString()));
+        selectedImgPath = employer.getPhoto();
         ImageIcon imgIC = new ImageIcon(selectedImgPath);
         Image image = imgIC.getImage().getScaledInstance(Photo.getWidth(), Photo.getHeight(), Image.SCALE_SMOOTH);
         Photo.setIcon(new ImageIcon(image));
-
     }//GEN-LAST:event_TableMouseClicked
 
     private void SearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchKeyReleased
