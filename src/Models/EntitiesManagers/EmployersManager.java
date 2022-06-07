@@ -3,6 +3,7 @@ package Models.EntitiesManagers;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import Models.Entities.Employer;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -19,7 +20,7 @@ public class EmployersManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return employer;
     }
@@ -36,7 +37,7 @@ public class EmployersManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return employer;
     }
@@ -52,7 +53,7 @@ public class EmployersManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return employer;
     }
@@ -69,7 +70,7 @@ public class EmployersManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return employerList;
     }
@@ -84,7 +85,7 @@ public class EmployersManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return employerList;
     }
@@ -103,7 +104,7 @@ public class EmployersManager extends Manager {
             employer.setId(getLastId("employers"));
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return employer;
     }
@@ -122,7 +123,7 @@ public class EmployersManager extends Manager {
             pS.executeUpdate();
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return employer;
     }
@@ -135,7 +136,7 @@ public class EmployersManager extends Manager {
             closeQuery();
             return true;
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
     }

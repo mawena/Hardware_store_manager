@@ -30,7 +30,7 @@ public class ProductsController {
                 return false;
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ce produit " + product.getDesignation() + " existe déjà!");
+            JOptionPane.showMessageDialog(null, "Le produit " + product.getDesignation() + " existe déjà!");
             return false;
         }
     }

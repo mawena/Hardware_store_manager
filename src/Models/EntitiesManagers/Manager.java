@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 
 /**
  * Contains static methods for managing the connection to the database and input
@@ -32,7 +33,7 @@ public class Manager {
             connection = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException ex) {
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
@@ -44,7 +45,7 @@ public class Manager {
             try {
                 Manager.connection.close();
             } catch (SQLException e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
     }
@@ -57,21 +58,21 @@ public class Manager {
             try {
                 Manager.statement.close();
             } catch (SQLException e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
         if (Manager.result != null) {
             try {
                 Manager.result.close();
             } catch (SQLException e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
         if (Manager.pS != null) {
             try {
                 Manager.pS.close();
             } catch (SQLException e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
     }
@@ -92,7 +93,7 @@ public class Manager {
             }
             Manager.closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return id;
     }

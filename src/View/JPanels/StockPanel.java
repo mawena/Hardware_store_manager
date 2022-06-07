@@ -33,9 +33,9 @@ public class StockPanel extends javax.swing.JPanel {
         initComponents();
         ArrayList<Stock> stockList = StockManager.getAll();
         Table.setModel(StockManager.toTableModel(stockList));
-        productId.removeAllItems();
+        productName.removeAllItems();
         for (Product product : ProductsManager.getAll()) {
-            productId.addItem(Integer.toString(product.getId()));
+            productName.addItem(product.getDesignation());
         }
         String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         changeDateEntry(currentDate);
@@ -53,7 +53,7 @@ public class StockPanel extends javax.swing.JPanel {
 
         tab = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
-        productId = new javax.swing.JComboBox<>();
+        productName = new javax.swing.JComboBox<>();
         Quantity = new javax.swing.JSpinner();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
@@ -83,11 +83,11 @@ public class StockPanel extends javax.swing.JPanel {
         });
         tab.setViewportView(Table);
 
-        productId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        productId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Numéro produit", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
-        productId.addItemListener(new java.awt.event.ItemListener() {
+        productName.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        productName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produit", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
+        productName.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                productIdItemStateChanged(evt);
+                productNameItemStateChanged(evt);
             }
         });
 
@@ -159,7 +159,7 @@ public class StockPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(DateEntry, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                             .addComponent(Quantity, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(productId, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(productName, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,7 +175,7 @@ public class StockPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(productId)
+                    .addComponent(productName)
                     .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -197,7 +197,7 @@ public class StockPanel extends javax.swing.JPanel {
     }
 
     public boolean good() {
-        if (productId.getSelectedItem().toString().equals("Tout")) {
+        if (productName.getSelectedItem().toString().equals("Tout")) {
                 JOptionPane.showMessageDialog(null, "Veuillez selectionner un numéro de produit valide!");
                 return false;
             } else{
@@ -234,7 +234,8 @@ public class StockPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
         } else {
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
-            if (StockController.destroy(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString())) {
+            Product product = ProductsManager.get(Integer.parseInt(model.getValueAt(myIndex, 0).toString()));
+            if (StockController.destroy(product.getId(), model.getValueAt(myIndex, 3).toString())) {
                 Table.setModel(StockManager.toTableModel(StockManager.getAll()));
             }
         }
@@ -245,7 +246,7 @@ public class StockPanel extends javax.swing.JPanel {
         updateButton.setVisible(true);
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
         int myIndex = Table.getSelectedRow();
-        productId.setSelectedItem(model.getValueAt(myIndex, 0).toString());
+        productName.setSelectedItem(model.getValueAt(myIndex, 1).toString());
         Quantity.setValue(Integer.parseInt(model.getValueAt(myIndex, 2).toString()));
         changeDateEntry(model.getValueAt(myIndex, 3).toString());
     }//GEN-LAST:event_TableMouseClicked
@@ -253,15 +254,16 @@ public class StockPanel extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         disableButton();
         if (good()) {
-            if (StockController.store(new Stock(Integer.parseInt(productId.getSelectedItem().toString()), ((JTextField) DateEntry.getDateEditor().getUiComponent()).getText(), (int) Quantity.getValue()))) {
+            Product product = ProductsManager.get(productName.getSelectedItem().toString());
+            if (StockController.store(new Stock(product.getId(), ((JTextField) DateEntry.getDateEditor().getUiComponent()).getText(), (int) Quantity.getValue()))) {
                 Table.setModel(StockManager.toTableModel(StockManager.getAll()));
             }
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void productIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_productIdItemStateChanged
+    private void productNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_productNameItemStateChanged
         
-    }//GEN-LAST:event_productIdItemStateChanged
+    }//GEN-LAST:event_productNameItemStateChanged
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         disableButton();
@@ -270,8 +272,9 @@ public class StockPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
         } else {
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            Product product = ProductsManager.get(Integer.parseInt(model.getValueAt(myIndex, 0).toString()));
             if (good()) {
-                if (StockController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString(), new Stock(Integer.parseInt(productId.getSelectedItem().toString()), ((JTextField) DateEntry.getDateEditor().getUiComponent()).getText(), (int) Quantity.getValue()))) {
+                if (StockController.update(product.getId(), model.getValueAt(myIndex, 3).toString(), new Stock(Integer.parseInt(productName.getSelectedItem().toString()), ((JTextField) DateEntry.getDateEditor().getUiComponent()).getText(), (int) Quantity.getValue()))) {
                     Table.setModel(StockManager.toTableModel(StockManager.getAll()));
                 }
             }
@@ -295,7 +298,7 @@ public class StockPanel extends javax.swing.JPanel {
     private javax.swing.JTable Table;
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JComboBox<String> productId;
+    private javax.swing.JComboBox<String> productName;
     private javax.swing.JScrollPane tab;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
