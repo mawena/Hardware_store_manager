@@ -124,7 +124,7 @@ public class ProductsManager extends Manager {
     }
 
     public static TableModel toTableModel(ArrayList<Product> productList) {
-        String col[] = {"Numéro", "Designation", "Description", "Prix"};
+        String col[] = {"id", "Designation", "Description", "Prix"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
         for (Product product : productList) {
             Object[] obj = {product.getId(), product.getDesignation(), product.getDescription(), product.getPrice()};

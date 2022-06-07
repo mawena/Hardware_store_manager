@@ -110,7 +110,7 @@ public class StockManager extends Manager {
     }
 
     public static TableModel toTableModel(ArrayList<Stock> stockList) {
-        String col[] = {"Numéro produit", "Designation", "Quantié", "Date d'entrée"};
+        String col[] = {"id", "Designation", "Quantié", "Date d'entrée"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
         for (Stock stock : stockList) {
             Object[] obj = {stock.getIdProduct(), stock.getProductDesignation(), stock.getQuantity(), stock.getDateEntryProduct()};

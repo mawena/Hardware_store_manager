@@ -23,20 +23,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="ClientId" alignment="1" pref="122" max="32767" attributes="0"/>
-                              <Component id="EmployerId" alignment="1" pref="122" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="DateOrder" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                          <Component id="ClientName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="EmployerName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="DateOrder" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="deleteButton" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                          <Component id="updateButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="addButton" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="updateButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="addButton" min="-2" pref="118" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="deleteButton" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="Illustration" min="-2" max="-2" attributes="0"/>
@@ -51,14 +51,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ClientId" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="deleteButton" min="-2" pref="42" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ClientName" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="deleteButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="updateButton" max="32767" attributes="0"/>
-                  <Component id="EmployerId" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="EmployerName" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -132,7 +132,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="ClientId">
+    <Component class="javax.swing.JComboBox" name="ClientName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="13" style="0"/>
@@ -142,7 +142,7 @@
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Num&#xe9;ro client">
+            <TitledBorder title="Client">
               <Font PropertyName="font" name="Arial" size="12" style="0"/>
               <Color PropertyName="color" blue="80" green="43" red="22" type="rgb"/>
             </TitledBorder>
@@ -150,7 +150,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ClientIdItemStateChanged"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ClientNameItemStateChanged"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -249,7 +249,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="EmployerId">
+    <Component class="javax.swing.JComboBox" name="EmployerName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="13" style="0"/>
@@ -259,7 +259,7 @@
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Num&#xe9;ro employer">
+            <TitledBorder title="Employer">
               <Font PropertyName="font" name="Arial" size="12" style="0"/>
               <Color PropertyName="color" blue="80" green="43" red="22" type="rgb"/>
             </TitledBorder>
@@ -267,7 +267,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="EmployerIdItemStateChanged"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="EmployerNameItemStateChanged"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

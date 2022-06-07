@@ -149,7 +149,7 @@ public class OrdersManager extends Manager {
     }
 
     public static TableModel toTableModel(ArrayList<Order> orderList) {
-        String col[] = {"Numéro commande", "Numéro client", "Nom client", "Numéro employé", "Nom employé", "Date commande", "total"};
+        String col[] = {"commande", "Client", "Employé", "Date", "Total"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 
         for (Order order : orderList) {
@@ -157,7 +157,9 @@ public class OrdersManager extends Manager {
             for (OrderDetails orderDetail : OrdersDetailsManager.getByOrder(order.getId())) {
                 total = total + orderDetail.getQuantity();
             }
-            Object[] obj = {order.getId(), order.getIdClient(), order.getEmployerName(), order.getIdEmployer(), order.getClientName(), order.getDateOrder(), total};
+            //Object[] obj = {order.getId(), order.getIdClient(), order.getClientName(), order.getIdEmployer(), order.getEmployerName(), order.getDateOrder(), total};
+            Object[] obj = {order.getId(), order.getClientName(),order.getEmployerName(),  order.getDateOrder(), total};
+
             tableModel.addRow(obj);
         }
         return tableModel;

@@ -44,6 +44,24 @@ public class ClientsManager extends Manager {
         }
         return client;
     }
+    
+    public static Client getByName(String clientName){
+        Client client = null;
+        try {
+            pS = connection.prepareStatement("SELECT * FROM clients WHERE CONCAT(last_name, ' ', first_name) = ?;");
+            pS.setString(1, clientName);
+            result = pS.executeQuery();
+            while (result.next()) {
+                client = new Client(result.getInt("id"), result.getString("num_CIN"), result.getString("last_name"),
+                        result.getString("first_name"), result.getString("category"), result.getString("tel"), result.getString("sex"));
+            }
+            closeQuery();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return null;
+        }
+        return client;
+    }
 
     public static ArrayList<Client> getAll() {
         ArrayList<Client> clientList = new ArrayList();

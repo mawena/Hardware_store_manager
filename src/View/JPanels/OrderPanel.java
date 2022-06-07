@@ -36,13 +36,13 @@ public class OrderPanel extends javax.swing.JPanel {
         initComponents();
         ArrayList<Order> orderList = OrdersManager.getAll();
         Table.setModel(OrdersManager.toTableModel(orderList));
-        ClientId.removeAllItems();
+        ClientName.removeAllItems();
         for (Client client : ClientsManager.getAll()) {
-            ClientId.addItem(Integer.toString(client.getId()));
+            ClientName.addItem(client.getLastName() + " " + client.getFirstName());
         }
-        EmployerId.removeAllItems();
+        EmployerName.removeAllItems();
         for (Employer employer : EmployersManager.getAll()) {
-            EmployerId.addItem(Integer.toString(employer.getId()));
+            EmployerName.addItem(employer.getLastName() + " " + employer.getFirstName());
         }
         String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         changeDateEntry(currentDate);
@@ -60,13 +60,13 @@ public class OrderPanel extends javax.swing.JPanel {
 
         tab = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
-        ClientId = new javax.swing.JComboBox<>();
+        ClientName = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         DateOrder = new com.toedter.calendar.JDateChooser();
         Illustration = new javax.swing.JLabel();
-        EmployerId = new javax.swing.JComboBox<>();
+        EmployerName = new javax.swing.JComboBox<>();
         moreDetails = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -91,11 +91,11 @@ public class OrderPanel extends javax.swing.JPanel {
         });
         tab.setViewportView(Table);
 
-        ClientId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        ClientId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Numéro client", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
-        ClientId.addItemListener(new java.awt.event.ItemListener() {
+        ClientName.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        ClientName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Client", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
+        ClientName.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ClientIdItemStateChanged(evt);
+                ClientNameItemStateChanged(evt);
             }
         });
 
@@ -152,11 +152,11 @@ public class OrderPanel extends javax.swing.JPanel {
 
         Illustration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Commands.png"))); // NOI18N
 
-        EmployerId.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        EmployerId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Numéro employer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
-        EmployerId.addItemListener(new java.awt.event.ItemListener() {
+        EmployerName.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        EmployerName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(34, 67, 128))); // NOI18N
+        EmployerName.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                EmployerIdItemStateChanged(evt);
+                EmployerNameItemStateChanged(evt);
             }
         });
 
@@ -178,18 +178,18 @@ public class OrderPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ClientId, javax.swing.GroupLayout.Alignment.TRAILING, 0, 122, Short.MAX_VALUE)
-                                .addComponent(EmployerId, javax.swing.GroupLayout.Alignment.TRAILING, 0, 122, Short.MAX_VALUE))
-                            .addComponent(DateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(ClientName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EmployerName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DateOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Illustration)
                     .addComponent(moreDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,13 +199,13 @@ public class OrderPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ClientId, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(EmployerId, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmployerName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(DateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,10 +225,10 @@ public class OrderPanel extends javax.swing.JPanel {
     }
 
     public boolean good() {
-        if (ClientId.getSelectedItem().toString().equals("Tout")) {
+        if (ClientName.getSelectedItem().toString().equals("Tout")) {
             JOptionPane.showMessageDialog(null, "Veuillez selectionner un numéro de client valide!");
             return false;
-        } else if (EmployerId.getSelectedItem().toString().equals("Tout")) {
+        } else if (EmployerName.getSelectedItem().toString().equals("Tout")) {
             JOptionPane.showMessageDialog(null, "Veuillez selectionner un numéro d'employer valide!");
             return false;
         } else {
@@ -276,21 +276,24 @@ public class OrderPanel extends javax.swing.JPanel {
         moreDetails.setVisible(true);
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
         int myIndex = Table.getSelectedRow();
-        ClientId.setSelectedItem(model.getValueAt(myIndex, 1).toString());
-        EmployerId.setSelectedItem(model.getValueAt(myIndex, 3).toString());
-        changeDateEntry(model.getValueAt(myIndex, 5).toString());
+        System.out.println(model.getValueAt(myIndex, 1).toString());
+        ClientName.setSelectedItem(model.getValueAt(myIndex, 1).toString());
+        EmployerName.setSelectedItem(model.getValueAt(myIndex, 2).toString());
+        changeDateEntry(model.getValueAt(myIndex, 3).toString());
     }//GEN-LAST:event_TableMouseClicked
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         disableButton();
         if (good()) {
-            if (OrdersController.store(new Order(Integer.parseInt(ClientId.getSelectedItem().toString()), Integer.parseInt(EmployerId.getSelectedItem().toString()), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText() ))) {
+            Client client = ClientsManager.getByName(ClientName.getSelectedItem().toString());
+            Employer employer = EmployersManager.getByName(EmployerName.getSelectedItem().toString());
+            if (OrdersController.store(new Order(client.getId(), employer.getId(), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText() ))) {
                 Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
             }
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void ClientIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ClientIdItemStateChanged
+    private void ClientNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ClientNameItemStateChanged
         /*if (ClientId.getItemCount() != 0 && EmployerId.getItemCount() != 0) {
             String clientId = ClientId.getSelectedItem().toString();
             String employerId = EmployerId.getSelectedItem().toString();
@@ -308,7 +311,7 @@ public class OrderPanel extends javax.swing.JPanel {
                 }
             }
         }*/
-    }//GEN-LAST:event_ClientIdItemStateChanged
+    }//GEN-LAST:event_ClientNameItemStateChanged
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         disableButton();
@@ -318,7 +321,9 @@ public class OrderPanel extends javax.swing.JPanel {
         } else {
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
             if (good()) {
-                if (OrdersController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Order(Integer.parseInt(ClientId.getSelectedItem().toString()), Integer.parseInt(EmployerId.getSelectedItem().toString()), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText()))) {
+                Client client = ClientsManager.getByName(ClientName.getSelectedItem().toString());
+                Employer employer = EmployersManager.getByName(EmployerName.getSelectedItem().toString());
+                if (OrdersController.update(Integer.parseInt(model.getValueAt(myIndex, 0).toString()), new Order(client.getId(), employer.getId(), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText()))) {
                     Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
                 }
             }
@@ -334,7 +339,7 @@ public class OrderPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_DateOrderCaretPositionChanged
 
-    private void EmployerIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_EmployerIdItemStateChanged
+    private void EmployerNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_EmployerNameItemStateChanged
         /*if (ClientId.getItemCount() != 0 && EmployerId.getItemCount() != 0) {
             String clientId = ClientId.getSelectedItem().toString();
             String employerId = EmployerId.getSelectedItem().toString();
@@ -353,7 +358,7 @@ public class OrderPanel extends javax.swing.JPanel {
                 }
             }
         }*/
-    }//GEN-LAST:event_EmployerIdItemStateChanged
+    }//GEN-LAST:event_EmployerNameItemStateChanged
 
     private void moreDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreDetailsActionPerformed
         disableButton();
@@ -368,9 +373,9 @@ public class OrderPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ClientId;
+    private javax.swing.JComboBox<String> ClientName;
     private com.toedter.calendar.JDateChooser DateOrder;
-    private javax.swing.JComboBox<String> EmployerId;
+    private javax.swing.JComboBox<String> EmployerName;
     private javax.swing.JLabel Illustration;
     private javax.swing.JTable Table;
     private javax.swing.JButton addButton;
