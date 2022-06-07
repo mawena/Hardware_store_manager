@@ -22,7 +22,7 @@ public class BillsManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.print(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return bill;
     }
@@ -37,7 +37,7 @@ public class BillsManager extends Manager {
             }
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return billList;
     }
@@ -51,7 +51,7 @@ public class BillsManager extends Manager {
             pS.executeUpdate();
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
         return bill;
@@ -67,7 +67,7 @@ public class BillsManager extends Manager {
             pS.executeUpdate();
             closeQuery();
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return bill;
     }
@@ -80,7 +80,7 @@ public class BillsManager extends Manager {
             closeQuery();
             return true;
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
     }

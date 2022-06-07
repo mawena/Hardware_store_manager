@@ -88,10 +88,16 @@ public class OrderPanel extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TableMouseEntered(evt);
+            }
         });
         Table.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TableKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TableKeyPressed(evt);
             }
         });
         tab.setViewportView(Table);
@@ -294,7 +300,7 @@ public class OrderPanel extends javax.swing.JPanel {
         if (good()) {
             Client client = ClientsManager.getByName(ClientName.getSelectedItem().toString());
             Employer employer = EmployersManager.getByName(EmployerName.getSelectedItem().toString());
-            if (OrdersController.store(new Order(client.getId(), employer.getId(), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText() ))) {
+            if (OrdersController.store(new Order(client.getId(), employer.getId(), ((JTextField) DateOrder.getDateEditor().getUiComponent()).getText()))) {
                 Table.setModel(OrdersManager.toTableModel(OrdersManager.getAll()));
             }
         }
@@ -379,8 +385,14 @@ public class OrderPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_moreDetailsActionPerformed
 
     private void TableKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TableKeyTyped
-        moreDetailsActionPerformed(null);
     }//GEN-LAST:event_TableKeyTyped
+
+    private void TableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TableKeyPressed
+        moreDetailsActionPerformed(null);
+    }//GEN-LAST:event_TableKeyPressed
+
+    private void TableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseEntered
+    }//GEN-LAST:event_TableMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
