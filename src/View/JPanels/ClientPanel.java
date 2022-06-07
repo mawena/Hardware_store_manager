@@ -169,7 +169,7 @@ public class ClientPanel extends javax.swing.JPanel {
             }
         });
 
-        Table.setBackground(new java.awt.Color(255, 255, 255));
+        Table.setFont(new java.awt.Font("Liberation Mono", 3, 18)); // NOI18N
         Table.setForeground(new java.awt.Color(34, 67, 128));
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -216,7 +216,7 @@ public class ClientPanel extends javax.swing.JPanel {
                             .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                    .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
                     .addComponent(Search)))
         );
         layout.setVerticalGroup(
@@ -242,7 +242,7 @@ public class ClientPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(Illustration))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

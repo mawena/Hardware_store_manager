@@ -52,6 +52,7 @@ public class MainPanel extends javax.swing.JPanel {
         userButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(34, 67, 128));
+        setPreferredSize(new java.awt.Dimension(1366, 730));
 
         cardPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -59,11 +60,11 @@ public class MainPanel extends javax.swing.JPanel {
         cardPanel.setLayout(cardPanelLayout);
         cardPanelLayout.setHorizontalGroup(
             cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 1200, Short.MAX_VALUE)
         );
         cardPanelLayout.setVerticalGroup(
             cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         disconnectButton.setBackground(new java.awt.Color(34, 67, 128));
@@ -89,6 +90,7 @@ public class MainPanel extends javax.swing.JPanel {
         });
 
         orderButton.setBackground(new java.awt.Color(34, 67, 128));
+        orderButton.setFont(new java.awt.Font("Liberation Mono", 3, 18)); // NOI18N
         orderButton.setForeground(new java.awt.Color(255, 255, 255));
         orderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/order-new.png"))); // NOI18N
         orderButton.setText("Commandes");
@@ -102,6 +104,7 @@ public class MainPanel extends javax.swing.JPanel {
         });
 
         billButton.setBackground(new java.awt.Color(34, 67, 128));
+        billButton.setFont(orderButton.getFont());
         billButton.setForeground(new java.awt.Color(255, 255, 255));
         billButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/bill-new.png"))); // NOI18N
         billButton.setText("Factures");
@@ -115,6 +118,7 @@ public class MainPanel extends javax.swing.JPanel {
         });
 
         productButton.setBackground(new java.awt.Color(34, 67, 128));
+        productButton.setFont(orderButton.getFont());
         productButton.setForeground(new java.awt.Color(255, 255, 255));
         productButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/product-new.png"))); // NOI18N
         productButton.setText("Produits");
@@ -128,6 +132,7 @@ public class MainPanel extends javax.swing.JPanel {
         });
 
         stockButton.setBackground(new java.awt.Color(34, 67, 128));
+        stockButton.setFont(orderButton.getFont());
         stockButton.setForeground(new java.awt.Color(255, 255, 255));
         stockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/stock-new.png"))); // NOI18N
         stockButton.setText("Stock");
@@ -141,6 +146,7 @@ public class MainPanel extends javax.swing.JPanel {
         });
 
         clientButton.setBackground(new java.awt.Color(34, 67, 128));
+        clientButton.setFont(orderButton.getFont());
         clientButton.setForeground(new java.awt.Color(255, 255, 255));
         clientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/client-new.png"))); // NOI18N
         clientButton.setText("Client");
@@ -154,6 +160,7 @@ public class MainPanel extends javax.swing.JPanel {
         });
 
         personnelButton.setBackground(new java.awt.Color(34, 67, 128));
+        personnelButton.setFont(orderButton.getFont());
         personnelButton.setForeground(new java.awt.Color(255, 255, 255));
         personnelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/personnel-new.png"))); // NOI18N
         personnelButton.setText("Employées");
@@ -167,6 +174,7 @@ public class MainPanel extends javax.swing.JPanel {
         });
 
         userButton.setBackground(new java.awt.Color(34, 67, 128));
+        userButton.setFont(orderButton.getFont());
         userButton.setForeground(new java.awt.Color(255, 255, 255));
         userButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/icons/user-new.png"))); // NOI18N
         userButton.setText("Utilisateurs");
@@ -184,26 +192,32 @@ public class MainPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(personnelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(stockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(billButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(stockButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(orderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addComponent(disconnectButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(closeButton))
-                    .addComponent(cardPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(disconnectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(closeButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,14 +232,9 @@ public class MainPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(personnelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(closeButton)
-                            .addComponent(disconnectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

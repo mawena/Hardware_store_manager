@@ -24,32 +24,27 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="ClientId" alignment="1" pref="122" max="32767" attributes="0"/>
-                                      <Component id="EmployerId" alignment="1" pref="122" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="DateOrder" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="deleteButton" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="updateButton" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="addButton" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ClientId" alignment="1" pref="122" max="32767" attributes="0"/>
+                              <Component id="EmployerId" alignment="1" pref="122" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="Illustration" min="-2" max="-2" attributes="0"/>
+                          <Component id="DateOrder" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="deleteButton" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="updateButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="addButton" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="moreDetails" max="32767" attributes="0"/>
+                  <Component id="Illustration" min="-2" max="-2" attributes="0"/>
+                  <Component id="moreDetails" min="-2" pref="246" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tab" min="-2" pref="661" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="tab" pref="844" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,11 +66,11 @@
                   <Component id="addButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="moreDetails" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+              <Component id="moreDetails" min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="Illustration" min="-2" pref="263" max="-2" attributes="0"/>
           </Group>
-          <Component id="tab" pref="550" max="32767" attributes="0"/>
+          <Component id="tab" pref="700" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -89,8 +84,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="Table">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Mono" size="18" style="3"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="43" red="22" type="rgb"/>

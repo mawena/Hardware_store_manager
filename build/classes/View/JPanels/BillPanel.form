@@ -23,12 +23,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="OrderId" max="32767" attributes="0"/>
-                          <Component id="DateBill" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="DateBill" alignment="0" pref="200" max="32767" attributes="0"/>
                           <Component id="AmoutPaid" alignment="0" max="32767" attributes="0"/>
+                          <Component id="OrderId" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -36,14 +36,11 @@
                           <Component id="deleteButton" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
                           <Component id="addButton" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="Illustration" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="Illustration" pref="320" max="32767" attributes="0"/>
               </Group>
-              <Component id="tab" min="-2" pref="661" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tab" pref="836" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,7 +64,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="Illustration" min="-2" pref="263" max="-2" attributes="0"/>
           </Group>
-          <Component id="tab" pref="550" max="32767" attributes="0"/>
+          <Component id="tab" pref="700" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -81,11 +78,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="Table">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="24" style="0"/>
+              <Font name="Liberation Mono" size="18" style="3"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="43" red="22" type="rgb"/>

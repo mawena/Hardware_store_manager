@@ -118,7 +118,7 @@ public class UsersManager extends Manager {
     }
 
     public static TableModel toTableModel(ArrayList<User> userList) {
-        String col[] = {"Numéro", "Nom d'utilisateur", "Mot de passe", "Type"};
+        String col[] = {"id", "Nom", "Mot de passe", "Type"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
         for (User user : userList) {
             Object[] obj = {user.getId(), user.getUsername(), hash(user.getPassword()), user.getType()};
