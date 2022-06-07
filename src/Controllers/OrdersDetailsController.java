@@ -23,15 +23,15 @@ public class OrdersDetailsController {
 
         OrderDetails orderDetailsDB = OrdersDetailsManager.get(orderDetails.getIdOrder(), orderDetails.getIdProduct(), orderDetails.getDateEntryProduct());
         if (orderDetailsDB == null) {
-            Stock productStock = StockManager.get(orderDetails.getIdProduct(), orderDetails.getDateEntryProduct());
-            if (productStock.getQuantity() < orderDetails.getQuantity()) {
+            Stock stock = StockManager.get(orderDetails.getIdProduct(), orderDetails.getDateEntryProduct());
+            if (stock.getQuantity() < orderDetails.getQuantity()) {
                 JOptionPane.showMessageDialog(null, "Le produit n'est pas en quantité sufisante");
             } else {
                 if (OrdersDetailsManager.store(orderDetails) == null) {
                     return false;
                 } else {
-                    productStock.setQuantity(productStock.getQuantity() - orderDetails.getQuantity());
-                    StockManager.update(productStock.getIdProduct(), productStock.getDateEntryProduct(), productStock);
+                    stock.setQuantity(stock.getQuantity() - orderDetails.getQuantity());
+                    StockManager.update(stock.getIdProduct(), stock.getDateEntryProduct(), stock);
                     return true;
                 }
             }
@@ -42,25 +42,50 @@ public class OrdersDetailsController {
         return false;
     }
 
-    public static boolean update(int orderId, Order order) {
-        Order orderDB = OrdersManager.get(orderId);
-        if (orderDB == null) {
-            JOptionPane.showMessageDialog(null, "La commande n'existe pas!");
-            return false;
+    public static boolean update(OrderDetails orderDetails) {
+        Stock stock = StockManager.get(orderDetails.getIdProduct(), orderDetails.getDateEntryProduct());
+        OrderDetails oldOrderDetails = OrdersDetailsManager.get(orderDetails.getIdOrder(), orderDetails.getIdProduct(), orderDetails.getDateEntryProduct());
+        int response;
+        if (orderDetails.getQuantity() > oldOrderDetails.getQuantity()) {
+            int difference = (orderDetails.getQuantity() - oldOrderDetails.getQuantity());
+            if (difference > stock.getQuantity()) {
+                JOptionPane.showMessageDialog(null, "Il n'y a pas assez de produit en stock pour ajouter");
+                response = 1;
+                return false;
+            } else {
+                if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment augmenter la quantité de ce produit?") == 0) {
+                    OrdersDetailsManager.update(orderDetails.getIdOrder(), orderDetails.getIdProduct(), orderDetails);
+                    stock.setQuantity(stock.getQuantity() - difference);
+                    StockManager.update(stock.getIdProduct(), stock.getDateEntryProduct(), stock);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else if (orderDetails.getQuantity() == oldOrderDetails.getQuantity()) {
+            JOptionPane.showMessageDialog(null, "Aucun changement");
+            return true;
         } else {
-            return (OrdersManager.update(orderId, order) != null);
+            int difference = (oldOrderDetails.getQuantity() - orderDetails.getQuantity());
+            if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment dimminuer la quantité de ce produit?") == 0) {
+                OrdersDetailsManager.update(orderDetails.getIdOrder(), orderDetails.getIdProduct(), orderDetails);
+                stock.setQuantity(stock.getQuantity() + difference);
+                StockManager.update(stock.getIdProduct(), stock.getDateEntryProduct(), stock);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
     public static boolean destroy(OrderDetails orderDetails) {
-        Stock productStock = StockManager.get(orderDetails.getIdProduct(), orderDetails.getDateEntryProduct());
-        
-        if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment suprimer le order?") == 0) {
-            if(OrdersDetailsManager.delete(orderDetails.getIdOrder(), orderDetails.getIdProduct(), orderDetails.getDateEntryProduct())){
-                productStock.setQuantity(productStock.getQuantity() + orderDetails.getQuantity());
-                StockManager.update(productStock.getIdProduct(), productStock.getDateEntryProduct(), productStock);
+        Stock stock = StockManager.get(orderDetails.getIdProduct(), orderDetails.getDateEntryProduct());
+        if (JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment retirer le produit de la commande?") == 0) {
+            if (OrdersDetailsManager.delete(orderDetails.getIdOrder(), orderDetails.getIdProduct(), orderDetails.getDateEntryProduct())) {
+                stock.setQuantity(stock.getQuantity() + orderDetails.getQuantity());
+                StockManager.update(stock.getIdProduct(), stock.getDateEntryProduct(), stock);
                 return true;
-            }else{
+            } else {
                 return false;
             }
         } else {

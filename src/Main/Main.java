@@ -11,6 +11,7 @@ import View.JFrames.LoginFrame;
 import Models.EntitiesManagers.Manager;
 import Controllers.UsersController;
 import Models.Entities.User;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,25 +26,32 @@ public class Main {
     public static void main(String args[]) {
         Manager.connect();
         login = new LoginFrame();
-        mainFrame = new MainFrame();
-        mainFrame.setSize(1200, 600);
         login.setLocationRelativeTo(null);
-        login.setVisible(true);
+        //login.setVisible(true);
+        mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
     }
 
     public static void connectUser(String username, String password, String type) {
         if (UsersController.login(username, password, type)) {
+            mainFrame = new MainFrame();
             mainFrame.setLocationRelativeTo(login);
             mainFrame.setVisible(true);
+            
             login.setVisible(false);
+            login = null;
             Main.currentUser = new User(username, password, type);
         }
     }
 
     public static void disconnectUser() {
+        login = new LoginFrame();
         login.setLocationRelativeTo(mainFrame);
         login.setVisible(true);
+        
         mainFrame.setVisible(false);
+        mainFrame = null;
+        
         Main.currentUser = null;
     }
 

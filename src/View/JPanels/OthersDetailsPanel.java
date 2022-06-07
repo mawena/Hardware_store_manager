@@ -220,8 +220,8 @@ public class OthersDetailsPanel extends javax.swing.JPanel {
         if (myIndex == -1) {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
         } else {
-            DefaultTableModel model = (DefaultTableModel) StockTable.getModel();
-            OrderDetails orderDetails = new OrderDetails(this.idOrder, Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString(), (int) Quantity.getValue());
+            DefaultTableModel model = (DefaultTableModel) orderDetailsTable.getModel();
+            OrderDetails orderDetails = new OrderDetails(this.idOrder, Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString(), Integer.parseInt(model.getValueAt(myIndex, 2).toString()) );
             if ( OrdersDetailsController.destroy(orderDetails) ) {
                 StockTable.setModel(StockManager.toTableModel(StockManager.getAll()));
                 orderDetailsTable.setModel(OrdersDetailsManager.toTableModel(OrdersDetailsManager.getByOrder(this.idOrder) ));
@@ -231,7 +231,7 @@ public class OthersDetailsPanel extends javax.swing.JPanel {
 
     private void orderDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderDetailsTableMouseClicked
         deleteButton.setVisible(true);
-        updateButton.setVisible(false);
+        updateButton.setVisible(true);
         addButton.setVisible(false);
     }//GEN-LAST:event_orderDetailsTableMouseClicked
 
@@ -251,7 +251,18 @@ public class OthersDetailsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        
+        disableButton();
+        int myIndex = orderDetailsTable.getSelectedRow();
+        if (myIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau n'est sélectionné");
+        } else {
+            DefaultTableModel model = (DefaultTableModel) orderDetailsTable.getModel();
+            OrderDetails orderDetails = new OrderDetails(this.idOrder, Integer.parseInt(model.getValueAt(myIndex, 0).toString()), model.getValueAt(myIndex, 3).toString(), Integer.parseInt(model.getValueAt(myIndex, 2).toString()));
+            if ( OrdersDetailsController.update(orderDetails) ) {
+                StockTable.setModel(StockManager.toTableModel(StockManager.getAll()));
+                orderDetailsTable.setModel(OrdersDetailsManager.toTableModel(OrdersDetailsManager.getByOrder(this.idOrder) ));
+            }
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void StockTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StockTableMouseClicked
