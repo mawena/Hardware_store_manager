@@ -45,7 +45,7 @@ src/
 └── View/            # fenêtres (JFrames), panneaux (JPanels), images, gabarit de facture
 Documentation/       # cahier des charges, rapport (docx), notes sur la base de données
 lib/                 # pilotes et bibliothèques Swing
-nbproject/, build/   # fichiers NetBeans et sorties de compilation
+nbproject/           # fichiers du projet NetBeans (build/ n'est pas versionné)
 ```
 
 ## Limites connues

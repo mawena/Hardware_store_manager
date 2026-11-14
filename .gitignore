@@ -1,2 +1,4 @@
 lib
 build/
+nbproject/private/
+.vscode/
