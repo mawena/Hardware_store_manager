@@ -56,4 +56,4 @@ nbproject/, build/   # fichiers NetBeans et sorties de compilation
 
 ## Licence
 
-Aucune licence n'est déclarée dans ce dépôt.
+Code publié sous licence MIT : voir [LICENSE](LICENSE).
